@@ -301,3 +301,19 @@ function slac_preprocess_paragraph__overlap_image(array &$vars) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_paragraph__HOOK().
+ */
+function slac_preprocess_paragraph__tabs(array &$vars) {
+  $tab_ids = Drupal\Core\Render\Element::children($vars['content']['field_tab_paragraphs']);
+  $vars['tabs'] = [];
+  foreach ($tab_ids as $id) {
+    $tab_paragraph = $vars['content']['field_tab_paragraphs'][$id]['#paragraph'];
+    $vars['tabs'][] = [
+      'tab_id' => 'tab-' . $tab_paragraph->id(),
+      'tab_title' => $tab_paragraph->get('field_tab_heading')->view('default'),
+      'tab_content' => $tab_paragraph->get('field_paragraphs')->view('default')
+    ];
+  }
+}
