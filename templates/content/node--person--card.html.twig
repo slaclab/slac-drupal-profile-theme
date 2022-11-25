@@ -74,18 +74,19 @@
 
 {% set attributes = attributes.addClass(classes) %}
 
-{% set card_content = content.field_teaser|field_value is not empty ? content.field_teaser : content.field_body %}
+{% set card_metadata = content.field_text_title_short|field_value is not empty ? content.field_text_title_short|field_value : content.field_text_title_full|field_value %}
 
 {% set link = content.field_link|field_value is not empty ? content.field_link[0]['#url'] : url %}
 
 {% include '@components/card/card.twig' with {
   'modifier_classes': 'c-card--bio',
   'title': label,
-  'kicker': content.field_text|field_value,
+  'kicker': false,
   'url': link,
-  'card_metadata': content.field_text_title|field_value,
+  'card_metadata': card_metadata,
   'media': content.field_image|field_value,
-  'card_content': card_content|field_value,
+  'card_content': content.field_organization|field_value,
+  'use_placeholder': true
 } %}
 
 {# Uncomment the following if you don’t render the content variable. #}
