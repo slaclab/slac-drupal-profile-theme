@@ -22,12 +22,12 @@ jobs:
       - name: Archive Release
         uses: thedoctor0/zip-release@main
         with:
-          type: 'tar'
-          filename: 'slac.tar.gz'
-          exclusions: '*.git* /*node_modules/* .editorconfig'
+          type: 'zip'
+          filename: 'slac.zip'
+          exclusions: '*.git* /*node_modules/* .editorconfig source/*'
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'slac.tar.gz'
+          artifacts: 'slac.zip'
           replacesArtifacts: true
           allowUpdates: true
