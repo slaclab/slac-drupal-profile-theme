@@ -1,0 +1,37 @@
+name: Build release
+on: 
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build_gesso:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - run: |
+          npm ci
+          npm run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gesso-dist-files
+          path: |
+            dist
+            storybook
+      - name: Archive Release
+        uses: thedoctor0/zip-release@main
+        with:
+          type: 'tar'
+          filename: 'slac.tar.gz'
+          exclusions: '*.git* /*node_modules/* .editorconfig'
+      - name: Upload Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "slac.tar.gz"
+          replacesArtifacts: true
+          allowUpdates: true
