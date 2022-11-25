@@ -44,12 +44,15 @@ function slac_preprocess_paragraph__section(&$vars) {
         }
         // Set a variable noting this is a dark section, so we can make other theming
         // adjustments as needed.
-        if (!empty($content['field_paragraphs']) &&
-          !empty($content['field_paragraphs'][0])
-        ) {
-          $paragraphIndexes = \Drupal\Core\Render\Element::children($content['field_paragraphs']);
-          foreach ($paragraphIndexes as $p) {
-            $content['field_paragraphs'][$p]['#is_dark'] = TRUE;
+        for ($i = 1; $i <= 4; $i++) {
+          $field_name = "field_paragraphs_${i}";
+          if (!empty($content[$field_name]) &&
+            !empty($content[$field_name][0])
+          ) {
+            $paragraphIndexes = \Drupal\Core\Render\Element::children($content[$field_name]);
+            foreach ($paragraphIndexes as $p) {
+              $content[$field_name][$p]['#is_dark'] = TRUE;
+            }
           }
         }
       }
