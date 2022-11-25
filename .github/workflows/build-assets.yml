@@ -17,12 +17,8 @@ jobs:
       - run: |
           npm ci
           npm run build
-      - uses: actions/upload-artifact@v3
-        with:
-          name: gesso-dist-files
-          path: |
-            dist
-            storybook
+      - run: |
+          rm -rf node_modules
       - name: Archive Release
         uses: thedoctor0/zip-release@main
         with:
@@ -32,6 +28,6 @@ jobs:
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "slac.tar.gz"
+          artifacts: 'slac.tar.gz'
           replacesArtifacts: true
           allowUpdates: true
