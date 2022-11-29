@@ -69,3 +69,9 @@
     }
   }
 }
+
+.l-header__menu {
+  @include breakpoint(gesso-breakpoint(mobile-menu) + 1px) {
+    width: 100%;
+  }
+}

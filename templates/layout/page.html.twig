@@ -46,9 +46,13 @@
 {% extends '@layouts/site-container/site-container.twig' %}
 
 {% block site_content %}
+  {% include '@layouts/global-header/global-header.twig' with {
+    'slac_url': 'https://www6.slac.stanford.edu'
+  } %}
+  {% if site_settings['header:_include_slac_today'] and site_settings['header:_include_slac_today'].header_include_slac_today == '1' %}
+    {% include '@layouts/internal-header/internal-header.twig' %}
+  {% endif %}
   {{ page.header }}
-  {{ page.navigation }}
-  {{ page.breadcrumb }}
   {{ page.help }}
 
   <main id="main" class="c-main" role="main" tabindex="-1">

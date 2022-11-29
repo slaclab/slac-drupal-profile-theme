@@ -12,14 +12,18 @@
  * @see template_preprocess_region()
  */
 #}
-{% if content %}
-  {% embed '@layouts/header/header.twig' with {
-    'has_constrain': true,
+{% set site_branding %}
+  {% include '@components/site-name/site-name.twig' with {
+    'site_name': site_settings.organization_details.organization_details.field_organization_name,
+    'site_acronym': site_settings.organization_details.organization_details.field_acronym,
+    'logo': site_settings.organization_details.organization_details.field_logo ? site_settings.organization_details.organization_details.field_logo.uri|file_url,
+    'has_logo': site_settings.organization_details.organization_details.field_logo is not empty
   } %}
+{% endset %}
 
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-
-  {% endembed %}
-{% endif %}
+{% include '@layouts/header/header.twig' with {
+  'has_constrain': true,
+  'header_content': content,
+  'header_freeform': drupal_entity('block', 'header_freeform_text'),
+  'site_branding': site_branding
+} %}
