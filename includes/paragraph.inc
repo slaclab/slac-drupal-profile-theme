@@ -158,6 +158,7 @@ function _slac_set_hero_caption(&$vars) {
       break;
     // See template field--paragraph--field-long-text--overlap-image.html.twig for caption processing.
     case 'overlap_image':
+    case 'image_hero':
       $paragraph_caption = !empty($paragraph->field_long_text[0]) ? $paragraph->field_long_text->view('tooltip') : NULL;
       $vars['hero_caption'] = $paragraph_caption ?: (!empty($image->field_caption[0]) ? $image->field_caption->view('tooltip') : NULL);
       break;

@@ -33,7 +33,7 @@
       {% if hero_summary %}
         <div class="c-hero-bg-image__summary">{{ hero_summary }}</div>
       {% endif %}
-      {% if hero_button %}{{ hero_button}}{% else %}
+        {% if hero_button %}<p class="c-hero-bg-image__button">{{ hero_button}}</p>{% else %}
       {% include '@components/icon/icon.twig' with {
         is_hidden: true,
         modifier_classes: 'c-hero-bg-image__arrow',

@@ -131,6 +131,14 @@ options:
         class: 'c-embed--wide'
       - label: 'Full'
         class: 'c-embed--full'
+  overlay_position:
+    plugin: css_class
+    label: 'Overlay position'
+    options:
+      - label: 'Left'
+        class: 'c-hero-bg-image--left'
+      - label: 'Right'
+        class: 'c-hero-bg-image--right'
 
 contexts:
   paragraphs:
@@ -159,3 +167,6 @@ contexts:
     embed_full_html_:
       options:
         embed_width: true
+    image_hero:
+      options:
+        overlay_position: true

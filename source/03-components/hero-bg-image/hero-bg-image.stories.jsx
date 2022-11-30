@@ -40,7 +40,7 @@ HeroWithButton.args = {
   ...globalData,
   ...data,
   hero_button:
-    '<p class="c-hero-bg-image__button"><a href="#0" class="c-button c-button--chevron">Optional button</a></p>',
+    '<a href="#0" class="c-button c-button--chevron">Optional button</a>',
 };
 
 export default settings;
