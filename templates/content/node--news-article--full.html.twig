@@ -94,35 +94,24 @@
   {{ drupal_block('share_this_page_block', {hero_type: hero_type}) }}
 </div>
 
-{% set post_content_content %}
-{% if node.field_boolean.value == '1' %}
-  {{ drupal_entity('block', 'boilerplate', check_access=false) }}
-{% endif %}
-{% endset %}
-
 {% set article_content %}
 {{ content.field_paragraphs }}
-{% include '@layouts/section/section.twig' with {
-    'section_content': post_content_content,
-    'has_constrain': true,
-    'modifier_classes': 'l-section--white',
-  } %}
-{{ content.field_paragraphs_1 }}
-{{ drupal_view('related_content_for_detail_pages', 'news_article_related_stories') }}
 {% endset %}
 
 {% include '@templates/news-article-detail/news-article-detail.twig' with {
-  'title': hero_type == 'image_hero' ? null : label,
-  'lede': content.field_lede|field_value,
+  'title': label,
+  'lede': content.field_dek|field_value,
   'show_admin_info': show_admin_info,
   'admin_info': admin_info,
   'show_footer': false,
-  'date': hero_type == 'image_hero' ? null : node.getCreatedTime|date("F j, Y"),
-  'author': content.field_bio|field_value,
+  'date': content.field_date|render|striptags|trim,
+  'type': content.field_type|render|striptags|trim,
   'author_name': content.field_text|field_value,
+  'author_link': content.field_link|field_value,
   'rdf_metadata': metadata,
   'content': article_content,
-  'tags': content.field_tags
+  'tags': content.field_tags,
+  'related_content': drupal_view('related_content_for_detail_pages', 'news_article_related_stories')
 } %}
 
 {% set catch_cache = content|render %}
