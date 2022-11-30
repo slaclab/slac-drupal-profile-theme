@@ -51,7 +51,7 @@
   border: 2px solid transparent;
   border-radius: 0 8px 8px 0;
   cursor: pointer;
-  inset: -3px -3px -3px auto;
+  inset: -4px -4px -4px auto;
   outline: 0;
   position: absolute;
   width: 60px;
@@ -97,8 +97,11 @@
   }
 
   .c-section-search__button {
-    mask-size: 30px;
     padding-right: gesso-spacing(10);
+
+    .c-section-search__icon {
+      mask-size: 30px;
+    }
   }
 
   .c-section-search__label {
