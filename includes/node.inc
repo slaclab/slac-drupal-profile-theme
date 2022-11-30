@@ -216,3 +216,10 @@ function slac_preprocess_node__news_article(&$vars) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_node__HOOK().
+ */
+function slac_preprocess_node__blog(&$vars) {
+  slac_preprocess_node__news_article($vars);
+}
