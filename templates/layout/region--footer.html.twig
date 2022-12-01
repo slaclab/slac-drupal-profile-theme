@@ -17,6 +17,16 @@
 } %}
 
   {% block footer_contact %}
+    {% if site_settings.organization_details.organization_details %}
+      <strong>{{ site_settings.organization_details.organization_details.field_acronym }} | {{ site_settings.organization_details.organization_details.field_organization_name }}</strong>
+      {% if site_settings.organization_details.organization_details.field_address %}
+        <address>
+          {% if site_settings.organization_details.organization_details.field_address.address_line1 %}{{ site_settings.organization_details.organization_details.field_address.address_line1 }}<br>{% endif %}
+          {% if site_settings.footer_settings.footer_address.value %}{{ site_settings.footer_settings.footer_address.value|striptags('<strong><b><i><em>') }}<br>{% endif %}
+          {% if site_settings.organization_details.organization_details.field_address.locality %}{{ site_settings.organization_details.organization_details.field_address.locality }}, {% endif %}{{ site_settings.organization_details.organization_details.field_address.administrative_area }} {{ site_settings.organization_details.organization_details.field_address.postal_code }}<br>
+        </address>
+      {% endif %}
+    {% endif %}
     {{ content }}
   {% endblock %}
 
