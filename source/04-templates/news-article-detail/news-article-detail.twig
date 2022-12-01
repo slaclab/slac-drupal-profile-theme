@@ -3,7 +3,8 @@
   {% if tags|field_value %}
     {% include '@layouts/section/section.twig' with {
       section_content: tags,
-      has_constrain: true
+      has_constrain: true,
+      attributes: false
     } %}
   {% endif %}
 {% endset %}
