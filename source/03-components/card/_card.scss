@@ -60,10 +60,6 @@ $card-padding: 30px;
   .c-card--on-dark & {
     background: transparent;
   }
-
-  .c-card--teaser & {
-    padding: 20px 40px;
-  }
 }
 
 .c-card__header {
@@ -216,6 +212,10 @@ $card-padding: 30px;
 
     + .c-card--teaser {
       margin-top: rem(gesso-get-map(gutter-width));
+    }
+
+    .c-card__body {
+      padding: 20px 40px;
     }
 
     .c-card__media {
