@@ -19,3 +19,8 @@ speaker_content: |-
   much higher data rates expected from the planned upgrade of the LHC. She is also co-convener
   of the group on Higgs boson properties in the current national study of the future of particle physics.</p>
 event_sponsor: 'Name of Sponsor lorem ipsum dolor sit amet eleifend consectetur adipiscing elit. Lobortis ultrices sed.'
+event_audience: 'All levels general public lorem ipsum dolor sit amet eleifend consectetur adipiscing elit. Lobortis ultrices sed.'
+event_contact: |-
+  FirstName LastName<br>
+  name@slac.stanford.edu<br>
+  650.123.1234

@@ -62,8 +62,16 @@
         {% set event_info %}
           <div class="event-detail__info c-small-paragraph">
             {% if event_sponsor %}
-              <p><strong>Event Sponsor:</strong>
+              <p><strong>{{ 'Event Sponsor'|t }}:</strong>
               {{ event_sponsor }}</p>
+            {% endif %}
+            {% if event_audience %}
+              <p><strong>{{ 'Audience'|t }}:</strong>
+                {{ event_audience }}</p>
+            {% endif %}
+            {% if event_contact %}
+              <p><strong>{{ 'Event Contact'|t }}:</strong>
+                {{ event_contact }}</p>
             {% endif %}
           </div>
         {% endset %}
