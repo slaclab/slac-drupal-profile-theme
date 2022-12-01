@@ -5,6 +5,7 @@
  * Node-related hook implementations.
  */
 
+use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Core\Url;
 use Drupal\Component\Utility\Html;
@@ -213,6 +214,22 @@ function slac_preprocess_node__news_article(&$vars) {
     }
     if (isset($is_truncated)) {
       $vars['is_truncated'] = $is_truncated;
+    }
+  }
+  if ($vars['view_mode'] == 'full') {
+    $node = $vars['elements']['#node'];
+    if (!$node->field_text->value && $node->field_link->first()) {
+      /** @var Url $url */
+     $url = $node->field_link->first()->getUrl();
+     if ($url->getRouteName() === 'entity.node.canonical') {
+       $nid = $url->getRouteParameters()['node'];
+       $node = Node::load($nid);
+       if ($node->bundle() === 'person') {
+         $vars['content']['field_text'] = $node->get('title')->view();
+         $renderer = \Drupal::service('renderer');
+         $renderer->addCacheableDependency($vars, $node);
+       }
+     }
     }
   }
 }
