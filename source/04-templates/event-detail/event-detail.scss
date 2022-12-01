@@ -12,6 +12,12 @@
 }
 
 .event-detail__info {
+  max-width: rem(387px);
+
+  strong {
+    display: block;
+  }
+
   p:last-child {
     margin-bottom: 0;
   }
