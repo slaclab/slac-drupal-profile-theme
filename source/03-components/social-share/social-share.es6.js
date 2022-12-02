@@ -29,23 +29,8 @@ Drupal.behaviors.socialShare = {
         if (event.matches) {
           trigger = ScrollTrigger.create({
             trigger: socialLink,
-            start: () => {
-              const headerHeight =
-                parseInt(
-                  getComputedStyle(document.documentElement).getPropertyValue(
-                    '--gesso-header-current-height'
-                  ),
-                  10
-                ) +
-                parseInt(
-                  getComputedStyle(document.documentElement).getPropertyValue(
-                    '--ginToolbarHeight'
-                  ),
-                  10
-                );
-              return `top ${headerHeight + 60}px`;
-            },
             pin: true,
+            start: () => `top 140px`,
             end: () => `top 450px`,
             endTrigger: '.l-footer',
             anticipatePin: 1,
