@@ -18,7 +18,7 @@
     'close'
    ] %}
   {% for icon in icons %}
-    {% set title_id = 'svg'|unique_id %}
+    {% set title_id = icon|unique_id %}
     <p>
       <svg {{ add_attributes({ 'class': classes }) }} {% if label %}role="img" aria-labelledby="{{ title_id }}" {% else %}aria-hidden="true"{% endif %}>
         {% if label %}<title id="{{ title_id }}">{{ label }}</title>{% endif %}
@@ -28,7 +28,7 @@
     </p>
   {% endfor %}
 {%- else -%}
-  {% set title_id = 'svg'|unique_id %}
+  {% set title_id = icon_name|unique_id %}
   {% spaceless %}
     <svg {{ add_attributes({ 'class': classes }) }} {% if label %}role="img" aria-labelledby="{{ title_id }}" {% else %}aria-hidden="true"{% endif %}>
       {% if label %}<title id="{{ title_id }}">{{ label }}</title>{% endif %}
