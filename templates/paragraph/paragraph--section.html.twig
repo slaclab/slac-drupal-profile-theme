@@ -67,11 +67,11 @@
 
 {% set paragraph_title_element = 'h2' %}
 
-{% set paragraph_content %}
-  {{ content|without('field_text', 'field_short_text', 'field_long_text', 'field_button_links', 'field_link', 'field_num_of_cols') }}
-{% endset %}
-
 {% set num_of_cols = content.field_num_of_cols|render|striptags|trim %}
+
+{% set paragraph_content %}
+  {{ content['field_paragraphs_' ~ num_of_cols] }}
+{% endset %}
 
 {% embed '@layouts/section/section.twig' with {
   'has_constrain': true,
@@ -98,3 +98,6 @@
   {% endblock %}
 
 {% endembed %}
+
+
+{% set catch_cache = content|render %}
