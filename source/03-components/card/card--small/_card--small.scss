@@ -19,6 +19,7 @@
     border-radius: 50%;
     height: 108px;
     margin-bottom: rem(gesso-spacing(2));
+    overflow: hidden;
     pointer-events: none;
     transform: translate3d(0, 0, 0);
     width: 108px;
@@ -26,10 +27,18 @@
 
   .c-card__icon {
     border-radius: 0;
+    display: grid;
     height: 70px;
     margin-top: 0;
+    place-items: center;
     transform: none;
     width: 70px;
+
+    .svg-inline--fa {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   .c-kicker {
