@@ -2,6 +2,6 @@
   title: content.field_short_text|field_value,
   url: content.field_link|field_value,
   kicker: content.field_text|field_value,
-  media: content.field_image,
+  media: content.field_image|field_value ? content.field_image : false,
   description: content|without('field_short_text', 'field_link', 'field_text', 'field_image')
 } %}
