@@ -18,7 +18,11 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
-{% include '@components/menu/menu.twig' with {
-  'attributes': attributes.addClass('l-footer__contact-links'),
-  'link_class': ['c-arrow-link--white']
-} %}
+
+<ul {{ attributes.addClass('l-footer__contact-links') }}>
+  {% for item in items %}
+    <li{{ item.attributes }}>
+      {{ link(item.title, item.url, {class: 'c-arrow-link'}) }}
+    </li>
+  {% endfor %}
+</ul>
