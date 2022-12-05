@@ -110,6 +110,20 @@
   }
 }
 
+.l-section--two-one {
+  .l-grid {
+    > :first-child {
+      @include breakpoint-min(600px) {
+        grid-column: 1 / span 2;
+      }
+
+      @include breakpoint-max(800px) {
+        max-width: none;
+      }
+    }
+  }
+}
+
 .l-section__buttons {
   margin-top: rem(gesso-spacing(5));
 

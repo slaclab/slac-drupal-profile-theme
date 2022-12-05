@@ -7,6 +7,7 @@ import gridTemplate from '../grid/grid.twig';
 import globalData from '../../00-config/storybook.global-data.yml';
 import data from './section.yml';
 import { Default as Card } from '../../03-components/card/card.stories.jsx';
+import { WYSIWYG } from '../../03-components/wysiwyg/wysiwyg.stories.jsx';
 
 const settings = {
   title: 'Layouts/Section',
@@ -110,6 +111,36 @@ SectionWithRSS.args = {
   is_rss: true,
 };
 
+WYSIWYG.args.content = `
+  <h2>Title</h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem minus a eligendi consequatur veniam beatae recusandae amet dolor optio. Debitis cupiditate quas aspernatur maiores ipsam explicabo sed dolorem voluptatem.</p>
+`;
+
+const SectionTwoOneContent = gridTemplate({
+  grid_content: ReactDOMServer.renderToStaticMarkup(
+    <>
+      {WYSIWYG(WYSIWYG.args)}
+      {WYSIWYG(WYSIWYG.args)}
+      {WYSIWYG(WYSIWYG.args)}
+    </>
+  ),
+  num_of_cols: 4,
+});
+
+const TwoOneTemplate = args =>
+  parse(
+    twigTemplate({
+      section_content: SectionTwoOneContent,
+      ...args,
+    })
+  );
+
+const SectionTwoToOne = TwoOneTemplate.bind({});
+SectionTwoToOne.args = {
+  ...data,
+  modifier_classes: 'l-section--two-one',
+};
+
 export default settings;
 export {
   Section,
@@ -121,4 +152,5 @@ export {
   SectionWithGrayWhiteGradient,
   SectionWithWhiteGrayGradient,
   SectionWithRSS,
+  SectionTwoToOne,
 };
