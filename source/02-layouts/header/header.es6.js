@@ -101,11 +101,15 @@ Drupal.behaviors.header = {
         const scrolledAmt = Math.round((scrollTop / height) * 100);
         header.style.setProperty('--slac-scroll-progress', `${scrolledAmt}%`);
       }, 16);
+      let topOffset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ginToolbarHeight'));
+      if (Number.isNaN(topOffset)) {
+        topOffset = 0;
+      }
       const observer = new IntersectionObserver(
         ([e]) => {
           e.target.classList.toggle('is-sticky', e.intersectionRatio < 1);
         },
-        { threshold: [1], rootMargin: '-1px 0px 0px 0px' }
+        { threshold: [1], rootMargin: `${-1 - topOffset}px 0px 0px 0px` }
       );
       setInitialHeights();
       observer.observe(header);
