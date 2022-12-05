@@ -8,7 +8,7 @@
   max-width: rem(280px);
   overflow-y: auto;
   position: sticky;
-  top: 128px;
+  top: calc(128px + var(--ginToolbarHeight, 0px));
 
   .c-menu__link {
     border-bottom: 1px solid gesso-grayscale(gray-2);
@@ -37,7 +37,9 @@
   }
 
   .has-sticky-header & {
-    top: var(--gesso-header-current-height, 128px);
+    top: calc(
+      var(--gesso-header-current-height, 128px) + var(--ginToolbarHeight, 0px)
+    );
   }
 
   @include breakpoint-max(gesso-breakpoint(mobile-menu)) {

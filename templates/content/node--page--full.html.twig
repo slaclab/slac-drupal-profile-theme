@@ -103,29 +103,18 @@
   </div>
 {% endif %}
 
-{% if is_microsite %}
-  {% include '@components/article/article.twig' with {
-    'title': null,
-    'author': null,
-    'author_name': null,
-    'date': null,
-    'show_admin_info': show_admin_info,
-    'admin_info': admin_info,
-    'show_footer': false,
-    'rdf_metadata': metadata,
-    'content': content|without('field_hero_paragraph'),
-  } %}
-{% else %}
-  {% include '@components/article/article.twig' with {
-    'title': hero_type == 'image_hero' or hero_type == 'two_column_hero' ? null : label,
-    'toc_links': toc_list,
-    'author': null,
-    'author_name': null,
-    'date': null,
-    'show_admin_info': show_admin_info,
-    'admin_info': admin_info,
-    'show_footer': false,
-    'rdf_metadata': metadata,
-    'content': content|without('field_hero_paragraph', 'field_text'),
-  } %}
-{% endif %}
+{% set sidebar %}{{ drupal_entity('block', 'side_nav') }}{% endset %}
+
+{% include '@templates/page/page.twig' with {
+  'title': hero_type == 'two_column_hero' ? null : label,
+  'author': null,
+  'author_name': null,
+  'date': null,
+  'show_admin_info': show_admin_info,
+  'admin_info': admin_info,
+  'show_footer': false,
+  'rdf_metadata': metadata,
+  'content': content|without('field_hero_paragraph', 'field_text'),
+  'has_sidebar': sidebar is not empty,
+  'sidebar': sidebar
+} %}
