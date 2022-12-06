@@ -158,6 +158,9 @@ function _slac_set_hero_caption(&$vars) {
       break;
     // See template field--paragraph--field-long-text--overlap-image.html.twig for caption processing.
     case 'overlap_image':
+      $paragraph_caption = !empty($paragraph->field_caption[0]) ? $paragraph->field_caption->view('tooltip') : NULL;
+      $vars['hero_caption'] = $paragraph_caption ?: (!empty($image->field_caption[0]) ? $image->field_caption->view('tooltip') : NULL);
+      break;
     case 'image_hero':
       $paragraph_caption = !empty($paragraph->field_long_text[0]) ? $paragraph->field_long_text->view('tooltip') : NULL;
       $vars['hero_caption'] = $paragraph_caption ?: (!empty($image->field_caption[0]) ? $image->field_caption->view('tooltip') : NULL);
@@ -292,10 +295,10 @@ function slac_preprocess_paragraph__overlap_image(array &$vars) {
       $vars['image_url'] = $image_style->buildUrl($image->getFileUri());
     }
   }
-  $vars['position'] = 'top-left';
+  $vars['position'] = 'bottom-left';
   if (!empty($vars['attributes']['class'])) {
     foreach($vars['attributes']['class'] as $class) {
-      if (in_array($class, ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'center-left', 'center-right'])) {
+      if (in_array($class, ['bottom-left', 'bottom-right'])) {
         $vars['position'] = $class;
         break;
       }
