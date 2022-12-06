@@ -1,6 +1,7 @@
 // Component: Form Item
 
 @use 'sass:math';
+@use 'sass:color';
 @use '00-config' as *;
 
 $form-background-color: gesso-grayscale(white);
@@ -13,6 +14,8 @@ $form-text-size: gesso-font-size(3);
 .c-form-item {
   font-size: gesso-font-size(3);
   margin: 0 0 rem(gesso-spacing(3));
+  padding-left: 4px; // avoid focus outlines going out of bounds
+  padding-right: 4px;
 
   .is-inline > & {
     @media (min-width: 20.625em) {
@@ -41,10 +44,7 @@ $form-text-size: gesso-font-size(3);
   @extend %disabled-form-styles;
   color: var(--gesso-text-color);
   display: block;
-
-  .has-error & {
-    color: gesso-brand(digital-red, base);
-  }
+  font-weight: gesso-font-weight(bold);
 }
 
 .c-form-item__element {
@@ -76,7 +76,7 @@ $form-text-size: gesso-font-size(3);
 
 .c-form-item__description {
   @extend %disabled-form-styles;
-  color: gesso-color(text, secondary);
+  color: gesso-grayscale(stanford-black);
   font-size: rem(gesso-font-size(2));
 
   > :last-child {
@@ -89,7 +89,8 @@ $form-text-size: gesso-font-size(3);
 }
 
 .c-form-item__required-marker::before {
-  content: ' *';
+  color: gesso-brand(digital-red, base);
+  content: '* ';
 }
 
 %c-form-item__box,
@@ -115,20 +116,22 @@ $form-text-size: gesso-font-size(3);
   border-radius: 4px;
   display: inline-block;
   font-size: rem($form-text-size);
-  height: 64px;
+  height: 48px;
   line-height: math.div(25px, $form-text-size);
   margin: rem(gesso-spacing(0.5)) 0;
   max-width: 100%;
-  padding: em(12px, $form-text-size) em(30px, $form-text-size);
+  padding: em(12px, $form-text-size) em(24px, $form-text-size);
   transition-duration: gesso-duration(short);
   transition-property: background-color, border;
   transition-timing-function: gesso-easing(ease-in-out);
+  width: 100%;
 
   &:focus {
-    background: #f0f7fa;
-    border-color: gesso-brand(sky, slac);
-    box-shadow: 1px 1px 4px #b6dff2, -1px -1px 6px #b6dff2;
-    outline: none;
+    outline: 2px solid gesso-brand(lagunita, light);
+    outline-offset: 2px;
+    // border-color: gesso-brand(sky, slac);
+    // box-shadow: 1px 1px 4px #b6dff2, -1px -1px 6px #b6dff2;
+    // outline: none;
   }
 
   &:disabled {
@@ -148,27 +151,36 @@ $form-text-size: gesso-font-size(3);
   .is-inline & {
     margin: 0;
   }
+
+  .has-error > & {
+    margin-bottom: 0;
+  }
 }
 
 .c-form-item__textarea {
   height: auto;
 }
 
-.c-form-item__error-message {
-  color: gesso-brand(digital-red, base);
+.c-form-item__file {
+  border: 0;
   font-size: gesso-font-size(2);
-
-  .l-section--dark & {
-    color: gesso-color(text, on-dark);
-  }
+  padding: 0;
 }
 
-// Some class names set by Webform module.
-// stylelint-disable-next-line selector-class-pattern
-:is(.c-form-item--text, .c-form-item--email, .c-form-item--tel, .c-form-item--date, .c-form-item--webform_time, .c-form-item--number, .c-form-item--textarea, .c-form-item--select).has-error {
-  .c-form-item__label {
-    font-size: 12px;
-    margin: 6px 0 0 30px;
-    position: absolute;
-  }
+.c-form-item__color {
+  display: inline-block;
+  min-width: 48px;
+  padding: 8px;
+  width: auto;
+}
+
+.c-form-item__error-message {
+  @include svg-background('error');
+  background-color: rgba(gesso-brand(digital-red, base), 0.09);
+  background-position: right 20px center;
+  background-repeat: no-repeat;
+  color: gesso-brand(digital-red, base);
+  font-size: gesso-font-size(2);
+  margin: 0 8px;
+  padding: 12px 20px;
 }
