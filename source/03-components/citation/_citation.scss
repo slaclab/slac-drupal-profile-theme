@@ -1,0 +1,20 @@
+// @file
+// Component: c-citation
+@use '00-config' as *;
+
+.c-citation {
+  border-bottom: 1px solid gesso-grayscale(gray-2);
+  border-top: 1px solid gesso-grayscale(gray-2);
+  font-size: 20px;
+  line-height: 1.5;
+  padding: 56px 0 56px 28px;
+  text-indent: -28px;
+}
+
+.c-citation__link {
+  font-weight: gesso-font-weight(bold);
+}
+
+.c-citation__publisher {
+  font-style: italic;
+}
