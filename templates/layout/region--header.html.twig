@@ -21,9 +21,16 @@
   } %}
 {% endset %}
 
+{% set header_content %}
+  {{ content }}
+  {% include '@components/search/search.twig' with {
+    'modifier_classes': 'c-search--dropdown'
+  } %}
+{% endset %}
+
 {% include '@layouts/header/header.twig' with {
   'has_constrain': true,
-  'header_content': content,
+  'header_content': header_content,
   'header_freeform': drupal_entity('block', 'header_freeform_text'),
   'site_branding': site_branding
 } %}
