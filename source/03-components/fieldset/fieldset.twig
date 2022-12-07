@@ -34,28 +34,39 @@
   required or is_required ? 'js-form-required' : '',
 ]|join(' ')|trim %}
 
-<fieldset {{ add_attributes(attributes_to_add) }}>
+<fieldset
+  {{ add_attributes(attributes_to_add) }}>
   {#  Always wrap fieldset legends in a <span> for CSS positioning. #}
-  <legend {{ add_attributes({class: 'c-fieldset__legend'}, 'legend.attributes') }}>
-    <span {{ add_attributes({class: legend_span_classes}, 'legend_span.attributes') }}>{{ legend.title }}</span>
+  <legend {{ add_attributes({class: 'c-fieldset__legend'} , 'legend.attributes' ) }}>
+    <span {{ add_attributes({class: legend_span_classes} , 'legend_span.attributes' ) }}>
+      {{ legend.title }}
+    </span>
   </legend>
+
+  {% if description.content %}
+    <div {{ add_attributes({class: 'c-fieldset__description', id: id} , 'description.attributes' ) }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
   <div class="c-fieldset__content">
     {% if errors %}
-      <div class="c-fieldset__errors">{{ errors }}</div>
+      <div class="c-fieldset__errors">
+        {{ errors }}
+      </div>
     {% endif %}
 
     {% if prefix %}
-      <span class="c-fieldset__prefix">{{ prefix }}</span>
+      <span class="c-fieldset__prefix">
+        {{ prefix }}
+      </span>
     {% endif %}
 
     {{ children }}
 
     {% if suffix %}
-      <span class="c-fieldset__suffix">{{ suffix }}</span>
-    {% endif %}
-
-    {% if description.content %}
-      <div {{ add_attributes({class: 'c-fieldset__description', id: id}, 'description.attributes') }}>{{ description.content }}</div>
+      <span class="c-fieldset__suffix">
+        {{ suffix }}
+      </span>
     {% endif %}
   </div>
 </fieldset>

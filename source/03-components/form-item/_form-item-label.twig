@@ -17,8 +17,6 @@
 {% endif %}
 
 <label {{ add_attributes(attributes_to_add) }}>
-  {{- title }}
-
   {% if is_required %}
     {%- spaceless %}
       <span class="c-form-item__required-marker">
@@ -28,4 +26,6 @@
       </span>
     {% endspaceless -%}
   {% endif -%}
+
+  {{- title }}
 </label>

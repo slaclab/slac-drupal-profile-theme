@@ -4,11 +4,14 @@
 @use '../form-item' as *;
 
 .c-form-item--radio {
+  border: 1px solid gesso-grayscale(gray-2);
+  border-width: 1px 0;
   line-height: 30px;
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 12px 24px;
 
-  &:last-child {
-    margin-bottom: 0;
+  & + & {
+    border-top: 0;
   }
 
   .c-form-item__radio {

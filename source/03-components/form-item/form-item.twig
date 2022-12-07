@@ -28,11 +28,6 @@
 {% endif %}
 
 <div {{ add_attributes({class: classes} ) }}>
-  {% if errors %}
-    <div class="c-form-item__error-message">
-      {{ errors }}
-    </div>
-  {% endif %}
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}
@@ -72,6 +67,12 @@
   {% if description_display in ['after', 'invisible'] and description.content %}
     <div {{ add_attributes(description_attributes_to_add, 'description.attributes') }}>
       {{ description.content }}
+    </div>
+  {% endif %}
+
+  {% if errors %}
+    <div class="c-form-item__error-message">
+      {{ errors }}
     </div>
   {% endif %}
 </div>
