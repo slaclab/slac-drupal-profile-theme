@@ -49,6 +49,10 @@ $l-sidebar-gutter: 107px;
 
 .l-sidebar--reverse {
   @include breakpoint-max($l-sidebar-bp) {
+    > .l-constrain {
+      row-gap: gesso-get-map(gutter-width);
+    }
+
     .l-sidebar__sidebar {
       order: 2;
     }
