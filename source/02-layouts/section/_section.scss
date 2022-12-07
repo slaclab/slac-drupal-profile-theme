@@ -2,8 +2,11 @@
 
 @use '00-config' as *;
 
-.l-section:not(.l-section--no-padding) {
+.l-section {
   background-color: var(--gesso-background-color);
+}
+
+.l-section:not(.l-section--no-padding) {
   padding-bottom: rem(gesso-spacing(5));
   padding-top: rem(gesso-spacing(5));
 
