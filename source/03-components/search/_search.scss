@@ -35,6 +35,7 @@
 
   .c-search--in-page & {
     padding-block: gesso-spacing(5);
+    position: relative;
   }
 
   .c-search--in-page.has-current-search & {
@@ -119,7 +120,6 @@
       --gesso-search-font-size: #{rem(24px)};
       max-width: gesso-constrain(sm);
       padding: gesso-spacing(9) 0;
-      position: relative;
     }
 
     .c-search--in-page.has-current-search & {
@@ -175,7 +175,7 @@
   top: calc(#{rem(gesso-spacing(1))} + 1px);
 
   .c-search--in-page & {
-    top: calc(#{gesso-spacing(5)} + 1px + 0.25rem);
+    top: calc(#{gesso-spacing(5)} + 1px + var(--gesso-search-font-size) / 2);
   }
 
   @include breakpoint(gesso-breakpoint(mobile-menu) + 1px) {
