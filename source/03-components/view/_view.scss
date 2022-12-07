@@ -64,6 +64,8 @@
   font-size: rem(gesso-font-size(6));
   line-height: 1;
   padding: 0;
+  position: relative;
+  z-index: 1;
 
   &[aria-expanded='true'],
   &.views-display-switch__link--active {

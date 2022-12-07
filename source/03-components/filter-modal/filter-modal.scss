@@ -14,7 +14,7 @@
   padding: gesso-spacing(2) gesso-spacing(2.5) gesso-spacing(9);
   position: absolute;
   top: 0;
-  width: min(100vw, 375px);
+  width: min(calc(100vw - #{2 * gesso-site-margins(mobile)}), 375px);
   z-index: gesso-z-index(modal);
 }
 
