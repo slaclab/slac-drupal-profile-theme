@@ -24,6 +24,7 @@
           {% if site_settings.organization_details.organization_details.field_address.address_line1 %}{{ site_settings.organization_details.organization_details.field_address.address_line1 }}<br>{% endif %}
           {% if site_settings.footer_settings.footer_address.value %}{{ site_settings.footer_settings.footer_address.value|striptags('<strong><b><i><em>') }}<br>{% endif %}
           {% if site_settings.organization_details.organization_details.field_address.locality %}{{ site_settings.organization_details.organization_details.field_address.locality }}, {% endif %}{{ site_settings.organization_details.organization_details.field_address.administrative_area }} {{ site_settings.organization_details.organization_details.field_address.postal_code }}<br>
+          {% if site_settings.organization_details.organization_details.field_text %}{{ site_settings.organization_details.organization_details.field_text }}{% endif %}
         </address>
       {% endif %}
     {% endif %}
