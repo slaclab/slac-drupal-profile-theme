@@ -38,18 +38,27 @@
  * @ingroup themeable
  */
 #}
-{% set page_title %}
-  {% autoescape false %}{{ drupal_token('current-page:title') }}{% endautoescape %}
+{% set page_title_content %}
+{% autoescape false %}
+  {{ drupal_token('current-page:title') }}
+{% endautoescape %}
 {% endset %}
 
+{% set page_title %}
 {% include '@components/page-title/page-title.twig' with {
-  page_title: page_title,
-  lede: content.field_body|field_value,
+  page_title: page_title_content,
+  lede: content.field_paragraph|field_value,
   kicker: content.field_text|field_value,
-  rss_url: content.field_button_link|field_value,
-  has_sidebar: true,
-  sidebar_content: content.field_paragraph|field_value,
   has_constrain: true,
+} %}
+{% endset %}
+
+{% if content.field_image %}
+  {% include 'paragraph--article-hero.html.twig' %}
+{% endif %}
+{% include '@components/two-column-hero/two-column-hero.twig' with {
+  featured_content: content.field_node,
+  page_title: page_title,
 } %}
 
 {% set catch_cache = content|render %}
