@@ -10,7 +10,7 @@
   {% if start_date %}
     <div>
       {% if start_date.month %}<span class="c-event-date__month">{{ start_date.month }}</span>{% endif %}
-      {{- start_date.day ~ (is_multiday and is_multimonth == false ? '<span>&ndash;</span>' ~ end_date.day : '' ) -}}
+      {{- start_date.day -}}{% if is_multiday and is_multimonth == false %}<span>&ndash;</span> {{- end_date.day -}}{% endif %}
     </div>
   {% endif %}
 
