@@ -35,12 +35,6 @@
   }
 
   @include breakpoint-min(gesso-breakpoint(tablet)) {
-    .c-button,
-    .c-form-item,
-    .c-form-item__select {
-      margin-bottom: 0;
-    }
-
     select.c-form-item--select {
       width: 100%;
     }
