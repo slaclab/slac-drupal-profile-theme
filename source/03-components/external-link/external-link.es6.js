@@ -52,7 +52,7 @@ Drupal.behaviors.externalLinks = {
     }
 
     const externalLinks = context.querySelectorAll(
-      "a:not([href=''], [href^='#'], [href^='?'], [href^='/'], [href^='.'], [href^='javascript:'], [href^='mailto:'], [href^='tel:'], .c-logo, .c-social-links__link, .rss-link)"
+      "a:not([href=''], [href^='#'], [href^='?'], [href^='/'], [href^='.'], [href^='javascript:'], [href^='mailto:'], [href^='tel:'], .c-logo, .c-social-links__link, .rss-link, .c-event-details__link)"
     );
 
     externalLinks.forEach(el => {

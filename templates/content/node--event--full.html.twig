@@ -86,65 +86,96 @@
   {% set show_admin_info = true %}
 {% endif %}
 
+{#
+/**
+* Format of date field as defined in the view_mode is standard HTMl format,
+* for example "2022-08-05T13:59:47-0700". Extract event start and end dates.
+* Assumes that the event field contains both a start_date and end_date, note
+* that both are required in the editing of an event and date order is
+* enforced.
+*/
+#}
+
+{% set event_start_date = content.field_smart_date.0.start_time["#markup"] %}
+{% set event_end_date = content.field_smart_date.0.end_time["#markup"] %}
+
+{#
+/**
+ * Calculate the event start and end dates "day of the years" and compare to determine
+ * if the event is a single day or multiday event. To account for the edge case of an
+ * event spanning a year boundary (Dec. 31 - Jan. 1), check the year first.
+ * Multiday event is signalled to the theming layer by passing null for end_date value.
+ */
+#}
+{% set multiyear_event = event_start_date|date('y')|number_format != event_end_date|date('y')|number_format  %}
+{% set multiday_event = multiyear_event or event_start_date|date('z')|number_format < event_end_date|date('z')|number_format %}
+
+{% set card_media %}
+  {% if content.field_image|field_value is not empty %}
+    {{ content.field_image|field_value }}
+  {% elseif site_settings['default_(motif)_images'].event_default_motif_image %}
+    {{ drupal_entity('media', site_settings['default_(motif)_images'].event_default_motif_image, 'card_image_only') }}
+  {% endif %}
+{% endset %}
+
+{% set speaker_info %}
+  {{- content.field_name|field_value|render|striptags('<strong><em><a>')|trim -}}
+  {%- if content.field_affiliation|field_value -%}, {{ content.field_affiliation|field_value|render|striptags('<strong><em><a>')|trim -}}{%- endif -%}
+{% endset %}
+
+{% set speaker_fields %}
+  {{- content.field_name -}}
+  {{- content.field_person_image -}}
+  {{- content.field_long_text -}}
+{% endset %}
+
+{% if speaker_fields %}
+  {% set speaker_content %}
+    {% include '@components/wysiwyg/wysiwyg.twig' with {
+      'content': speaker_fields
+    } %}
+  {% endset %}
+{% endif %}
+
+{% set event_contact %}{% apply spaceless %}
+  {% if content.field_contact_name|field_value %}{{- content.field_contact_name|render|striptags('<strong><em><a>')|trim -}}<br>{% endif %}
+  {% if content.field_email|field_value %}{{- content.field_email|field_value -}}<br>{% endif %}
+  {% if content.field_text|field_value %}{{- content.field_text|field_value -}}{% endif %}
+{% endapply %}{% endset %}
+
 <div class="c-main__meta">
   {{ drupal_block('system_breadcrumb_block') }}
   {{ drupal_block('share_this_page_block') }}
 </div>
 
-{% set additional_links = [] %}
-{% if content.field_link2|field_value %}
-  {% set additional_links = additional_links|merge([content.field_link2|field_value]) %}
-{% endif %}
-{% if site_settings['event:_links'] %}
-  {% for event_link in site_settings['event:_links'].event_links %}
-    {% if event_link.title %}
-      {% set additional_links = additional_links|merge([link(event_link.title, event_link.uri, {'class': ['c-event-details__link']})])%}
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
-{% set details %}
-{% embed '@components/event-details/event-details.twig' with {
-    'image': content.field_image|field_value,
-    'video': content.field_video|field_value,
-    'event_type': content.field_type|render|striptags|trim,
-    'zoom_details': is_past_event ? false : content.field_detail_text|field_value,
-    'additional_links': additional_links,
-    'calendar_link_text': content.field_override_text|field_value ? content.field_override_text|field_value : content.field_datetime_range,
-    'map_link_text': not is_past_event ? content.field_link|field_value : FALSE,
-    'is_past_event': is_past_event
-  } %}
-  {% block event_ctas %}
-    {{ content.field_links }}
-  {% endblock %}
-{% endembed %}
-{% endset %}
-
-{% set author_content %}
-{% if content.field_name|field_value %}
-  {{ content.field_name }}
-{% endif %}
-{{ content.field_person_image|field_value }}
-{{ content.field_long_text|field_value }}
-{% endset %}
-
-{% set kicker %}
-{{- node.getEventTense() }}
-Event ·
-{{ content.field_text|field_value -}}
-{% endset %}
-
 {% include '@templates/event-detail/event-detail.twig' with {
-  'page_title': label,
-  'kicker': kicker,
-  'lede': content.field_lede|field_value,
   'show_admin_info': show_admin_info,
   'admin_info': admin_info,
+  'image': card_media,
+  'start_date': {
+    'month': event_start_date|date('M'),
+    'day': event_start_date|date('j')
+  },
+  'end_date': multiday_event == false ? null : {
+    'month': event_end_date|date('M'),
+    'day': event_end_date|date('j')
+  },
+  'event_type': content.field_type|field_value,
+  'event_title': label,
+  'speaker_info': speaker_info,
+  'calendar_link_text': content.field_smart_date|field_value,
+  'map_link_text': content.field_location|field_value,
+  'map_link_url': content.field_location_link|field_value,
+  'zoom_url': content.field_conference_link|field_value ? content.field_conference_link.0['#url'],
+  'zoom_text': content.field_conference_link|field_value ? content.field_conference_link.0['#title'],
   'event_content': content.field_body,
-  'details': details,
-  'map_iframe': node.field_boolean2.value == '1' ? content.field_site_setting : false,
+  'speaker_content': speaker_content,
+  'event_sponsor': content.field_sponsor|render|striptags('<strong><em><a>')|trim,
+  'event_audience': content.field_audience,
+  'event_contact': event_contact,
   'tags': content.field_tags,
-  'visiting': node.field_boolean2.value == '1' ? drupal_entity('block', 'event_visitor_details', check_access=false)
+  'visiting': node.field_boolean.value == '1' ? drupal_entity('block', 'event_visitor_details'),
+  'map_iframe': node.field_boolean.value == '1' ? content.field_site_setting : false,
 } %}
 
 {% set catch_cache = content|render %}
