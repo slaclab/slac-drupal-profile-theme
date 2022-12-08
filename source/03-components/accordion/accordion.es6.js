@@ -47,11 +47,6 @@ Drupal.behaviors.accordion = {
         ? true
         : accordion.hasAttribute('data-allow-toggle');
 
-      // Create the array of toggle elements for the accordion group
-      const triggers = Array.prototype.slice.call(
-        accordion.querySelectorAll(`.${ACCORDION_TOGGLE_CLASS}`)
-      );
-
       accordion.addEventListener('click', event => {
         // Set target differently depending on click vs. keydown
         // because the <span> inside <button> screws things up
@@ -97,58 +92,6 @@ Drupal.behaviors.accordion = {
           }
 
           event.preventDefault();
-        }
-      });
-
-      // Bind keyboard behaviors on the main accordion container
-      accordion.addEventListener('keydown', event => {
-        const currentTarget = event.target;
-
-        // Is this coming from an accordion header?
-        if (currentTarget.classList.contains(ACCORDION_TOGGLE_CLASS)) {
-          // Up/ Down arrow and Control + Page Up/ Page Down keyboard operations
-          // 38 = Up, 40 = Down
-          if (
-            event.keyCode === KEYCODE.UP ||
-            event.keyCode === KEYCODE.DOWN ||
-            event.keyCode === KEYCODE.PAGEDOWN ||
-            event.keyCode === KEYCODE.UP
-          ) {
-            const index = triggers.indexOf(currentTarget);
-            let direction;
-            if (
-              event.keyCode === KEYCODE.DOWN ||
-              event.keyCode === KEYCODE.PAGEDOWN
-            ) {
-              direction = 1;
-            } else {
-              direction = -1;
-            }
-            const triggerLength = triggers.length;
-            const newIndex =
-              (index + triggerLength + direction) % triggerLength;
-            triggers[newIndex].focus();
-            event.preventDefault();
-          } else if (
-            event.keyCode === KEYCODE.HOME ||
-            event.keyCode === KEYCODE.END
-          ) {
-            // 35 = End, 36 = Home keyboard operations
-            switch (event.keyCode) {
-              // Go to first accordion
-              case KEYCODE.HOME:
-                triggers[0].focus();
-                break;
-              // Go to last accordion
-              case KEYCODE.END:
-                triggers[triggers.length - 1].focus();
-                break;
-              default:
-                triggers[0].focus();
-                break;
-            }
-            event.preventDefault();
-          }
         }
       });
 
