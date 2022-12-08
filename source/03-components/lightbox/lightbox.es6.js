@@ -42,7 +42,6 @@ Drupal.behaviors.lightbox = {
       }
 
       function closeLightbox(event) {
-        console.trace();
         event.preventDefault();
         const videoIFrame = lightbox.querySelector('iframe');
         if (videoIFrame && videoIFrame.hasAttribute('src')) {
@@ -65,7 +64,6 @@ Drupal.behaviors.lightbox = {
           videoIFrame.setAttribute('src', videoIFrame.getAttribute('data-src'));
         }
         lightbox.classList.remove('u-hidden');
-        console.log(lightbox.classList);
         closeButton.focus();
         triggerUsed = event.target;
         window.addEventListener('keydown', handleKeydown);

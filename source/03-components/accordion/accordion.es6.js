@@ -1,5 +1,4 @@
 import Drupal from 'drupal';
-import KEYCODE from '../../00-config/_KEYCODE.es6';
 import { slideDown, slideUp } from '../../06-utility/_slide.es6';
 
 Drupal.behaviors.accordion = {
