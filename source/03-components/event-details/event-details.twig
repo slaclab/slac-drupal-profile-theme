@@ -31,7 +31,7 @@
           icon_name: 'calendar',
         } %}{% endif %}
         <span{% if is_past_event %} class="is-past-event"{% endif %}>
-          {{ calendar_link_text|raw }}
+          {{ calendar_link_text }}
         </span>
       </div>
     {% endif %}
@@ -43,7 +43,7 @@
             icon_name: 'location',
           } %}
         {% if map_link_url  %}
-          <a href="{{ map_link_url }}" title="{{ 'Get directions'|t }}">
+          <a href="{{ map_link_url }}" title="{{ 'Get directions'|t }}" class="c-event-details__link">
             {{ map_link_text }}
           </a>
         {% else %}
@@ -58,7 +58,7 @@
           label: 'Virtual event',
           icon_name: 'virtual'
         } %}
-        <a href="{{ zoom_url }}">{{ 'Join us on Zoom'|t }}</a>
+        <a href="{{ zoom_url }}" class="c-event-details__link">{{ zoom_text|default('Join us on Zoom'|t) }}</a>
       </div>
     {% endif %}
   </div>
