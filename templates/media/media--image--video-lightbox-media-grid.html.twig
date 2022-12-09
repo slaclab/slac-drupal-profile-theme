@@ -31,28 +31,9 @@
  * @ingroup themeable
  */
 #}
-{% set lightbox_id = 'media-lightbox'|unique_id %}
-
-<div{{ attributes }}>
-  {{ title_prefix }}{{ title_suffix }}
-  {% include '@components/figure/figure.twig' with {
-    'media': content.thumbnail,
-    'media_button_label': 'View larger image'|t,
-    'caption': false,
-    'attributes': null,
-    'lightbox_id': lightbox_id,
-  } %}
-  {% include '@components/media-lightbox/media-lightbox.twig' with {
-    'media_title': content.field_long_text|field_value ? content.field_long_text : name,
-    'media_date': created|date('F j, Y'),
-    'media_embed': content.field_media_image,
-    'media_description': content.field_caption|field_value,
-    'media_credit': content.field_credit|field_value,
-    'media_details_url': detail_page_url,
-    'media_download_url': media|file_url,
-    'media_type': 'image',
-    'attributes': null,
-    'lightbox_id': lightbox_id
-  } %}
-</div>
-{% set catch_cache = content|render %}
+{% include '@components/figure/figure.twig' with {
+  'attributes': attributes,
+  'media': content.field_media_image,
+  'is_video': true,
+  'video_button_label': 'Play video'
+} %}

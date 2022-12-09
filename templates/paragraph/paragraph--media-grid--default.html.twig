@@ -38,6 +38,16 @@
  * @ingroup themeable
  */
 #}
-{% include '@components/media-grid/media-grid.twig' with {
-  'media_content': content
-} %}
+{% set media_grid %}
+  {% include '@components/media-grid/media-grid.twig' with {
+    'media_content': content
+  } %}
+{% endset %}
+
+{% if is_nested %}{{ media_grid }}{% else %}
+  {% include '@layouts/section/section.twig' with {
+    section_content: media_grid,
+    modifier_classes: 'l-section--no-padding',
+    has_constrain: true
+  } %}
+{% endif %}
