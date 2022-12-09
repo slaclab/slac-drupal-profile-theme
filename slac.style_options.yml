@@ -127,6 +127,11 @@ contexts:
         section_bg: true
         section_padding: true
         section_title_style: true
+    section_fixed:
+      options:
+        section_bg: true
+        section_padding: true
+        section_title_style: true
     accordion:
       options:
         accordion_size: true
