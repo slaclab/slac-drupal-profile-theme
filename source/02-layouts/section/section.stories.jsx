@@ -116,10 +116,17 @@ WYSIWYG.args.content = `
   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem minus a eligendi consequatur veniam beatae recusandae amet dolor optio. Debitis cupiditate quas aspernatur maiores ipsam explicabo sed dolorem voluptatem.</p>
 `;
 
+const ledeContent = `
+  <h1>Title</h1>
+  <div class="c-lede">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem minus a eligendi consequatur veniam beatae recusandae amet dolor optio. Debitis cupiditate quas aspernatur maiores ipsam explicabo sed dolorem voluptatem.</p>
+  </div>
+`;
+
 const SectionTwoOneContent = gridTemplate({
   grid_content: ReactDOMServer.renderToStaticMarkup(
     <>
-      {WYSIWYG(WYSIWYG.args)}
+      {WYSIWYG({content: ledeContent})}
       {WYSIWYG(WYSIWYG.args)}
       {WYSIWYG(WYSIWYG.args)}
     </>
@@ -139,6 +146,10 @@ const SectionTwoToOne = TwoOneTemplate.bind({});
 SectionTwoToOne.args = {
   ...data,
   modifier_classes: 'l-section--two-one',
+  section_buttons: false,
+  section_intro: false,
+  section_title: false,
+  section_kicker: false,
 };
 
 export default settings;
