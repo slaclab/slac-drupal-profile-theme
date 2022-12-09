@@ -31,33 +31,22 @@
  * @ingroup themeable
  */
 #}
-{% set lightbox_id = 'media-lightbox'|unique_id %}
-{% set image_caption %}
-  {{- content.field_caption -}}
-  {{- content.field_credit -}}
-{% endset %}
 <div{{ attributes }}>
-  {{ title_prefix }}{{ title_suffix }}
-  {% include '@components/figure/figure.twig' with {
-    'media': content.thumbnail,
-    'media_button_label': 'View larger image'|t,
-    'caption': image_caption,
-    'attributes': null,
-    'lightbox_id': lightbox_id,
-    'modifier_classes': 'u-align-center'
-  } %}
-
+  {{ title_prefix }}
+  {% if content.field_thumbnail|field_value is not empty %}
+  {{ content.field_thumbnail }}
+  {% else %}
+    {{ content.thumbnail }}
+  {% endif %}
+  {{ title_suffix }}
   {% include '@components/media-lightbox/media-lightbox.twig' with {
     'media_title': content.field_long_text|field_value ? content.field_long_text : name,
     'media_date': created|date('F j, Y'),
-    'media_embed': content.field_media_image,
+    'media_embed': content.field_media_oembed_video,
     'media_description': content.field_caption|field_value,
     'media_credit': content.field_credit|field_value,
     'media_details_url': detail_page_url,
-    'media_download_url': media|file_url,
-    'media_type': 'image',
-    'attributes': null,
-    'lightbox_id': lightbox_id
+    'media_type': 'video'
   } %}
+  {% set catch_cache = content|render %}
 </div>
-{% set catch_cache = content|render %}

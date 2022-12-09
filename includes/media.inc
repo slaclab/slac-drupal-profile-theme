@@ -67,7 +67,7 @@ function slac_preprocess_media(array &$variables) {
     ->toString();
   $variables['has_caption'] = isset($variables['attributes']['data-caption']);
   $variables['bundle'] = $variables['media']->bundle();
-  if ($variables['view_mode'] == 'video_lightbox') {
+  if (in_array($variables['view_mode'], ['video_lightbox', 'media_grid', 'video_lightbox_media_grid'])) {
     if ($variables['bundle'] == 'remote_video') {
       /** @var \Drupal\media\Entity\Media $video_media */
       $video_media = $variables['media'];

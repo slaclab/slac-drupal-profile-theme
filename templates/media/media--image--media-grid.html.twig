@@ -32,21 +32,16 @@
  */
 #}
 {% set lightbox_id = 'media-lightbox'|unique_id %}
-{% set image_caption %}
-  {{- content.field_caption -}}
-  {{- content.field_credit -}}
-{% endset %}
+
 <div{{ attributes }}>
   {{ title_prefix }}{{ title_suffix }}
   {% include '@components/figure/figure.twig' with {
     'media': content.thumbnail,
     'media_button_label': 'View larger image'|t,
-    'caption': image_caption,
+    'caption': false,
     'attributes': null,
     'lightbox_id': lightbox_id,
-    'modifier_classes': 'u-align-center'
   } %}
-
   {% include '@components/media-lightbox/media-lightbox.twig' with {
     'media_title': content.field_long_text|field_value ? content.field_long_text : name,
     'media_date': created|date('F j, Y'),
