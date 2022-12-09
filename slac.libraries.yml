@@ -177,10 +177,10 @@ media_detail:
 
 media_grid:
   js:
-    dist/js/media-lightbox.es6: { }
+    dist/js/media-grid.es6.js: { }
   dependencies:
     - slac/common
-    - drupal/core
+    - core/drupal
 
 media_lightbox:
   css:

@@ -206,6 +206,7 @@
 .c-media-lightbox__controls {
   display: grid;
   gap: gesso-spacing(2);
+  grid-column-start: 1;
   grid-template-columns: 100%;
   padding-inline: gesso-site-margins(mobile);
 

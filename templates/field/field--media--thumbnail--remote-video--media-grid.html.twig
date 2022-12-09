@@ -37,5 +37,12 @@
  */
 #}
 {%- for item in items -%}
-  {{- item.content -}}
+  {% include '@components/figure/figure.twig' with {
+    'attributes': attributes,
+    'media': item.content,
+    'lightbox_id': item.content['#lightbox_id'],
+    'caption': item.content['#video_caption'],
+    'is_video': true,
+    'video_button_label': 'Play video'
+  } %}
 {%- endfor -%}
