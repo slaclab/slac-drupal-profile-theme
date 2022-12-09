@@ -1,8 +1,11 @@
 {% set field_items = [] %}
 {% for item in items %}
+  {% set item_content %}{% apply spaceless %}
+    {{- 'About'|t }} {{ item.content|render|striptags('<em><a>')|raw -}}
+  {% endapply %}{% endset %}
   {% set field_items = field_items|merge([{
     attributes: item.attributes,
-    content: 'About'|t ~ ' ' ~ item.content|render|striptags('<em><a>')
+    content: item_content
   }]) %}
 {% endfor %}
 

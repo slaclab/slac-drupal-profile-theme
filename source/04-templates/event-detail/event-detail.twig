@@ -71,7 +71,7 @@
             {% endif %}
             {% if event_contact %}
               <p><strong>{{ 'Event Contact'|t }}:</strong>
-                {{ event_contact }}</p>
+                {{ event_contact|raw }}</p>
             {% endif %}
           </div>
         {% endset %}
