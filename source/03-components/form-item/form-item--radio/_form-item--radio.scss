@@ -9,9 +9,15 @@
   line-height: 30px;
   margin: 0;
   padding: 12px 24px;
+  width: 100%;
 
   & + & {
     border-top: 0;
+  }
+
+  table & {
+    border: 0;
+    padding: 0;
   }
 
   .c-form-item__radio {
@@ -59,4 +65,12 @@
       opacity: $form-disabled-opacity;
     }
   }
+}
+
+// "scale" field
+.webform-scale-option .c-form-item__label {
+  display: block !important;
+  line-height: 30px;
+  text-align: center;
+  width: 36px;
 }
