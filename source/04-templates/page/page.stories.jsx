@@ -5,7 +5,7 @@ import React from 'react';
 import twigTemplate from './page.twig';
 import globalData from '../../00-config/storybook.global-data.yml';
 import data from './page.yml';
-import { WYSIWYG } from '../../03-components/wysiwyg/wysiwyg.stories';
+import { WYSIWYG } from '../../03-components/wysiwyg/wysiwyg.stories.jsx';
 
 const settings = {
   title: 'Templates/Page',
