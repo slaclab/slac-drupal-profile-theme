@@ -114,6 +114,7 @@
 .c-hero-bg-image__title {
   @include display-text-style(h2);
   color: inherit;
+  margin-bottom: gesso-spacing(2);
   text-align: left;
 }
 

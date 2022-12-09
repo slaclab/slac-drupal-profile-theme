@@ -2,30 +2,30 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import parse from 'html-react-parser';
 
-import { Page as PageTemplate } from '../04-templates/page/page.stories';
-import { SideMenu } from '../03-components/menu/menu--side/menu--side.stories';
-import { WYSIWYG } from '../03-components/wysiwyg/wysiwyg.stories';
+import { Page as PageTemplate } from '../04-templates/page/page.stories.jsx';
+import { SideMenu } from '../03-components/menu/menu--side/menu--side.stories.jsx';
+import { WYSIWYG } from '../03-components/wysiwyg/wysiwyg.stories.jsx';
 import {
   FigureCentered,
   FigureWithVideoCentered,
-} from '../03-components/figure/figure.stories';
+} from '../03-components/figure/figure.stories.jsx';
 import {
   GridWrapper,
   SectionWithPaddingWrapper,
   SectionWrapper,
   WysiwygWrapper,
-} from '../06-utility/storybookHelper';
-import { Section } from '../02-layouts/section/section.stories';
+} from '../06-utility/storybookHelper.jsx';
+import { Section } from '../02-layouts/section/section.stories.jsx';
 import tabsTwigTemplate from '../03-components/tabs/tabs.twig';
-import { Default as Card } from '../03-components/card/card.stories';
+import { Default as Card } from '../03-components/card/card.stories.jsx';
 
 import PageWrapper from './page-wrappers/default.jsx';
 import {
   NarrowAccordion,
   WideAccordion,
-} from '../03-components/accordion/accordion.stories';
-import { Default as Table } from '../01-global/html-elements/24-table/table.stories';
-import { Header } from '../02-layouts/header/header.stories';
+} from '../03-components/accordion/accordion.stories.jsx';
+import { Default as Table } from '../01-global/html-elements/24-table/table.stories.jsx';
+import { Header } from '../02-layouts/header/header.stories.jsx';
 
 export default {
   title: 'Pages/Basic Page/Basic Page 1',
@@ -51,6 +51,7 @@ const BasicPage1 = ({ has_sidebar, sidebar, ...args }) => (
       has_sidebar,
       sidebar,
       title: 'Basic Page Example',
+      author_name: false,
       lede: 'Description teaser is informative, intriguing, and compelling to your target audiences. Keep it friendly and approachable with a brief well-written overview of your business and services. Tell just enough of your story, make it enticing that the reader begs for more.',
       content: ReactDOMServer.renderToStaticMarkup(
         <>

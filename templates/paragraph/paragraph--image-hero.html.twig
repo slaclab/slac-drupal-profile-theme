@@ -44,18 +44,12 @@
   {% if hero_url %}<p><a href="{{ hero_url }}">{{ 'Image details'|t }}</a></p>{% endif %}
 {% endspaceless %}{% endset %}
 
-{% set title %}
-  {% autoescape false %}{{ drupal_token('current-page:title') }}{% endautoescape %}
-{% endset %}
-
 {% include '@components/hero-bg-image/hero-bg-image.twig' with {
-  'attributes': attributes|without('class'),
-  'modifier_classes': attributes.class|join(' ')|trim,
   'hero_caption': tooltip,
   'hero_kicker': content.field_text|field_value,
   'hero_image': content.field_image|field_value,
-  'hero_title': title,
-  'hero_summary': content|without('field_long_text', 'field_button_link', 'field_text', 'field_image'),
+  'hero_title': content.field_short_text|field_value,
+  'hero_summary': content|without('field_long_text', 'field_button_link', 'field_text', 'field_image', 'field_short_text'),
   'hero_button': content.field_button_link|field_value
 } %}
 
