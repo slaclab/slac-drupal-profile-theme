@@ -17,7 +17,8 @@
     'site_name': site_settings.organization_details.organization_details.field_organization_name,
     'site_acronym': site_settings.organization_details.organization_details.field_acronym,
     'logo': site_settings.organization_details.organization_details.field_logo ? site_settings.organization_details.organization_details.field_logo.uri|file_url,
-    'has_logo': site_settings.organization_details.organization_details.field_logo is not empty
+    'has_logo': site_settings.organization_details.organization_details.field_logo is not empty,
+    'url': path('<front>')
   } %}
 {% endset %}
 
