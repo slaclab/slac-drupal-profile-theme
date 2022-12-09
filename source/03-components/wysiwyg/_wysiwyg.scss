@@ -5,6 +5,7 @@
   @include display-text-style(body);
   @include layout-constrain(gesso-constrain(sm));
   color: var(--gesso-text-color);
+  display: flow-root;
 
   .l-constrain & {
     &:not(.c-wysiwyg--with-background) {

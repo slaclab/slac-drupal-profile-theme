@@ -5,6 +5,14 @@
 .event-detail__content,
 .event-detail__speaker {
   padding-block: gesso-spacing(9);
+
+  .c-figure.u-align-center {
+    margin-bottom: gesso-spacing(9);
+  }
+
+  .c-button {
+    margin-bottom: gesso-spacing(9);
+  }
 }
 
 .event-detail__speaker {

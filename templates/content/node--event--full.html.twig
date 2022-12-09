@@ -118,9 +118,15 @@
   {% endif %}
 {% endset %}
 
+{% set event_content %}
+  {{ content.field_video }}
+  {{ content.field_external_link }}
+  {{ content.field_body }}
+{% endset %}
+
 {% set speaker_info %}
-  {{- content.field_name|field_value|render|striptags('<strong><em><a>')|trim -}}
-  {%- if content.field_affiliation|field_value -%}, {{ content.field_affiliation|field_value|render|striptags('<strong><em><a>')|trim -}}{%- endif -%}
+  {{- content.field_name|field_value|render|striptags('<strong><em><a>')|trim|raw-}}
+  {%- if content.field_affiliation|field_value -%}, {{ content.field_affiliation|field_value|render|striptags('<strong><em><a>')|trim|raw -}}{%- endif -%}
 {% endset %}
 
 {% set speaker_fields %}
@@ -138,7 +144,7 @@
 {% endif %}
 
 {% set event_contact %}{% apply spaceless %}
-  {% if content.field_contact_name|field_value %}{{- content.field_contact_name|render|striptags('<strong><em><a>')|trim -}}<br>{% endif %}
+  {% if content.field_contact_name|field_value %}{{- content.field_contact_name|render|striptags('<strong><em><a>')|trim|raw -}}<br>{% endif %}
   {% if content.field_email|field_value %}{{- content.field_email|field_value -}}<br>{% endif %}
   {% if content.field_text|field_value %}{{- content.field_text|field_value -}}{% endif %}
 {% endapply %}{% endset %}
@@ -168,7 +174,7 @@
   'map_link_url': content.field_location_link|field_value,
   'zoom_url': content.field_conference_link|field_value ? content.field_conference_link.0['#url'],
   'zoom_text': content.field_conference_link|field_value ? content.field_conference_link.0['#title'],
-  'event_content': content.field_body,
+  'event_content': event_content,
   'speaker_content': speaker_content,
   'event_sponsor': content.field_sponsor|render|striptags('<strong><em><a>')|trim,
   'event_audience': content.field_audience,
