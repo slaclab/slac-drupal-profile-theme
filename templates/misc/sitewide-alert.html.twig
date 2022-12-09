@@ -21,8 +21,9 @@
  * @ingroup themeable
  */
 #}
-{# <div {{ attributes }}> #}
-  {% include '@components/alert-bar/alert-bar.twig' with {
-    alert_content: content,
-  } %}
-{# </div> #}
+{% include '@components/alert-bar/alert-bar.twig' with {
+  alert_kicker: content.field_kicker|field_value,
+  alert_content: content|without('field_kicker'),
+  alert_type: style
+} %}
+

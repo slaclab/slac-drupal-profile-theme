@@ -22,6 +22,7 @@
         {{ alert_content }}
       </div>
 
+      {% if is_dismissible %}
       <button class="c-alert-bar__button js-dismiss-button" type="button">
         {{- 'Dismiss'|t -}}
         {% include '@components/icon/icon.twig' with {
@@ -31,6 +32,7 @@
           'hidden': true
         } %}
       </button>
+      {% endif %}
     </div>
   </div>
 </div>
