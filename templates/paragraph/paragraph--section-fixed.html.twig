@@ -40,6 +40,7 @@
 #}
 {% block attributes %}
   {% set classes = [
+    'l-section--two-one',
     'c-paragraph',
     'c-paragraph--type-' ~ paragraph.bundle|clean_class,
     view_mode ? 'c-paragraph--view-mode-' ~ view_mode|clean_class,
@@ -49,43 +50,20 @@
   {% set attributes = attributes.addClass(classes) %}
 {% endblock %}
 
-{% set paragraph_modifier_classes %}
-  {%- block modifier_classes -%}
-  {%- endblock -%}
-{% endset %}
-
-{% set paragraph_constrain_modifier_classes %}
-  {%- block constrain_modifier_classes -%}
-  {%- endblock -%}
-{% endset %}
-
-{% set paragraph_has_constrain %}
-  {%- block has_constrain -%}
-    {{ true }}
-  {%- endblock -%}
-{% endset %}
-
-{% set paragraph_title_element = 'h2' %}
-
-{% set num_of_cols = content.field_num_of_cols|render|striptags|trim %}
-
 {% set paragraph_content %}
-  {{ content['field_paragraphs_1'] }}
-  {{ content['field_paragraphs_2'] }}
-  {{ content['field_paragraphs_3'] }}
+{{ content['field_paragraphs_1'] }}
+{{ content['field_paragraphs_2'] }}
+{{ content['field_paragraphs_3'] }}
 {% endset %}
 
 {% embed '@layouts/section/section.twig' with {
   'has_constrain': true,
-  'modifier_classes': paragraph_modifier_classes ~ ' l-section--two-one',
-  'constrain_modifier_classes': paragraph_constrain_modifier_classes,
-  'has_constrain': paragraph_has_constrain,
   'section_kicker': content.field_text|field_value,
   'section_title': content.field_short_text|field_value,
-  'section_title_element': paragraph_title_element,
+  'section_title_element': 'h2'
   'section_intro': content.field_long_text|field_value,
   'section_title_url': content.field_link|field_value,
-  'section_buttons': content.field_button_links|field_value
+  'section_buttons': false,
 } %}
 
   {% block content %}
