@@ -13,6 +13,11 @@
   & + & {
     border-top: 0;
   }
+
+  table & {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .c-form-item--checkbox.has-visible-label-after {
