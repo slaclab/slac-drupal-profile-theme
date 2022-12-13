@@ -16,17 +16,13 @@
   padding: gesso-spacing(3) 0;
   width: 100%;
 
-  a {
+  * {
     color: inherit;
     text-decoration-color: currentColor;
   }
 
   p:last-child {
     margin-bottom: 0;
-  }
-
-  .c-kicker {
-    color: inherit;
   }
 
   .c-icon {
