@@ -70,7 +70,7 @@
     {% endif %}
   </h2>
 {% endif %}
-{{ content.field_long_text ? content.field_long_text|field_value : '' }}
+{{ content.field_plain_long_text ? content.field_plain_long_text|field_value : '' }}
 {% endset %}
 
 {% set overlap_image %}
