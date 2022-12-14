@@ -57,7 +57,10 @@
 
 {% set overlap_image_content %}
 {% if content.field_short_text %}
-  {% include '@components/kicker/kicker.twig' with { kicker_content: content.field_short_text|field_value } %}
+  {% include '@components/kicker/kicker.twig' with {
+    kicker_content: content.field_short_text|field_value,
+    attributes: false
+  } %}
 {% endif %}
 {% if content.field_text %}
   <h2>
@@ -70,7 +73,7 @@
     {% endif %}
   </h2>
 {% endif %}
-{{ content.field_long_text ? content.field_long_text|field_value : '' }}
+{{ content.field_plain_long_text ? content.field_plain_long_text|field_value : '' }}
 {% endset %}
 
 {% set overlap_image %}
