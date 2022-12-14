@@ -116,6 +116,7 @@ Drupal.behaviors.header = {
       header.addEventListener('transitionend', updateHeaderCurrentHeight);
       window.addEventListener('scroll', updateScrollProgress);
       window.addEventListener('resize', debounce(setInitialHeights, 200));
+      window.addEventListener('scroll', debounce(updateHeaderCurrentHeight, 200));
       header.addEventListener('toggle-mobile-menu', () => {
         window.requestAnimationFrame(() => {
           setInitialHeights();

@@ -40,10 +40,14 @@
 #}
 
 {% set table %}
-  <div class="table-wrapper">{{ content }}</div>
+<div class="table-wrapper" tabindex="0">
+  {{ content }}
+</div>
 {% endset %}
 
-{% if is_nested %}{{ table }}{% else %}
+{% if is_nested %}
+  {{ table }}
+{% else %}
   {% include '@layouts/section/section.twig' with {
     section_content: table,
     has_constrain: true,
