@@ -11,7 +11,9 @@
   overflow-x: auto;
   padding-inline: gesso-site-margins(mobile);
   position: sticky;
-  top: calc(var(--gesso-header-current-height, 0) + var(--ginToolbarHeight, 0));
+  top: calc(
+    var(--gesso-header-current-height, 0px) + var(--ginToolbarHeight, 0px)
+  );
   width: calc(100% + #{2 * gesso-site-margins(mobile)});
   z-index: gesso-z-index(overlay);
 
