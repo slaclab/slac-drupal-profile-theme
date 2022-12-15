@@ -139,7 +139,9 @@ function slac_theme_suggestions_form_element_alter(array &$suggestions, array $v
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function slac_theme_suggestions_input_alter(array &$suggestions, array $variables) {
-  $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#name'];
+  if (!empty($variables['element']['#name'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#name'];
+  }
 }
 
 /**
