@@ -98,6 +98,11 @@
 {{ content.field_paragraphs }}
 {% endset %}
 
+{% set author = content.field_text|field_value %}
+{% if content.field_link|field_value %}
+  {% set author = link(author, content.field_link.0['#url']) %}
+{% endif %}
+
 {% include '@templates/news-article-detail/news-article-detail.twig' with {
   'title': label,
   'lede': content.field_dek|field_value,
@@ -105,8 +110,7 @@
   'admin_info': admin_info,
   'show_footer': false,
   'date': content.field_date|render|striptags|trim,
-  'author_name': content.field_text|field_value,
-  'author_link': content.field_link|field_value,
+  'author': author,
   'rdf_metadata': metadata,
   'content': article_content,
   'tags': content.field_tags,
