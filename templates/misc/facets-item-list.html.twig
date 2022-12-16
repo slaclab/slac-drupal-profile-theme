@@ -38,7 +38,7 @@
   {%- endif %}
   -->
 {%- endif %}
-<fieldset class="facets-widget- {{- facet.widget.type -}} c-filter-modal__col">
+<fieldset class="facets-widget-{{- facet.widget.type }} c-filter-modal__col">
   {% if facet.widget.type %}
     {%- set attributes = attributes.addClass('item-list__' ~ facet.widget.type) %}
   {% endif %}

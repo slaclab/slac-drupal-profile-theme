@@ -44,9 +44,9 @@
 
 {% if not filters %}
 {% set filters %}
-  {{ drupal_entity('block', 'audience') }}
-  {{ drupal_entity('block', 'eventtype') }}
-  {{ drupal_entity('block', 'experience') }}
+  {{ drupal_block('facet_block:audience_taxonomy_term_name') }}
+  {{ drupal_block('facet_block:event_type_taxonomy_term_name') }}
+  {{ drupal_block('facet_block:experience_taxonomy_term_name') }}
 {% endset %}
 {% endif %}
 

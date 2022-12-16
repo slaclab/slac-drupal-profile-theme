@@ -1,104 +1,134 @@
+/* eslint-disable */
+import Drupal from 'drupal';
+import once from 'once';
+
 /**
  * @file
  * Transforms links into a dropdown list.
  */
+Drupal.facets = Drupal.facets || {};
+Drupal.behaviors.facetsDropdownWidget = {
+  attach: function (context, settings) {
+    Drupal.facets.makeDropdown(context, settings);
+  },
+};
 
-(function ($) {
+/**
+ * Turns all facet links into a dropdown with options for every link.
+ *
+ * @param {object} context
+ *   Context.
+ * @param {object} settings
+ *   Settings.
+ */
+Drupal.facets.makeDropdown = (context, settings) => {
+  // Find all dropdown facet links and turn them into an option.
+  const facetDropdownLinks = once(
+    'facets-dropdown-transform',
+    '.js-facets-dropdown-links',
+    context
+  );
 
-  'use strict';
+  if (facetDropdownLinks.length > 0) {
+    facetDropdownLinks.forEach(list => {
+      const links = list.querySelectorAll('.facet-item a');
+      const dropdown = document.createElement('select');
 
-  Drupal.facets = Drupal.facets || {};
-  Drupal.behaviors.facetsDropdownWidget = {
-    attach: function (context, settings) {
-      Drupal.facets.makeDropdown(context, settings);
-    }
-  };
-
-  /**
-   * Turns all facet links into a dropdown with options for every link.
-   *
-   * @param {object} context
-   *   Context.
-   * @param {object} settings
-   *   Settings.
-   */
-  Drupal.facets.makeDropdown = function (context, settings) {
-    // Find all dropdown facet links and turn them into an option.
-    $('.js-facets-dropdown-links').once('facets-dropdown-transform').each(function () {
-      var $ul = $(this);
-      var $links = $ul.find('.facet-item a');
-      var $dropdown = $('<select></select>');
       // Preserve all attributes of the list.
-      $ul.each(function () {
-        $.each(this.attributes,function (idx, elem) {
-            $dropdown.attr(elem.name, elem.value);
-        });
+      Array.from(list.attributes).forEach(attribute => {
+        dropdown.setAttribute(attribute.nodeName, attribute.nodeValue);
       });
+
       // Remove the class which we are using for .once().
-      $dropdown.removeClass('js-facets-dropdown-links');
-
-      $dropdown.addClass('facets-dropdown');
-      $dropdown.addClass('js-facets-widget');
-      $dropdown.addClass('js-facets-dropdown');
-
-      var id = $(this).data('drupal-facet-id');
+      dropdown.classList.remove('js-facets-dropdown-links');
+      // Add dropdown classes.
+      dropdown.classList.add(
+        'facets-dropdown',
+        'js-facets-widget',
+        'js-facets-dropdown'
+      );
+      const id = list.dataset.drupalFacetId;
       // Add aria-labelledby attribute to reference label.
-      $dropdown.attr('aria-labelledby', "facet_" + id + "_label");
-      var default_option_label = settings.facets.dropdown_widget[id]['facet-default-option-label'];
+      dropdown.setAttribute('aria-labelledby', `facet_${id}_label`);
 
       // Add empty text option first.
-      var $default_option = $('<option></option>')
-        .attr('value', '')
-        .text(default_option_label);
-      $dropdown.append($default_option);
+      const defaultOptionLabel =
+        settings.facets.dropdown_widget[id]['facet-default-option-label'];
+      const defaultOption = document.createElement('option');
+      defaultOption.setAttribute('value', '');
+      defaultOption.innerText = defaultOptionLabel;
+      dropdown.appendChild(defaultOption);
+      list.insertAdjacentHTML(
+        'afterbegin',
+        `<li class="default-option"><a href="${
+          window.location.href.split('?')[0]
+        }">${Drupal.checkPlain(defaultOptionLabel)}</a></li>`
+      );
 
-      $ul.prepend('<li class="default-option"><a href="' + window.location.href.split('?')[0] + '">' + Drupal.checkPlain(default_option_label) + '</a></li>');
-
-      var has_active = false;
-      $links.each(function () {
-        var $link = $(this);
-        var active = $link.hasClass('is-active');
-        var $option = $('<option></option>')
-          .attr('value', $link.attr('href'))
-          .data($link.data());
-        if (active) {
-          has_active = true;
-          // Set empty text value to this link to unselect facet.
-          $default_option.attr('value', $link.attr('href'));
-          $ul.find('.default-option a').attr("href", $link.attr('href'));
-          $option.attr('selected', 'selected');
-          $link.find('.js-facet-deactivate').remove();
-        }
-        $option.text(function () {
-          // Add hierarchy indicator in case hierarchy is enabled.
-          var $parents = $link.parent('li.facet-item').parents('li.facet-item');
-          var prefix = '';
-          for (var i = 0; i < $parents.length; i++) {
-            prefix += '-';
-          }
-          return prefix + ' ' + $link.text().trim();
+      let hasActive = false;
+      links.forEach(link => {
+        const isActive = link.classList.contains('is-active');
+        const option = document.createElement('option');
+        option.setAttribute(
+          'value',
+          `${dropdown.dataset.drupalFacetAlias}:${link.dataset.drupalFacetItemValue}`
+        );
+        Object.entries(link.dataset).forEach(arr => {
+          const [key, value] = arr;
+          option.dataset[key] = value;
         });
-        $dropdown.append($option);
+
+        if (isActive) {
+          hasActive = true;
+          // Set empty text value to this link to unselect facet.
+          const defaultLink = list.querySelector('.default-option a');
+          if (defaultLink) {
+            defaultLink.setAttribute('href', link.getAttribute('href'));
+          }
+          option.selected = true;
+          const deactivateLink = link.querySelector('.js-facet-deactivate');
+          if (deactivateLink) {
+            deactivateLink.parentNode.removeChild(deactivateLink);
+          }
+        }
+
+        // Add hierarchy indicator in case hierarchy is enabled.
+        let prefix = '';
+        if (link.parentElement.matches('li.facet-item')) {
+          for (
+            let p = link.parentElement && link.parentElement.parentElement;
+            p;
+            p = p.parentElement
+          ) {
+            if (p.matches('li.facet-item')) {
+              prefix += '-';
+            }
+          }
+        }
+        option.innerText = `${prefix} ${link.innerText.trim()}`;
+        dropdown.appendChild(option);
       });
 
-      // Go to the selected option when it's clicked.
-      $dropdown.on('change.facets', function () {
-        var anchor = $($ul).find("[data-drupal-facet-item-id='" + $(this).find(':selected').data('drupalFacetItemId') + "']");
-        var $linkElement = (anchor.length > 0) ? $(anchor) : $ul.find('.default-option a');
-        var url = $linkElement.attr('href');
-
-        $(this).trigger('facets_filter', [ url ]);
+      // Clear facet selection on clear event.
+      dropdown.addEventListener('filter-modal:clear', () => {
+        if (!defaultOption.selected) {
+          const selectedOption = dropdown.querySelector('option[selected]');
+          if (selectedOption) {
+            selectedOption.selected = false;
+          }
+          defaultOption.selected = true;
+        }
       });
 
-      // Append empty text option.
-      if (!has_active) {
-        $default_option.attr('selected', 'selected');
+      // Select empty text option if no facet is active.
+      if (!hasActive) {
+        defaultOption.selected = true;
       }
 
       // Replace links with dropdown.
-      $ul.after($dropdown).hide();
-      Drupal.attachBehaviors($dropdown.parent()[0], Drupal.settings);
+      list.insertAdjacentElement('afterend', dropdown);
+      list.classList.add('u-hidden');
+      Drupal.attachBehaviors(dropdown.parentNode, Drupal.settings);
     });
-  };
-
-})(jQuery);
+  }
+};
