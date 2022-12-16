@@ -4,8 +4,9 @@
 @use 'sass:math';
 
 .c-section-search {
+  @include layout-full-bleed;
+  @include on-dark-variables;
   background: gesso-brand(purple, dark);
-  color: gesso-grayscale(white);
   padding: gesso-spacing(9) gesso-site-margins(mobile);
 }
 
@@ -15,6 +16,7 @@
 }
 
 .c-section-search__label {
+  color: var(--gesso-text-color);
   display: table;
   font-size: gesso-font-size(5);
   font-weight: gesso-font-weight(bold);
@@ -23,6 +25,10 @@
 
 .c-section-search__field {
   position: relative;
+
+  > .c-form-item {
+    margin-bottom: 0;
+  }
 }
 
 .c-section-search__input {
@@ -37,6 +43,10 @@
   &:focus {
     outline: 2px solid gesso-color(ui, generic, focus);
     outline-offset: 2px;
+  }
+
+  &.c-form-item__text {
+    height: auto;
   }
 }
 

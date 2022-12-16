@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override of a views exposed form.
+ *
+ * Available variables:
+ * - form: A render element representing the form.
+ *
+ * @see template_preprocess_views_exposed_form()
+ */
+#}
+{% embed '@components/section-search/_section-search-form.twig' %}
+  {% block search_fields %}
+    {% if q is not empty %}
+      {#
+      This ensures that, if clean URLs are off, the 'q' is added first,
+      as a hidden form element, so that it shows up first in the POST URL.
+      #}
+      {{ q }}
+    {% endif %}
+    <label for="{{ form.keywords['#id'] }}">{{ form.keywords['#description'] }}</label>
+    <div class="c-section-search__field">
+      {{ form }}
+    </div>
+  {% endblock %}
+{% endembed %}

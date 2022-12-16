@@ -23,9 +23,13 @@
 
 {% if attributes.name == 'search-submit' %}
   {% include 'input--submit--search-submit.html.twig' %}
+{% elseif attributes['data-drupal-selector'] == 'edit-submit-landing-page-filtered-content'%}
+  {% include '@components/section-search/_section-search-submit.twig' with {
+    'attributes': attributes.removeClass(remove_classes|merge(['c-button']))
+  } %}
 {% else %}
 {% include '@components/form-item/_input.twig' with {
-  modifier_classes: attributes.removeClass(remove_classes).addClass(classes).class|join(' ')|trim,
+  'modifier_classes': attributes.removeClass(remove_classes).addClass(classes).class|join(' ')|trim,
 } %}
 {{- children }}
 {% endif %}
