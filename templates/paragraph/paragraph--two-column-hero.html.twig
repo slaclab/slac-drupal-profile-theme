@@ -53,7 +53,7 @@
 } %}
 {% endset %}
 
-{% if content.field_image %}
+{% if content.field_image|field_value %}
   {% include 'paragraph--article-hero.html.twig' %}
 {% endif %}
 {% include '@components/two-column-hero/two-column-hero.twig' with {
