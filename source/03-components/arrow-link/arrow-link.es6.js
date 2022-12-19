@@ -6,6 +6,11 @@ Drupal.behaviors.arrowLink = {
       '.c-arrow-link, .c-arrow-link--white, .c-card--small-bio a, .c-cta-link'
     );
     arrowLinks.forEach(link => {
+      const html = link.innerHTML;
+      if (html.indexOf('c-arrow-link__word') > -1) {
+        return;
+      }
+
       const text = link.textContent.trim().split(' ');
       const lastWord = text.pop();
       if (lastWord) {
