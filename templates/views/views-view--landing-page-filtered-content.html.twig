@@ -42,18 +42,11 @@
 {% set attributes = attributes.addClass(classes) %}
 {% set lightbox_id = 'filter-modal'|unique_id %}
 
-{% if not filters %}
-{% set filters %}
-  {{ drupal_block('facet_block:audience_taxonomy_term_name') }}
-  {{ drupal_block('facet_block:event_type_taxonomy_term_name') }}
-  {{ drupal_block('facet_block:experience_taxonomy_term_name') }}
-{% endset %}
-{% endif %}
-
 {% if not filter_title %}
   {% set filter_title = 'Events Filter'|t %}
 {% endif %}
 
+{% if filters %}
 {% set filter_modal %}
   {% include '@components/filter-modal/filter-modal.twig' with {
     'attributes': false,
@@ -63,6 +56,7 @@
     'filter_title': filter_title
   } %}
 {% endset %}
+{% endif %}
 
 {% include '@components/view/views-view/views-view.twig' with {
   'element': 'div',
