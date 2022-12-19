@@ -18,7 +18,7 @@
       #}
       {{ q }}
     {% endif %}
-    <label for="{{ form.keywords['#id'] }}">{{ form.keywords['#description'] }}</label>
+    <label for="{{ form.keywords['#id'] }}" class="c-section-search__label">{{ form.keywords['#description']|token_replace }}</label>
     <div class="c-section-search__field">
       {{ form }}
     </div>

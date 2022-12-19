@@ -67,10 +67,6 @@
     id: id ~ '-description',
   }) %}
 {% endif %}
-
-  {% if label_display in ['before', 'invisible'] %}
-    {{ label }}
-  {% endif %}
 <div {{ add_attributes({class: classes} ) }}>
 
   {% if prefix or suffix %}
@@ -83,12 +79,6 @@
       </span>
     {% endif %}
 
-    {% if description_display == 'before' and description.content %}
-      <div {{ add_attributes(description_attributes_to_add, 'description.attributes') }}>
-        {{ description.content }}
-      </div>
-    {% endif %}
-
     {{ children }}
 
     {% if suffix %}
@@ -99,16 +89,6 @@
 
     {% if prefix or suffix %}
   </div>
-  {% endif %}
-
-  {% if label_display == 'after' %}
-    {{ label }}
-  {% endif %}
-
-  {% if description_display in ['after', 'invisible'] and description.content %}
-    <div {{ add_attributes(description_attributes_to_add, 'description.attributes') }}>
-      {{ description.content }}
-    </div>
   {% endif %}
 
   {% if errors %}

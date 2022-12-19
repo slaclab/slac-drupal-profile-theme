@@ -45,7 +45,8 @@ Drupal.facets.makeDropdown = (context, settings) => {
       dropdown.classList.add(
         'facets-dropdown',
         'js-facets-widget',
-        'js-facets-dropdown'
+        'js-facets-dropdown',
+        'c-form-item__select'
       );
       const id = list.dataset.drupalFacetId;
       // Add aria-labelledby attribute to reference label.
