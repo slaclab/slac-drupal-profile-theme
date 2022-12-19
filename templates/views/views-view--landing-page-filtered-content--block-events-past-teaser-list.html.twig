@@ -1,0 +1,8 @@
+{% extends 'views-view--landing-page-filtered-content.html.twig' %}
+
+{% set filters %}
+  {{ drupal_block('facet_block:audience_taxonomy_term_name_past_events_list') }}
+  {{ drupal_block('facet_block:event_type_taxonomy_term_name_past_events_list') }}
+  {{ drupal_block('facet_block:experience_taxonomy_term_name_past_events_list') }}
+  {{ drupal_block('facet_block:tags_taxonomy_term_name_past_events_list') }}
+{% endset %}
