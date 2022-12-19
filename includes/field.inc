@@ -32,5 +32,13 @@ function slac_preprocess_field(&$vars) {
         $vars['link_url'] = \Drupal\Core\Url::fromUri($uri)->toString();
       }
     }
+  } else if ($vars['field_name'] == 'field_viewsreference') {
+    // Forcibly remove all views titles, since a universal setting does not
+    // exist yet in the module.
+    foreach ($vars['items'] as $key => $item) {
+      if (!empty($item['content']['title'])) {
+        unset($vars['items'][$key]['content']['title']);
+      }
+    }
   }
 }
