@@ -1,0 +1,11 @@
+<div {{ add_attributes({ class: 'c-section-search__form' } ) }}>
+  {% block search_fields %}
+    <label for="section-search" class="c-section-search__label">
+      {{ label }}
+    </label>
+    <div class="c-section-search__field">
+      <input id="section-search" type="search" class="c-section-search__input" placeholder="{{ placeholder }}">
+      {% include '@components/section-search/_section-search-submit.twig' %}
+    </div>
+  {% endblock %}
+</div>

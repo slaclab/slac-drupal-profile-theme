@@ -51,6 +51,9 @@ function slac_preprocess_form_element(array &$variables) {
   if (!empty($variables['name']) && $variables['name'] == 'current_facets') {
     $variables['label']['#theme'] = 'facet_label';
   }
+  if (!empty($variables['element']['#name'])) {
+    $variables['label']['#name'] = $variables['element']['#name'];
+  }
 }
 
 /**
@@ -107,9 +110,12 @@ function slac_theme_suggestions_container_alter(array &$suggestions, array $vari
 function slac_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   if (isset($variables['element']['#form_id'])) {
     $suggestions[] = 'form__' . $variables['element']['#form_id'];
-
-    if ($variables['element']['#form_id'] == 'views_exposed_form' && !empty($variables['element']['#view_id'])) {
-      $suggestions[] = 'form__' . $variables['element']['#form_id'] . '__' . $variables['element']['#view_id'];
+    if ($variables['element']['#form_id'] == 'views_exposed_form') {
+      if (!empty($variables['element']['#view_id'])) {
+        $suggestions[] = 'form__' . $variables['element']['#form_id'] . '__' . $variables['element']['#view_id'];
+      } else if (!empty($variables['element']['#id'])) {
+        $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+      }
     }
   }
 }
@@ -135,38 +141,21 @@ function slac_theme_suggestions_form_element_alter(array &$suggestions, array $v
   }
 }
 
+function slac_theme_suggestions_form_element_label_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['element']['#name'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . str_replace('-', '_', $variables['element']['#name']);
+  }
+  if (!empty($variables['element']['#id'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . str_replace('-', '_', $variables['element']['#id']);
+  }
+}
+
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function slac_theme_suggestions_input_alter(array &$suggestions, array $variables) {
-  $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#name'];
-}
-
-/**
- * Implements hook_preprocess_form().
- */
-function slac_preprocess_form(array &$variables) {
-  if ($variables['element']['#form_id'] == 'views_exposed_form' &&
-    isset($variables['element']['#view_id']) &&
-    $variables['element']['#view_id'] == 'search'
-  ) {
-    // Remove the keywords input
-    unset($variables['element']['keywords']);
-    // Remove the buttons
-    unset($variables['element']['actions']);
-    // Add classes to the sortby radios
-    $variables['element']['sort_by']['#attributes']['class'][] = 'c-filter-modal__col';
-    // Update the children variable since we just changed the markup.
-    $children_keys = Element::children($variables['element']);
-    $output = '';
-    foreach ($children_keys as $key) {
-      if (!empty($variables['element'][$key])) {
-        $output .= \Drupal::service('renderer')
-          ->render($variables['element'][$key]);
-      }
-    }
-    $variables['element']['#children'] = Markup::create($output);
-    $variables['children'] = $variables['element']['#children'];
+  if (!empty($variables['element']['#name'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#name'];
   }
 }
 

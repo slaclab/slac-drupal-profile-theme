@@ -38,13 +38,13 @@
   {%- endif %}
   -->
 {%- endif %}
-<fieldset class="facets-widget- {{- facet.widget.type -}} c-filter-modal__col">
+<div class="c-form-item c-form-item--select c-form-item--select-filters">
   {% if facet.widget.type %}
     {%- set attributes = attributes.addClass('item-list__' ~ facet.widget.type) %}
   {% endif %}
   {% if items or empty %}
     {%- if title is not empty -%}
-      <legend class="c-form-item__legend c-kicker c-kicker--big">{{ title }}</legend>
+      <label class="c-form-item__label" for="facet_{{ facet.id }}_label">{{ title }}</label>
     {%- endif -%}
 
     {%- if items -%}
@@ -57,4 +57,4 @@
       {{- empty -}}
     {%- endif -%}
   {%- endif %}
-</fieldset>
+</div>

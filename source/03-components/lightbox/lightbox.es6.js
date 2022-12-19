@@ -8,9 +8,9 @@ Drupal.behaviors.lightbox = {
       const lightbox = document.getElementById(
         trigger.getAttribute('aria-controls')
       );
-      const closeButton = lightbox.querySelector('.js-lightbox__close');
-
       if (!lightbox) return;
+
+      const closeButton = lightbox.querySelector('.js-lightbox__close');
 
       function handleKeydown(event) {
         const { key, shiftKey } = event;

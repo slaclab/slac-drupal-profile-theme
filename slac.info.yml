@@ -8,10 +8,7 @@ libraries:
   - slac/global
 libraries-override:
   core/drupal.dropbutton: slac/dropbutton
-  addtocal/addtocal:
-    css:
-      theme:
-        addtocal.css: dist/css/addtocal.css
+  facets/drupal.facets.dropdown-widget: slac/dropdown_widget
 libraries-extend:
   sitewide_alert/init:
     - slac/alert_bar
