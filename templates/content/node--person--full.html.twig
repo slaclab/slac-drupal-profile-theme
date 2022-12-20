@@ -84,19 +84,33 @@
   {{ drupal_block('share_this_page_block') }}
 </div>
 
+
 {% include '@templates/people-profile/people-profile.twig' with {
   'bio_name': label,
-  'bio_kicker': content.field_text|field_value,
-  'bio_job_title': content.field_text_title|field_value,
+  'bio_short_title': content.field_text_title_short|field_value,
+  'bio_long_title': content.field_text_title_full|field_value,
   'bio_image': content.field_image|field_value,
   'bio_page_content': content.field_body|field_value,
-  'bio_page_content_collapsed': content.field_body_trimmed|field_value,
-  'bio_page_quote': content.field_long_text|field_value,
-  'bio_page_buttons': content.field_links,
+  'bio_page_buttons': content.field_links|field_value,
+  'bio_email': content.field_email|field_value,
+  'bio_phone': content.field_telephone[0]['#title'],
+  'bio_mobile': content.field_mobile[0]['#title'],
+  'bio_fax': content.field_fax[0]['#title'],
+  'bio_location_name': content.field_location|field_value,
+  'bio_location_address': content.field_address|field_value,
+  'bio_map': content.field_map|field_value,
+  'bio_interestareas': content.field_interestareas|field_value,
+  'bio_education': content.field_education|field_value,
+  'bio_awardshonors': content.field_awardshonors|field_value,
+  'bio_affiliations': content.field_affiliations|field_value,
+  'bio_links': content.field_links|field_value,
+  'bio_profile_link': content.field_profile_link|field_value,
   'show_admin_info': show_admin_info,
   'admin_info': admin_info,
   'related_content': node.field_boolean.value != '1' ? drupal_view('related_content_for_detail_pages', 'person_related_stories_card') : false
 } %}
+
+{{ content.field_components }}
 
 {# Uncomment the following if you don’t render the content variable. #}
 {% set catch_cache = content|render %}
