@@ -1,0 +1,9 @@
+{% extends 'views-view--landing-page-filtered-content.html.twig' %}
+
+{% set filters %}
+  {{ drupal_block('facet_block:category_taxonomy_term_name_blog_list') }}
+  {{ drupal_block('facet_block:series_taxonomy_term_name_blog_list') }}
+  {{ drupal_block('facet_block:tags_taxonomy_term_name_blog_list') }}
+{% endset %}
+
+{% set filter_title = 'Blogs Filter'|t %}
