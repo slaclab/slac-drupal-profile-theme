@@ -9,6 +9,11 @@ Drupal.behaviors.arrowLink = {
       context
     );
     arrowLinks.forEach(link => {
+      const html = link.innerHTML;
+      if (html.indexOf('c-arrow-link__word') > -1) {
+        return;
+      }
+
       const text = link.textContent.trim().split(' ');
       const lastWord = text.pop();
       if (lastWord) {

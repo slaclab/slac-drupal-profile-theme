@@ -105,8 +105,8 @@
 {% set card_media %}
 {% if content.field_teaser_image|field_value is not empty %}
   {{ content.field_teaser_image|field_value }}
-{% elseif site_settings['news_article_default_(motif)_image'].news_article_default_motif_image %}
-  {{ drupal_entity('media', site_settings['news_article_default_(motif)_image'].news_article_default_motif_image, 'card_image_only') }}
+{% elseif site_settings['default_(motif)_images'].news_article_default_motif_image %}
+  {{ drupal_entity('media', site_settings['default_(motif)_images'].news_article_default_motif_image, 'card_image_only') }}
 {% endif %}
 {% endset %}
 
