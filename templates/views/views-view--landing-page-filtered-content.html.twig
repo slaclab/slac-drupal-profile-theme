@@ -58,6 +58,14 @@
 {% endset %}
 {% endif %}
 
+{% if empty %}
+  {% set empty %}
+    {% include '@components/wysiwyg/wysiwyg.twig' with {
+      'content': empty
+    } %}
+  {% endset %}
+{% endif %}
+
 {% include '@components/view/views-view/views-view.twig' with {
   'element': 'div',
   'header': header,
