@@ -1,0 +1,9 @@
+{% extends 'views-view--landing-page-filtered-content.html.twig' %}
+
+{% set filters %}
+  {{ drupal_block('facet_block:news_type_taxonomy_term_name_news_grid') }}
+  {{ drupal_block('facet_block:publication_date_news_grid') }}
+  {{ drupal_block('facet_block:tags_taxonomy_term_name_news_articles_grid') }}
+{% endset %}
+
+{% set filter_title = 'News Filter'|t %}

@@ -68,10 +68,10 @@
 #}
 
 {% set footer %}
-  {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
-  {% if content.field_source_link|field_value is empty and content.field_estimated_read_time|field_value is not empty %}
-    &nbsp;·&nbsp;
-    {{ content.field_estimated_read_time|field_value }}
+  {% if content.field_date|field_value %}
+    {{ content.field_date|field_value }}
+  {% else %}
+    {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
   {% endif %}
 {% endset %}
 

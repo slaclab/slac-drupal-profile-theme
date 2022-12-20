@@ -125,7 +125,7 @@
   {% if content.field_image|field_value is not empty %}
     {{ content.field_image|field_value }}
   {% elseif site_settings['default_(motif)_images'].event_default_motif_image %}
-    {{ drupal_entity('media', site_settings['default_(motif)_images'].event_default_motif_image, 'large') }}
+    {{ drupal_entity('media', site_settings['default_(motif)_images'].event_default_motif_image, 'large_image_only') }}
   {% endif %}
 {% endset %}
 
