@@ -1,0 +1,8 @@
+{% extends 'views-view--landing-page-filtered-content.html.twig' %}
+
+{% set filters %}
+  {{ drupal_block('facet_block:organization_taxonomy_term_name_person_list') }}
+  {{ drupal_block('facet_block:position_taxonomy_term_name_person_list') }}
+{% endset %}
+
+{% set filter_title = 'People Filter'|t %}
