@@ -4,13 +4,18 @@
 ] %}
 
 <div {{ add_attributes({ class: classes } ) }}>
-  {{ author }}
-  {{ year ? '(' ~ year ~ '). ' : '' }}
-  <a href="{{ url }}" class="c-citation__link">
-    {{ title ~ '.' -}}
-  </a>
-  <span class="c-citation__publisher">
-    {{ publication_info ~ '. ' }}
-  </span>
-  {{ doi_link }}
+  {{ citation_content }}
+  {#
+        {{ author }}
+        {{ year ? '(' ~ year ~ '). ' : '' }}
+        {% if url %}
+        <a href="{{ url }}" class="c-citation__link">
+          {{ title ~ '.' -}}
+        </a>
+        {% else %}
+
+        <span class="c-citation__publisher">
+          {{ publication_info ~ '. ' }}
+        </span>
+        {{ doi_link }} #}
 </div>
