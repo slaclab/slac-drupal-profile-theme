@@ -29,7 +29,10 @@
 {% set thesis_org = content.field_author_organization|field_value|render %}
 
 {# Type-specific fields: SLAC report #}
-{% set report_num = content.field_report_number|field_value|render %}
+{% set report_num = content.field_report_number|field_value %}
+
+{# Type-specific fields: Other #}
+{% set citation_text = content.field_other_citation|field_value %}
 
 {% set citation_content %}
 
@@ -66,9 +69,10 @@
   {{- [author, title, thesis_type, thesis_org, '.']|join(', ', '')|raw -}}
 
 {% elseif type == 'SLAC' %}
-  {{- report_num -}}
-  .
-  {{ [author, title, date|date('F Y'), '.']|join(', ', '')|raw -}}
+  {{- [report_num, author, title, date|date('F Y'), '.']|join('. ', '')|raw -}}
+
+{% else %}
+  {{- citation_text -}}
 {% endif %}
 {% endset %}
 
