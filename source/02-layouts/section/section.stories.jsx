@@ -111,11 +111,6 @@ SectionWithRSS.args = {
   is_rss: true,
 };
 
-WYSIWYG.args.content = `
-  <h2>Title</h2>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem minus a eligendi consequatur veniam beatae recusandae amet dolor optio. Debitis cupiditate quas aspernatur maiores ipsam explicabo sed dolorem voluptatem.</p>
-`;
-
 const ledeContent = `
   <h1>Title</h1>
   <div class="c-lede">
@@ -123,12 +118,15 @@ const ledeContent = `
   </div>
 `;
 
+const wysiwygContent = `<h2>Title</h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur rem minus a eligendi consequatur veniam beatae recusandae amet dolor optio. Debitis cupiditate quas aspernatur maiores ipsam explicabo sed dolorem voluptatem.</p>`;
+
 const SectionTwoOneContent = gridTemplate({
   grid_content: ReactDOMServer.renderToStaticMarkup(
     <>
-      {WYSIWYG({content: ledeContent})}
-      {WYSIWYG(WYSIWYG.args)}
-      {WYSIWYG(WYSIWYG.args)}
+      {WYSIWYG({ content: ledeContent })}
+      {WYSIWYG({ content: wysiwygContent })}
+      {WYSIWYG({ content: wysiwygContent })}
     </>
   ),
   num_of_cols: 4,

@@ -17,6 +17,10 @@
   .l-section__intro & {
     margin-left: 0;
   }
+
+  .c-callout-box + & {
+    display: block;
+  }
 }
 
 .c-wysiwyg--no-constrain,
