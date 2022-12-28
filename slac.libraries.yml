@@ -26,6 +26,7 @@ accordion:
   dependencies:
     - slac/common
     - core/drupal
+    - core/once
 
 addtocal_a11y:
   js:
