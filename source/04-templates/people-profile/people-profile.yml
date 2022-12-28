@@ -1,7 +1,7 @@
 ---
 bio_name: 'Mark Hogan'
-bio_job_title: 'Staff Scientist and Theory Group Leader Lorem ipsum dolor sit amet, consectetur adipiscing'
-bio_organization: 'Kavli Institute for Particle Astrophysics and Cosmology (KIPAC) Lorem ipsum dolor sit amet, consectetur adipiscing'
+bio_short_title: 'Staff Scientist and Theory Group Leader Lorem ipsum dolor sit amet, consectetur adipiscing'
+bio_long_title: 'Kavli Institute for Particle Astrophysics and Cosmology (KIPAC) Lorem ipsum dolor sit amet, consectetur adipiscing'
 bio_image: '<img src="https://picsum.photos/387" alt="Headshot Placeholder">'
 bio_page_content: |-
   <p>Norbert Holtkamp is deputy director of SLAC and project director for the construction of LCLS-II. He is a SLAC professor of photon science and of particle physics and astrophysics. He works on strategic initiatives, including approximately $2 billion in construction now underway on the SLAC site. From 2010 to 2014 he served as associate laboratory director for the SLAC Accelerator Directorate.</p>
