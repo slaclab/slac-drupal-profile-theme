@@ -1,0 +1,79 @@
+{# Fields on all publications #}
+{% set type = content.field_publication_type|field_value|render %}
+{% set author = content.field_authors|field_value|render %}
+{% set date = content.field_date|field_value|render %}
+{% set doi = content.field_doi|field_value|render %}
+
+{% set title -%}
+<b>
+  {{- label|field_value|render -}}
+</b>
+{%- endset %}
+
+{% set publisher -%}
+<i>
+  {{- content.field_publisher|field_value|render -}}
+</i>
+{%- endset %}
+
+{# Type-specific fields: book #}
+{% set place = content.field_publication_place|field_value|render %}
+
+{# Type-specific fields: journal article #}
+{% set volume = content.field_volume|field_value|render %}
+{% set edition = content.field_edition|field_value|render %}
+{% set pages = content.field_pages|field_value|render %}
+
+{# Type-specific fields: thesis #}
+{% set thesis_type = content.field_dissertation_type|field_value|render %}
+{% set thesis_org = content.field_author_organization|field_value|render %}
+
+{# Type-specific fields: SLAC report #}
+{% set report_num = content.field_report_number|field_value %}
+
+{# Type-specific fields: Other #}
+{% set citation_text = content.field_other_citation|field_value %}
+
+{% set citation_content %}
+
+{% if type == 'Article Newspaper/Magazine' %}
+  {{- [author, title, publisher, date|date('F j, Y'), '.']|join(', ', '')|raw -}}
+
+{% elseif type == 'Book' %}
+  {%- set publication_info -%}
+  (
+  {{- [publisher, place, date|date('Y')]|join(', ')|raw -}}
+  )
+  {%- endset -%}
+  {{- [author, title, publication_info, '.']|join(', ', '')|raw -}}
+
+{% elseif type == 'Journal Article' %}
+  {%- set publication_info -%}
+  <i>
+    {{- publisher }}
+    {{ volume -}}
+  </i>
+  ,
+  {{ pages -}}
+  {{ edition }}
+  (
+  {{- date|date('Y') -}}
+  )
+  {%- endset %}
+  {{- [author, title, publication_info, '.']|join(', ', '')|raw -}}
+  {%- if doi %}
+    {{ doi }}
+  {% endif %}
+
+{% elseif type == 'Thesis' %}
+  {{- [author, title, thesis_type, thesis_org, '.']|join(', ', '')|raw -}}
+
+{% elseif type == 'SLAC' %}
+  {{- [report_num, author, title, date|date('F Y'), '.']|join('. ', '')|raw -}}
+
+{% else %}
+  {{- citation_text -}}
+{% endif %}
+{% endset %}
+
+{% include '@components/citation/citation.twig' with { citation_content: citation_content } %}
