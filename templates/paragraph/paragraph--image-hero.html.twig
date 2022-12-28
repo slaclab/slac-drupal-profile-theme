@@ -45,6 +45,8 @@
 {% endspaceless %}{% endset %}
 
 {% include '@components/hero-bg-image/hero-bg-image.twig' with {
+  'modifier_classes': attributes.class|join(' ')|trim,
+  'attributes': attributes|without('class'),
   'hero_caption': tooltip,
   'hero_kicker': content.field_text|field_value,
   'hero_image': content.field_image|field_value,
