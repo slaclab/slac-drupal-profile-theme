@@ -3,12 +3,17 @@
 @use '00-config' as *;
 
 .c-citation {
+  @include layout-constrain(rem(gesso-constrain(teaser)), 0, 0);
   border-bottom: 1px solid gesso-grayscale(gray-2);
   border-top: 1px solid gesso-grayscale(gray-2);
-  font-size: 20px;
+  font-size: rem(20px);
   line-height: 1.5;
-  padding: 56px 0 56px 28px;
-  text-indent: -28px;
+  padding: 56px 0 56px;
+}
+
+.c-citation__inner {
+  padding-left: rem(28px);
+  text-indent: rem(-28px);
 }
 
 .c-citation__link {
