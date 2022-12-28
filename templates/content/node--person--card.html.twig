@@ -74,8 +74,6 @@
 
 {% set attributes = attributes.addClass(classes) %}
 
-{% set card_metadata = content.field_text_title_short|field_value is not empty ? content.field_text_title_short|field_value : content.field_text_title_full|field_value %}
-
 {% set link = content.field_link|field_value is not empty ? content.field_link[0]['#url'] : url %}
 
 {% include '@components/card/card.twig' with {
@@ -83,9 +81,9 @@
   'title': label,
   'kicker': false,
   'url': link,
-  'card_metadata': card_metadata,
+  'card_metadata': content.field_text_title_short|field_value,
   'media': content.field_image|field_value,
-  'card_content': content.field_organization|field_value,
+  'card_content': content.field_text_title_full|field_value,
   'use_placeholder': true
 } %}
 
