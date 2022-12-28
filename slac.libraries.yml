@@ -296,6 +296,7 @@ tooltip:
     dist/js/tooltip.es6.js: {}
   dependencies:
     - slac/common
+    - core/once
 
 transparent_nav:
   css:
