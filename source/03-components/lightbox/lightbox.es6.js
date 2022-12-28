@@ -1,8 +1,9 @@
 import Drupal from 'drupal';
+import once from 'once';
 
 Drupal.behaviors.lightbox = {
   attach(context) {
-    const triggers = context.querySelectorAll('.js-lightbox');
+    const triggers = once('lightbox-init', '.js-lightbox', context);
     let triggerUsed;
     triggers.forEach(trigger => {
       const lightbox = document.getElementById(
