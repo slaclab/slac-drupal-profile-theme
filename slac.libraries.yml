@@ -171,6 +171,7 @@ lightbox:
   dependencies:
     - slac/common
     - core/drupal
+    - core/once
 
 mega_menu:
   css:
@@ -195,6 +196,7 @@ media_grid:
   dependencies:
     - slac/common
     - core/drupal
+    - core/once
 
 media_lightbox:
   css:

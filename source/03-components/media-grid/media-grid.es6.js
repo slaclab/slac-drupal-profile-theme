@@ -1,4 +1,5 @@
 import Drupal from 'drupal';
+import once from 'once';
 
 Drupal.behaviors.mediaGrid = {
   attach(context) {
@@ -130,7 +131,7 @@ Drupal.behaviors.mediaGrid = {
       setupLightboxNav(lightbox, index, allLightboxes, totalLightboxes);
     }
 
-    const mediaGrids = context.querySelectorAll('.c-media-grid');
+    const mediaGrids = once('media-grid-init', '.c-media-grid', context);
     mediaGrids.forEach(mediaGrid => {
       const lightboxes = mediaGrid.querySelectorAll('.c-media-lightbox');
       if (lightboxes.length >= 2) {
