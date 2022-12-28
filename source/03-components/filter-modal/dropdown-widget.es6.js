@@ -50,7 +50,7 @@ Drupal.facets.makeDropdown = (context, settings) => {
       );
       const id = list.dataset.drupalFacetId;
       // Add aria-labelledby attribute to reference label.
-      dropdown.setAttribute('aria-labelledby', `facet_${id}_label`);
+      dropdown.setAttribute('id', `facet_${id}_label`);
 
       // Add empty text option first.
       const defaultOptionLabel =
