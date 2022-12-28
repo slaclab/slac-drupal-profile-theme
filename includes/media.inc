@@ -67,7 +67,9 @@ function slac_preprocess_media(array &$variables) {
     ->toString();
   $variables['has_caption'] = isset($variables['attributes']['data-caption']);
   $variables['bundle'] = $variables['media']->bundle();
-  if (in_array($variables['view_mode'], ['video_lightbox', 'media_grid', 'video_lightbox_media_grid'])) {
+  if (in_array($variables['view_mode'], ['video_lightbox', 'video_lightbox_media_grid']) ||
+    ($variables['bundle'] == 'remote_video' && $variables['view_mode'] == 'media_grid')
+  ) {
     if ($variables['bundle'] == 'remote_video') {
       /** @var \Drupal\media\Entity\Media $video_media */
       $video_media = $variables['media'];
@@ -97,8 +99,19 @@ function slac_preprocess_media(array &$variables) {
       $variables['lightbox_id'] = $variables['elements']['#media']->lightbox_id;
       $variables['video_caption'] = $variables['elements']['#media']->video_caption;
     }
-  }
-  if ($variables['view_mode'] == 'full') {
+  } else if ($variables['view_mode'] == 'image_lightbox' ||
+    ($variables['bundle'] == 'image' && $variables['view_mode'] == 'media_grid')
+  ) {
+    $image_media = $variables['media'];
+    // Set the URL to the detail page only if the editor hasn't hidden
+    // the detail page from the public.
+    if ($image_media->hasField('field_boolean') &&
+      $image_media->field_boolean->value == '1'
+    ) {
+      $variables['detail_page_url'] = $image_media->toUrl()->toString();
+    }
+    $variables['created'] = $image_media->getCreatedTime();
+  } else if ($variables['view_mode'] == 'full') {
     // Array of regions to add to node template.
     $allowed_regions = ['status'];
     _add_regions_to_template($allowed_regions, $variables);
@@ -113,8 +126,7 @@ function slac_preprocess_media(array &$variables) {
       $related_content_view->execute();
       $variables['related_content'] = $related_content_view->buildRenderable();
     }
-  }
-  if ($variables['view_mode'] == 'mosaic_card') {
+  } else if ($variables['view_mode'] == 'mosaic_card') {
     /** @var \Drupal\media\MediaInterface $media */
     $media = $variables['media'];
     if ($media->hasField('field_research_area')) {
