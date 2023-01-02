@@ -29,7 +29,7 @@
 {% set thesis_org = content.field_author_organization|field_value|render %}
 
 {# Type-specific fields: SLAC report #}
-{% set report_num = content.field_report_number|field_value %}
+{% set report_num = content.field_report_number|field_value|render %}
 
 {# Type-specific fields: Other #}
 {% set citation_text = content.field_other_citation|field_value %}
@@ -52,8 +52,8 @@
   <i>
     {{- publisher }}
     {{ volume -}}
+    ,
   </i>
-  ,
   {{ pages -}}
   {{ edition }}
   (
