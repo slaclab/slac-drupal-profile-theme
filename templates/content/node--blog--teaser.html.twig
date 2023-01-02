@@ -68,11 +68,11 @@
 #}
 
 {% set footer %}
-  {% if content.field_date|field_value %}
-    {{ content.field_date|field_value }}
-  {% else %}
-    {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
-  {% endif %}
+{% if content.field_date|field_value %}
+  {{ content.field_date|field_value }}
+{% else %}
+  {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
+{% endif %}
 {% endset %}
 
 {% set card_content %}
@@ -80,6 +80,13 @@
   {{ content.field_teaser }}
 {% else %}
   {{ content.field_paragraphs }}
+{% endif %}
+{% endset %}
+
+{% set kicker %}
+{{ 'Blog Post'|t }}
+{% if content.field_series|field_value is not empty %}
+  {{ '· ' ~ content.field_series|field_value|render|raw }}
 {% endif %}
 {% endset %}
 
