@@ -1,0 +1,13 @@
+@use '00-config' as *;
+
+.c-views-view--accordion {
+  padding-bottom: rem(gesso-spacing(5));
+
+  &:last-child {
+    padding-bottom: gesso-spacing(9);
+  }
+
+  .l-section:not(.l-section--no-padding) & {
+    padding-bottom: 0;
+  }
+}
