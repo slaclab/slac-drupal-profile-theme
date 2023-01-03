@@ -26,11 +26,9 @@
  */
 #}
 
-{{ dd(content) }}
-
 {% include '@components/promo-box/promo-box.twig' with {
-  promo_box_kicker: content.field_text|field_value,
-  promo_box_url: content.field_link|field_value,
-  promo_box_title: content.field_title|field_value,
-  promo_box_content: content.list,
+  promo_box_kicker: content.kicker,
+  promo_box_url: '',
+  promo_box_title: label,
+  promo_box_content: content|without('kicker'),
 } %}
