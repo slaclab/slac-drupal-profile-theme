@@ -1,0 +1,30 @@
+{% set section_id = 'accordion-section'|unique_id %}
+{% set button_id = 'accordion-button'|unique_id %}
+
+<{{ accordion_title_element ?: 'h3' }} class="c-accordion-item__heading h5">
+<button
+    class="c-accordion-item__toggle js-accordion-toggle"
+    id="{{ button_id }}"
+    aria-expanded="true"
+    aria-controls="{{ section_id }}"
+    tabindex="-1"
+>
+  <span>{{ accordion_title }}</span>
+  {% include '@components/icon/icon.twig' with {
+    'icon_name': 'close',
+    'label': 'Open/Close Accordion',
+    'modifier_classes': 'c-accordion-item__icon'
+  } %}
+</button>
+</{{ accordion_title_element ?: 'h3' }}>
+<div
+    class="c-accordion-item__drawer js-accordion-drawer"
+    id="{{ section_id }}"
+    role="region"
+    aria-labelledby="{{ button_id }}"
+    aria-expanded="true"
+>
+  <div class="c-accordion-item__drawer-inner">
+    {{ accordion_content }}
+  </div>
+</div>

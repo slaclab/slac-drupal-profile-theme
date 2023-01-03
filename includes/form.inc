@@ -157,6 +157,16 @@ function slac_theme_suggestions_input_alter(array &$suggestions, array $variable
   if (!empty($variables['element']['#name'])) {
     $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#name'];
   }
+  if (!empty($variables['element']['#context']) && !empty($variables['element']['#context']['#view_id'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#context']['#view_id'];
+
+    if (!empty($variables['element']['#context']['#display_id'])) {
+      $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['element']['#context']['#view_id'] . '__' . $variables['element']['#context']['#display_id'];
+    }
+  }
+  if (!empty($variables['element']['#is_faq'])) {
+    $suggestions[] = $variables['theme_hook_original'] . '__' . 'faq';
+  }
 }
 
 /**

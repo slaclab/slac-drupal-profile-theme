@@ -15,19 +15,23 @@
  * @see template_preprocess_views_view_unformatted()
  */
 #}
-{#{% if title %}#}
-{#  <h3>{{ title }}</h3>#}
-{#{% endif %}#}
-{#{% for row in rows %}#}
-{#  {%#}
-{#    set row_classes = [#}
-{#    default_row_class ? 'views-row',#}
-{#  ]#}
-{#  %}#}
-{#  <div{{ row.attributes.addClass(row_classes) }}>#}
-{#    {{- row.content -}}#}
-{#  </div>#}
-{#{% endfor %}#}
+{% set accordion_items %}
+  {% for row in rows %}
+    {%
+      set row_classes = [
+        default_row_class ? 'views-row',
+      ]
+    %}
+    {% embed '@components/accordion/accordion-item.twig' with {
+      'attributes': row.attributes.addClass(row_classes),
+    } %}
+      {% block accordion_item_content %}{{- row.content -}}{% endblock %}
+    {% endembed %}
+  {% endfor %}
+{% endset %}
+
 {% include '@components/accordion/accordion.twig' with {
-  'accordion_items': rows
+  'accordion_items': accordion_items,
+  'allow_toggle': collapsible,
+  'allow_multiple': collapsible
 } %}

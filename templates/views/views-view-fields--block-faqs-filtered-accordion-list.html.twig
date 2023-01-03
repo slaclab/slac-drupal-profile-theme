@@ -30,7 +30,7 @@
  */
 #}
 
-{% include '@components/accordion/accordion-item.twig' with {
+{% include '@components/accordion/_accordion-item-content.twig' with {
   'accordion_title': fields|first.content,
   'accordion_content': fields|last.content
 } %}

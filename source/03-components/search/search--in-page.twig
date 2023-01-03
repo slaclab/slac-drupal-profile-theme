@@ -9,19 +9,11 @@
   {% set search_placeholder = current_search %}
 {% endif %}
 
-<div {{ add_attributes({ class: classes } ) }}>
-  <form class="c-search__form">
-    {% include '@components/search/_search-input.twig' %}
-    <button type="submit" class="c-search__submit">
-      {% include '@components/icon/icon.twig' with {
-        'icon_name': 'search',
-        'label': 'Submit search'|t
-      } %}
-    </button>
-  </form>
-  {% if current_search %}
-    <div class="c-search__current-search">
-      {{ 'Showing results for "@search_term"'|t({'@search_term': current_search}) }}
-    </div>
-  {% endif %}
-</div>
+<form {{ add_attributes({ class: classes } ) }}>
+  <div class="c-search__form">
+    {% block search_form %}
+      {% include '@components/search/_search-input.twig' %}
+      {% include '@components/search/_search-button.twig' %}
+    {% endblock %}
+  </div>
+</form>
