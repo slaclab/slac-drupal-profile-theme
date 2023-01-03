@@ -184,3 +184,19 @@ $form-text-size: gesso-font-size(3);
   margin: 0 8px;
   padding: 12px 20px;
 }
+
+// stylelint-disable
+.c-field--type-webform {
+  @include layout-constrain(gesso-constrain(sm));
+
+  .l-section & {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// handles a few weird form item types
+form > * {
+  max-width: 100%;
+  overflow: auto;
+}
