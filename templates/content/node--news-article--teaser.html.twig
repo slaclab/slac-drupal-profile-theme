@@ -68,21 +68,20 @@
 #}
 
 {% set footer %}
-  {% if content.field_date|field_value %}
-    {{ content.field_date|field_value }}
-  {% else %}
-    {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
-  {% endif %}
+{% if content.field_date|field_value %}
+  {{ content.field_date|field_value }}
+{% else %}
+  {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
+{% endif %}
 {% endset %}
 
 {% set kicker %}
 {% if content.field_source_name|field_value is not empty %}
-  {{ content.field_source_name|render|striptags('<em><i><strong>')|trim|raw }}
+  {{- 'VIA '|t ~ content.field_source_name|render|striptags('<em><i><strong>')|trim|raw -}}
 {% elseif content.field_news_source|field_value is not empty %}
-  {% trans %}
-  VIA
-  {% endtrans %}
-  {{- content.field_news_source|render|striptags|raw -}}
+  {{- 'VIA '|t ~content.field_news_source|render|striptags|raw -}}
+{% else %}
+  {{- content.field_type|field_value|render -}}
 {% endif %}
 {% endset %}
 
@@ -114,7 +113,7 @@
   'title': label,
   'url': card_link,
   'kicker': kicker,
-  'type': content.field_type|field_value,
+  'type': 'News'|t,
   'footer': footer,
   'media': card_media,
   'card_content': card_content,
