@@ -47,8 +47,9 @@
 
 {% set paragraph_content %}
 <div{{attributes.addClass(classes)}}>
-  {{ dd(content) }}
   {{ content }}
+  {{ dd(content) }}
+  {{ dd(paragraph) }}
 </div>
 {% endset %}
 
