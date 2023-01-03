@@ -4,16 +4,28 @@
 
 .c-citation {
   @include layout-constrain(rem(gesso-constrain(teaser)), 0, 0);
-  border-bottom: 1px solid gesso-grayscale(gray-2);
   border-top: 1px solid gesso-grayscale(gray-2);
   font-size: rem(20px);
   line-height: 1.5;
   padding: 56px 0;
+
+  .c-view__row & {
+    padding-bottom: 16px; // account for existing margins
+  }
+
+  .c-view__row:last-child & {
+    border-bottom: 1px solid gesso-grayscale(gray-2);
+    padding-bottom: 56px;
+  }
 }
 
 .c-citation__inner {
   padding-left: rem(28px);
   text-indent: rem(-28px);
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .c-citation__link {
