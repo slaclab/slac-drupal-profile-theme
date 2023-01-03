@@ -1,8 +1,9 @@
 import Drupal from 'drupal';
+import once from 'once';
 
 Drupal.behaviors.gessoTooltip = {
   attach(context) {
-    const tooltips = context.querySelectorAll('.c-tooltip');
+    const tooltips = once('tooltip-init', '.c-tooltip', context);
     tooltips.forEach(tooltip => {
       const tooltipButton = tooltip.querySelector('.c-tooltip__button');
       const tooltipTip = tooltip.querySelector('.c-tooltip__tooltip');

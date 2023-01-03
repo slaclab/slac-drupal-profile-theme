@@ -406,9 +406,9 @@ gesso:
     back-to-top: 5
     cookie-banner: 8
     overlay: 10
+    modal: 499
     nav: 500
     drawer: 501
-    modal: 1300
   spacing:
     0: 0
     0.5: 4px

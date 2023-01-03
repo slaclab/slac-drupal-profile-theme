@@ -1,11 +1,19 @@
 import Drupal from 'drupal';
+import once from 'once';
 
 Drupal.behaviors.arrowLink = {
   attach(context) {
-    const arrowLinks = context.querySelectorAll(
-      '.c-arrow-link, .c-arrow-link--white, .c-card--small-bio a, .c-cta-link'
+    const arrowLinks = once(
+      'arrow-links-prevent-wrap',
+      '.c-arrow-link, .c-arrow-link--white, .c-cta-link',
+      context
     );
     arrowLinks.forEach(link => {
+      const html = link.innerHTML;
+      if (html.indexOf('c-arrow-link__word') > -1) {
+        return;
+      }
+
       const text = link.textContent.trim().split(' ');
       const lastWord = text.pop();
       if (lastWord) {

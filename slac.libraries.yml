@@ -14,6 +14,7 @@ global:
     - slac/common
     - core/drupal
     - core/drupalSettings
+    - core/once
 
 accordion:
   header: true
@@ -25,6 +26,7 @@ accordion:
   dependencies:
     - slac/common
     - core/drupal
+    - core/once
 
 addtocal_a11y:
   js:
@@ -92,6 +94,15 @@ dropdown_menu:
     - slac/common
     - slac/mobile_menu
 
+dropdown_widget:
+  js:
+    dist/js/dropdown-widget.es6.js: {}
+  dependencies:
+    - slac/common
+    - core/drupal
+    - facets/widget
+    - core/once
+
 event_detail_template:
   css:
     theme:
@@ -106,7 +117,11 @@ filter_modal:
   css:
     theme:
       dist/css/filter-modal.css: {}
+  js:
+    dist/js/filter-modal.es6.js: {}
   dependencies:
+    - slac/common
+    - core/drupal
     - slac/lightbox
 
 grid_with_featured:
@@ -157,6 +172,7 @@ lightbox:
   dependencies:
     - slac/common
     - core/drupal
+    - core/once
 
 mega_menu:
   css:
@@ -181,6 +197,7 @@ media_grid:
   dependencies:
     - slac/common
     - core/drupal
+    - core/once
 
 media_lightbox:
   css:
@@ -279,6 +296,7 @@ tooltip:
     dist/js/tooltip.es6.js: {}
   dependencies:
     - slac/common
+    - core/once
 
 transparent_nav:
   css:

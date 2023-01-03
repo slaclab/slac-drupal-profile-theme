@@ -27,18 +27,11 @@
 
   .c-card__icon {
     border-radius: 0;
-    display: grid;
+    font-size: 70px;
     height: 70px;
     margin-top: 0;
-    place-items: center;
     transform: none;
     width: 70px;
-
-    .svg-inline--fa {
-      display: block;
-      height: 100%;
-      width: 100%;
-    }
   }
 
   .c-kicker {

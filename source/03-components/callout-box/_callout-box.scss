@@ -25,6 +25,10 @@
 
   @include breakpoint(gesso-breakpoint(desktop-lg)) {
     margin-right: -50%;
+
+    .l-sidebar__main & {
+      margin-right: 0;
+    }
   }
 }
 

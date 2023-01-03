@@ -76,8 +76,8 @@
  * enforced.
  */
 #}
-{% set event_start_date = content.field_datetime_range.0.start_date["#attributes"]["datetime"] %}
-{% set event_end_date = content.field_datetime_range.0.end_date["#attributes"]["datetime"] %}
+{% set event_start_date = content.field_smart_date.0.start_time["#markup"] %}
+{% set event_end_date = content.field_smart_date.0.end_time["#markup"] %}
 
 {#
 /**
@@ -92,32 +92,20 @@
 
 {#
 /**
- * The Date/Time and Location field (field_override_text) overrides both the composed date line
- * the location line, in which case the 'footer' theme parameter is used, to avoid prefacing
- * the override text with either a calendar or location pin icon.
- */
-#}
-{% set datetime_location_override = content.field_override_text|field_value is not empty %}
-{% set datetime_composed = null %}
-
-{#
-/**
  * If no override, compose the date string using different formats for single- and multiday
  * events. Display the "am" and "pm" for each time in case of event spanning across noon or
  * midnight. Timezone value is passed to template from view mode integral to date range value.
  */
 #}
-{% if datetime_location_override == false %}
-  {% set datetime_composed %}
-    {% if multiday_event == false %}
-      {{ event_start_date|date("l, F j, Y") }}
-      <br>
-      {{- event_start_date|date("g:i a")|replace({"am":"a.m.", "pm":"p.m."}) }}&nbsp;&nbsp;–&nbsp;&nbsp;{{ event_end_date|date("g:i a")|replace({"am":"a.m.", "pm":"p.m."}) }}&nbsp;&nbsp;{{ event_start_date|date("T")|replace({"PST":"PT","PDT":"PT"}) -}}
-    {% else %}
-      {{- event_start_date|date("l, F j, Y") }}&nbsp;&nbsp;–&nbsp;&nbsp;{{ event_end_date|date("l, F j, Y") }}
-    {% endif %}
-  {% endset %}
-{% endif %}
+{% set datetime_composed %}
+  {% if multiday_event == false %}
+    {{ event_start_date|date("l, F j, Y") }}
+    <br>
+    {{- event_start_date|date("g:i a")|replace({"am":"a.m.", "pm":"p.m."}) }}&nbsp;&nbsp;–&nbsp;&nbsp;{{ event_end_date|date("g:i a")|replace({"am":"a.m.", "pm":"p.m."}) }}&nbsp;&nbsp;{{ event_start_date|date("T")|replace({"PST":"PT","PDT":"PT"}) -}}
+  {% else %}
+    {{- event_start_date|date("l, F j, Y") }}&nbsp;&nbsp;–&nbsp;&nbsp;{{ event_end_date|date("l, F j, Y") }}
+  {% endif %}
+{% endset %}
 
 {#
 /**
@@ -126,9 +114,20 @@
  */
 #}
 {% set location = null %}
-{% if datetime_location_override == FALSE and content.field_link|field_value is not empty %}
-  {% set location = content.field_link[0]['#title'] %}
+{% set virtual_event = content.field_experience|render|striptags|trim == 'Virtual' %}
+{% if not virtual_event %}
+  {% set location = content.field_location|field_value %}
 {% endif %}
+
+{% set is_past_event = node.isPastEvent() %}
+
+{% set card_media %}
+  {% if content.field_image|field_value is not empty %}
+    {{ content.field_image|field_value }}
+  {% elseif site_settings['default_(motif)_images'].event_default_motif_image %}
+    {{ drupal_entity('media', site_settings['default_(motif)_images'].event_default_motif_image, 'large_image_only') }}
+  {% endif %}
+{% endset %}
 
 {#
 /**
@@ -144,19 +143,17 @@
   'url': content.field_boolean['#items'].value == 0 ? url : content.field_external_link.0['#url'],
   'start_date': {
     'month': event_start_date|date('M'),
-    'day': event_start_date|date('d')
+    'day': event_start_date|date('j')
   },
   'end_date': multiday_event == false ? null : {
     'month': event_end_date|date('M'),
-    'day': event_end_date|date('d')
+    'day': event_end_date|date('j')
   },
   'event_type': content.field_type|render|striptags|trim,
-  'type': node.getEventTense() ~ ' Event',
   'kicker': content.field_text|field_value,
-  'footer': datetime_location_override ? content.field_override_text|field_value : null,
-  'event_date': datetime_location_override ? null : datetime_composed,
+  'event_date': datetime_composed,
   'event_location': location,
-  'media': content.field_image|field_value,
+  'media': card_media,
   'card_content': content.field_teaser|field_value is not null ? content.field_teaser : content.field_body,
 } %}
 

@@ -10,4 +10,8 @@
   & + & {
     margin-inline-start: rem(gesso-spacing(3));
   }
+
+  .l-section--dark .c-wysiwyg & {
+    @include arrow-link(white);
+  }
 }

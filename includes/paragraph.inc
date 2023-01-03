@@ -195,6 +195,13 @@ function slac_preprocess_paragraph__article_hero(&$vars) {
 /**
  * Implements hook_preprocess_paragraph__HOOK().
  */
+function slac_preprocess_paragraph__two_column_hero(&$vars) {
+  _slac_set_hero_caption($vars);
+}
+
+/**
+ * Implements hook_preprocess_paragraph__HOOK().
+ */
 function slac_preprocess_paragraph__image_hero(&$vars) {
   _slac_set_hero_caption($vars);
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */

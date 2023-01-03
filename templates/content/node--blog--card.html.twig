@@ -68,10 +68,10 @@
 #}
 
 {% set footer %}
-  {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
-  {% if content.field_source_link|field_value is empty and content.field_estimated_read_time|field_value is not empty %}
-    &nbsp;·&nbsp;
-    {{ content.field_estimated_read_time|field_value }}
+  {% if content.field_date|field_value %}
+    {{ content.field_date|field_value }}
+  {% else %}
+    {{ node.getCreatedTime|format_date('custom', 'F j, Y') }}
   {% endif %}
 {% endset %}
 
@@ -100,10 +100,10 @@
 {% endset %}
 
 {% set card_media %}
-  {% if cotnent.field_teaser_image|field_value is not empty %}
+  {% if content.field_teaser_image|field_value is not empty %}
     {{ content.field_teaser_image|field_value }}
-  {% elseif site_settings['news_article_default_(motif)_image'].news_article_default_motif_image %}
-    {{ drupal_entity('media', site_settings['news_article_default_(motif)_image'].news_article_default_motif_image, 'card_image_only') }}
+  {% elseif site_settings['default_(motif)_images'].blog_default_motif_image %}
+    {{ drupal_entity('media', site_settings['default_(motif)_images'].blog_default_motif_image, 'card_image_only') }}
   {% endif %}
 {% endset %}
 

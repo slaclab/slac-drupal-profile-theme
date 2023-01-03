@@ -1,0 +1,8 @@
+{% extends 'views-view--landing-page-filtered-content.html.twig' %}
+
+{% set filters %}
+  {{ drupal_block('facet_block:publication_type_publication_list') }}
+  {{ drupal_block('facet_block:topics_taxonomy_term_name_publication_list') }}
+{% endset %}
+
+{% set filter_title = 'Publications Filter'|t %}
