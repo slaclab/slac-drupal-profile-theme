@@ -152,6 +152,7 @@
   'event_type': content.field_type|render|striptags|trim,
   'kicker': content.field_text|field_value,
   'event_date': datetime_composed,
+  'is_virtual': virtual_event,
   'event_location': location,
   'media': card_media,
   'card_content': content.field_teaser|field_value is not null ? content.field_teaser : content.field_body,
