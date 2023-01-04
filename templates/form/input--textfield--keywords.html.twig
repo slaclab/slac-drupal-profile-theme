@@ -22,6 +22,8 @@
 ] %}
 
 {% include '@components/form-item/_input.twig' with {
-  modifier_classes: attributes.removeClass(remove_classes).addClass(classes).class|join(' ')|trim,
+  'modifier_classes': attributes.removeClass(remove_classes).addClass(classes).class|join(' ')|trim,
+  'described_by': null,
+  'attributes': attributes|without('aria-describedby', 'class')
 } %}
 {{- children }}
