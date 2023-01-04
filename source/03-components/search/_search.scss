@@ -36,6 +36,12 @@
   .c-search--in-page & {
     padding-block: gesso-spacing(5);
     position: relative;
+
+    .c-form-item {
+      font-size: inherit;
+      margin: 0;
+      padding: 0;
+    }
   }
 
   .c-search--in-page.has-current-search & {
@@ -145,6 +151,7 @@
   font-weight: gesso-font-weight(light);
   height: auto;
   line-height: gesso-line-height(base);
+  margin: 0;
   padding: rem(gesso-spacing(1)) rem(gesso-spacing(1.5));
   width: 100%;
 

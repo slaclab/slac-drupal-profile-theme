@@ -9,6 +9,7 @@ libraries:
 libraries-override:
   core/drupal.dropbutton: slac/dropbutton
   facets/drupal.facets.dropdown-widget: slac/dropdown_widget
+  views_accordion/views_accordion.accordion: false
 libraries-extend:
   sitewide_alert/init:
     - slac/alert_bar

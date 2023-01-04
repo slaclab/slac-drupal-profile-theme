@@ -4,8 +4,8 @@ import ReactDOMServer from 'react-dom/server';
 import PageWrapper from './page-wrappers/default.jsx';
 import { Header } from '../02-layouts/header/header.stories.jsx';
 import { PageTitle } from '../03-components/page-title/page-title.stories.jsx';
-import { WysiwygWrapper } from '../06-utility/storybookHelper';
-import { AccordionView } from '../03-components/view/views-view--accordion/views-view--accordion.stories';
+import { WysiwygWrapper } from '../06-utility/storybookHelper.jsx';
+import { AccordionView } from '../03-components/view/views-view--accordion/views-view--accordion.stories.jsx';
 
 export default {
   title: 'Pages/FAQ Landing Page',
