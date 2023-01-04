@@ -1,9 +1,10 @@
 import Drupal from 'drupal';
+import once from 'once';
 import SearchFlyout from './modules/SearchFlyout.es6';
 
 Drupal.behaviors.search = {
   attach(context) {
-    const search = context.querySelectorAll('.c-search--dropdown');
+    const search = once('search-dropdown-init', '.c-search--dropdown', context);
     search.forEach(searchElem => {
       const searchFlyout = new SearchFlyout(searchElem);
       searchFlyout.init();

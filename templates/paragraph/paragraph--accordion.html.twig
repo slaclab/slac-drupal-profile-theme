@@ -40,15 +40,17 @@
 #}
 {% set accordion %}
   {% include '@components/accordion/accordion.twig' with {
-    accordion_title: content.field_text|field_value,
-    accordion_items: content|without('field_text')
+    'accordion_title': content.field_text|field_value,
+    'accordion_items': content|without('field_text'),
+    'allow_toggle': true,
+    'allow_multiple': true
   } %}
 {% endset %}
 
 {% if is_nested %}{{ accordion }}{% else %}
   {% include '@layouts/section/section.twig' with {
-    section_content: accordion,
-    modifier_classes: 'l-section--no-padding',
-    has_constrain: true
+    'section_content': accordion,
+    'modifier_classes': 'l-section--no-padding',
+    'has_constrain': true
   } %}
 {% endif %}

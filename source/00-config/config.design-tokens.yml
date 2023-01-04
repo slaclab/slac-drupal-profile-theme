@@ -409,6 +409,7 @@ gesso:
     modal: 499
     nav: 500
     drawer: 501
+    lightbox: 502
   spacing:
     0: 0
     0.5: 4px

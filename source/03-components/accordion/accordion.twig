@@ -12,8 +12,8 @@
   {% if accordion_items %}
     <div
         class="c-accordion__content js-accordion"
-        data-allow-multiple
-        data-allow-toggle
+        {% if allow_multiple %}data-allow-multiple{% endif %}
+        {% if allow_toggle %}data-allow-toggle{% endif %}
     >
       {{ accordion_items }}
     </div>

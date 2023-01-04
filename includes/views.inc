@@ -65,6 +65,10 @@ function slac_preprocess_views_view_unformatted(array &$variables) {
   }
 }
 
+function slac_preprocess_views_slac_accordion_view(array &$variables) {
+  slac_preprocess_views_view_unformatted($variables);
+}
+
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
@@ -89,6 +93,9 @@ function slac_theme_suggestions_views_view_unformatted_alter(array &$suggestions
  * Implements hook_form_FORM_ID_alter().
  */
 function slac_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!empty($form['#id']) && $form['#id'] == 'views-exposed-form-landing-page-filtered-content-block-faqs-filtered-accordion-list') {
+    $form['actions']['submit']['#is_faq'] = TRUE;
+  }
   // Borrowed from: https://www.codimth.com/blog/web/drupal/how-filter-content-year-views-drupal-8
   if (isset($form['#id']) && in_array($form['#id'], [
     'views-exposed-form-landing-pages-events-archive',

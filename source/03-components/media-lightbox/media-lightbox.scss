@@ -17,7 +17,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: gesso-z-index(modal);
+  z-index: gesso-z-index(lightbox);
 
   @media (max-height: 450px) {
     padding-top: rem(gesso-spacing(8));

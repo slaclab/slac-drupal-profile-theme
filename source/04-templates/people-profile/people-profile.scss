@@ -11,6 +11,10 @@
 .people-profile__contact {
   margin-bottom: 10px;
 
+  br {
+    margin-bottom: 10px;
+  }
+
   a {
     text-decoration-line: none;
 
@@ -36,6 +40,10 @@
 .people-profile__field {
   @include responsive-font-size(3);
   margin-bottom: gesso-spacing(3);
+
+  a {
+    display: table;
+  }
 
   &:last-of-type {
     margin-bottom: gesso-spacing(7);
