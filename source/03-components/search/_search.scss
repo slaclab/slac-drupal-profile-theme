@@ -125,11 +125,17 @@
     .c-search--in-page & {
       --gesso-search-font-size: #{rem(24px)};
       max-width: gesso-constrain(sm);
-      padding: gesso-spacing(9) 0;
+      padding-block: gesso-spacing(9);
     }
 
     .c-search--in-page.has-current-search & {
       padding-bottom: gesso-spacing(4);
+    }
+
+    .c-search--large & {
+      --gesso-search-font-size: #{rem(gesso-font-size(9))};
+      max-width: none;
+      padding-block: gesso-spacing(4);
     }
   }
 }
@@ -157,6 +163,11 @@
 
   @include breakpoint(gesso-breakpoint(mobile-menu) + 1px) {
     padding-block: rem(gesso-spacing(0.5));
+  }
+
+  .c-search--large & {
+    margin: 4px 4px gesso-spacing(3);
+    width: calc(100% - 8px);
   }
 }
 

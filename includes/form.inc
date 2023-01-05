@@ -20,6 +20,11 @@ function slac_preprocess_input(array &$variables) {
   if (isset($variables['attributes']['class'])) {
     $variables['attributes']['class'] = preg_replace('/^button/', 'c-button', $variables['attributes']['class']);
   }
+  if (isset($variables['attributes']['data-drupal-selector']) &&
+    $variables['attributes']['data-drupal-selector'] == 'edit-submit-search'
+  ) {
+    $variables['attributes']['class'][] = 'c-button--large';
+  }
 
   if (!empty($variables['element']['#description']) && !empty($variables['element']['#id'])) {
     $description_id = $variables['element']['#id'] . '-description';

@@ -6,6 +6,10 @@
   modifier_classes ? modifier_classes : '',
 ]|join(' ')|trim %}
 
+{% include '@components/page-title/page-title.twig' with {
+  'page_title': 'Search Results'|t
+} %}
+
 <{{ element ?: 'div' }} {{ add_attributes({ 'class': classes })}}>
 {{ title_prefix }}
   {{ title }}

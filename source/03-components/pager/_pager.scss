@@ -16,6 +16,10 @@ $pager-bp: 540px;
   padding: gesso-spacing(9) gesso-site-margins(mobile);
   text-align: center;
 
+  .l-section:not(.l-section--no-padding) & {
+    padding-bottom: 0;
+  }
+
   &::before {
     border-top: 1px solid $pager-link-color;
     content: '';
