@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+{% set classes_to_add = [
+  'c-search',
+  'c-search--in-page',
+  'c-search--large'
+] %}
+
+<form{{ attributes.setAttribute('id', attributes.id|unique_id).addClass(classes_to_add) }}>
+  <div class="c-search__form">
+    {{ children }}
+  </div>
+</form>

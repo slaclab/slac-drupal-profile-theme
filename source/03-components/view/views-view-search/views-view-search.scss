@@ -12,4 +12,9 @@
   .facet-summary-checklist {
     width: 100%;
   }
+
+  .c-view__exposed,
+  .c-views-view-unformatted {
+    max-width: 800px;
+  }
 }

@@ -1,0 +1,11 @@
+{{ attach_library('slac/search_result') }}
+
+{% set classes = [
+  'c-search-result',
+  modifier_classes ? modifier_classes : ''
+] %}
+
+<div {{ add_attributes({ class: classes }) }}>
+  <h2 class="c-search-result__title h3">{{ title }}</h2>
+  <div class="c-search-result__excerpt c-wysiwyg c-wysiwyg--no-constrain">{{ excerpt }}</div>
+</div>
