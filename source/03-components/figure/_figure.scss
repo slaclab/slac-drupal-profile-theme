@@ -12,7 +12,8 @@
     margin-bottom: 0;
   }
 
-  &.u-align-center {
+  &.u-align-center,
+  &.align-center {
     clear: both;
     margin: em(7px, 18px) auto 0;
     max-width: gesso-constrain(images);
@@ -24,18 +25,21 @@
     }
   }
 
-  &.u-align-wide {
+  &.u-align-wide,
+  &.align-wide {
     max-width: 1240px;
   }
 
-  &.u-align-left {
+  &.u-align-left,
+  &.align-left {
     @include breakpoint(gesso-breakpoint(tablet)) {
       margin-right: rem(gesso-spacing(4));
       max-width: min(calc(50% - #{rem(gesso-spacing(2))}), 300px);
     }
   }
 
-  &.u-align-right {
+  &.u-align-right,
+  &.align-right {
     @include breakpoint(gesso-breakpoint(tablet)) {
       margin-left: rem(gesso-spacing(4));
       max-width: min(calc(50% - #{rem(gesso-spacing(2))}), 300px);
