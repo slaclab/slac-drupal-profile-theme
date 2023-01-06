@@ -34,7 +34,7 @@
   --gesso-search-font-size: #{rem(gesso-font-size(3))};
 
   .c-search--in-page & {
-    padding-block: gesso-spacing(5);
+    padding-block: 0 gesso-spacing(5);
     position: relative;
 
     .c-form-item {
@@ -168,6 +168,10 @@
   .c-search--large & {
     margin: 4px 4px gesso-spacing(3);
     width: calc(100% - 8px);
+  }
+
+  .c-search--in-page & {
+    margin-bottom: gesso-spacing(5);
   }
 }
 
