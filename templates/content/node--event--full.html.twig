@@ -95,9 +95,8 @@
 * enforced.
 */
 #}
-
-{% set event_start_date = content.field_smart_date.0.start_time["#markup"] %}
-{% set event_end_date = content.field_smart_date.0.end_time["#markup"] %}
+{% set event_start_date = content.field_smart_date.0['#value'] %}
+{% set event_end_date = content.field_smart_date.0['#end_value'] %}
 
 {#
 /**
