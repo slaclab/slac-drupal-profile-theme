@@ -148,6 +148,22 @@
   {% if content.field_text|field_value %}{{- content.field_text|field_value -}}{% endif %}
 {% endapply %}{% endset %}
 
+{% set upcoming_events %}{% apply spaceless %}
+  {{ drupal_view('pre_filtered_content_lists', 'embed_events_upcoming_list3') }}
+{% endapply %}{% endset %}
+
+{% if upcoming_events %}
+  {% set related_content %}
+    {% include '@layouts/section/section.twig' with {
+      'section_kicker': "In case you're interested"|t,
+      'section_title': 'Upcoming events'|t,
+      'section_content': upcoming_events,
+      'has_constrain': true,
+      'modifier_classes': 'l-section--dark l-section--purple-black'
+    } %}
+  {% endset %}
+{% endif %}
+
 <div class="c-main__meta">
   {{ drupal_block('system_breadcrumb_block') }}
   {{ drupal_block('share_this_page_block') }}
