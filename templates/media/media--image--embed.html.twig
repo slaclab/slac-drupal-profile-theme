@@ -32,6 +32,22 @@
  */
 #}
 
+{% set classes = [
+  view_mode != 'default' ? ('c-figure--' ~ view_mode)|clean_class,
+  bundle ? ('c-figure--' ~ bundle)|clean_class,
+  attributes.hasClass('align-center') ? 'u-align-center',
+  attributes.hasClass('align-left') ? 'u-align-left',
+  attributes.hasClass('align-right') ? 'u-align-right',
+] %}
+
+{% set remove_classes = [
+  'align-center',
+  'align-left',
+  'align-right',
+] %}
+
+{% set attributes = attributes.addClass(classes).removeClass(remove_classes) %}
+
 {% include '@components/figure/figure.twig' with {
   'media': content.field_media_image,
   'caption': content|without('field_media_image'),
