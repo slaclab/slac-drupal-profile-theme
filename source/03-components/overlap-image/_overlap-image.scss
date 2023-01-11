@@ -16,6 +16,14 @@
       padding-bottom: 200px;
     }
   }
+
+  .l-section--no-padding & {
+    margin-bottom: gesso-spacing(5);
+
+    @include breakpoint-min(gesso-breakpoint(tablet)) {
+      margin-bottom: gesso-spacing(9);
+    }
+  }
 }
 
 .c-overlap-image__image {
