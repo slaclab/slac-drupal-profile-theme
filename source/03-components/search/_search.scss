@@ -71,7 +71,10 @@
       position: fixed;
       transform: translate3d(
         0,
-        calc(100% + var(--gesso-header-current-height)),
+        calc(
+          100% + var(--gesso-header-current-height) +
+            var(--gesso-alert-bar-height) + var(--gin-toolbar-y-offset)
+        ),
         0
       );
       transition: opacity gesso-duration(long) gesso-easing(ease-in-out);
