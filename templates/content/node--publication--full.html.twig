@@ -85,9 +85,9 @@
 </div>
 
 {% set tags %}
-{% if content.field_topics|field_value %}
+{% if content.field_tags|field_value %}
   {% include '@layouts/section/section.twig' with {
-      section_content: content.field_topics,
+      section_content: content.field_tags,
       has_constrain: true,
       attributes: false
     } %}
