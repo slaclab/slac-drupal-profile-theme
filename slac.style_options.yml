@@ -128,6 +128,9 @@ contexts:
     promo_box:
       options:
         promo_box_transition: true
+    embed_block_content:
+      options:
+        promo_box_transition: true
     fifty_fifty:
       options:
         fifty_fifty_slide: true
