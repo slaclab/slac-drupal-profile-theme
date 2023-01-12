@@ -149,8 +149,7 @@
     'month': event_end_date|date('M'),
     'day': event_end_date|date('j')
   },
-  'event_type': content.field_type|render|striptags|trim,
-  'kicker': content.field_text|field_value,
+  'kicker': content.field_text|field_value is not empty ? content.field_text|field_value : content.field_type|field_value,
   'event_date': datetime_composed,
   'is_virtual': virtual_event,
   'event_location': location,
