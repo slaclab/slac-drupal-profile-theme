@@ -143,7 +143,9 @@ const BasicPage2 = ({ has_sidebar, sidebar, is_demo, ...args }) => (
               </GridWrapper>
             ),
           })}
-          {PromoBox(PromoBox.args)}
+          <SectionWithPaddingWrapper>
+            {PromoBox(PromoBox.args)}
+          </SectionWithPaddingWrapper>
           {SectionWithGrayWhiteGradient({
             ...SectionWithGrayWhiteGradient.args,
             section_kicker: 'Quick Links',
