@@ -10,7 +10,6 @@
   flex-direction: column;
   gap: gesso-spacing(5);
   grid-template-columns: 100%;
-  margin-block: gesso-spacing(9);
   padding: gesso-spacing(3);
 
   @include breakpoint-min(gesso-breakpoint(mobile-lg)) {
@@ -30,7 +29,7 @@
   }
 
   @include breakpoint-min(gesso-breakpoint(desktop)) {
-    margin-block: 126px;
+    margin-block: 54px;
     padding: 50px gesso-spacing(5) 36px 100px;
   }
 }

@@ -135,13 +135,13 @@
   }
 }
 
-.l-section--white {
-  + .l-section--white {
+:is(.l-section--white, .l-section:not(.l-section--purple-black, .l-section--blue-green, .l-section--yellow, .l-section--purple, .l-section--blue)) {
+  & + & {
     padding-top: 0;
   }
 
   @include breakpoint-min(gesso-breakpoint(desktop)) {
-    + .l-section--white {
+    & + & {
       padding-top: 0;
     }
   }

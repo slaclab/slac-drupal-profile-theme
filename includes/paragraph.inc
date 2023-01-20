@@ -6,7 +6,6 @@
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Cache\Cache;
 use Drupal\slac_core\Services\MicrositeUtilities;
 
 function slac_preprocess_paragraph(&$vars) {
@@ -21,7 +20,6 @@ function slac_preprocess_paragraph(&$vars) {
  * Implements hook_preprocess_paragraph__HOOK().
  */
 function slac_preprocess_paragraph__section(&$vars) {
-  $paragraph = $vars['paragraph'];
   $content = $vars['content'];
   if (!empty($vars['attributes']['class'])) {
     foreach ($vars['attributes']['class'] as $class) {
