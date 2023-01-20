@@ -14,6 +14,10 @@
     margin-top: 0;
   }
 
+  .c-accordion .c-fifty-fifty & {
+    margin-top: calc(var(--quote-size) / 2);
+  }
+
   &::before,
   &::after {
     background-color: currentColor;
