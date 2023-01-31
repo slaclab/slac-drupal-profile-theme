@@ -12,10 +12,6 @@
   );
   padding: rem(gesso-spacing(3)) 0;
 
-  a {
-    color: inherit;
-  }
-
   @include breakpoint(gesso-breakpoint(tablet)) {
     padding: rem(82px) 0 rem(gesso-spacing(3));
   }

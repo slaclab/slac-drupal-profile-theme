@@ -9,8 +9,8 @@
 }
 
 .c-alert-bar {
-  background: gesso-grayscale(gray-1);
-  color: gesso-color(text, primary);
+  background: gesso-brand(digital-blue, base);
+  color: gesso-grayscale(white);
   font-size: rem(15px);
   min-height: var(--gesso-alert-bar-height);
   padding: gesso-spacing(3) 0;
@@ -95,11 +95,7 @@
   color: gesso-grayscale(white);
 }
 
-.c-alert-bar--announcement {
-  background: gesso-grayscale(gray-1);
-  color: gesso-color(text, primary);
-}
-
+.c-alert-bar--announcement,
 .c-alert-bar--information {
   background: gesso-brand(digital-blue, base);
   color: gesso-grayscale(white);
