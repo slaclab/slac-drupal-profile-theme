@@ -3,10 +3,11 @@
 {% set author = content.field_authors|field_value|render %}
 {% set date = content.field_date|field_value|render %}
 {% set doi = content.field_doi|field_value|render %}
+{% set link = content.field_external_link|field_value ? content.field_external_link|render|striptags|trim : url %}
 
 {% set title -%}
 <b>
-  {{- label|field_value|render -}}
+  <a href="{{ link }}">{{- label|field_value|render -}}</a>
 </b>
 {%- endset %}
 
