@@ -20,14 +20,14 @@ const settings = {
   },
 };
 
-const HeroWithChevron = args =>
+const HeroWithoutButton = args =>
   parse(
     twigTemplate({
       ...args,
       modifier_classes: `c-hero-bg-image--${args.position}`,
     })
   );
-HeroWithChevron.args = { ...globalData, ...data };
+HeroWithoutButton.args = { ...globalData, ...data };
 
 const HeroWithButton = args =>
   parse(
@@ -44,4 +44,4 @@ HeroWithButton.args = {
 };
 
 export default settings;
-export { HeroWithChevron, HeroWithButton };
+export { HeroWithoutButton, HeroWithButton };
