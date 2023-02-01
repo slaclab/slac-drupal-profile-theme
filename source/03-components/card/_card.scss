@@ -30,6 +30,15 @@ $card-padding: 30px;
     color: $card-meta-color;
     margin-bottom: rem(gesso-spacing(1));
   }
+
+  // Special handling for one-column layouts
+  .l-section__content > & {
+    margin-bottom: gesso-spacing(5);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .c-card--no-link {
