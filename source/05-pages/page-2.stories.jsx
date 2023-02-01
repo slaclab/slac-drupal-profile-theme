@@ -4,7 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import { Page as PageTemplate } from '../04-templates/page/page.stories.jsx';
 import { SideMenu } from '../03-components/menu/menu--side/menu--side.stories.jsx';
 import PageWrapper from './page-wrappers/default.jsx';
-import { HeroWithChevron } from '../03-components/hero-bg-image/hero-bg-image.stories.jsx';
+import { HeroWithoutButton } from '../03-components/hero-bg-image/hero-bg-image.stories.jsx';
 import {
   SectionWithGrayWhiteGradient,
   SectionWithYellowBackground,
@@ -45,7 +45,7 @@ export default {
 // eslint-disable-next-line camelcase
 const BasicPage2 = ({ has_sidebar, sidebar, is_demo, ...args }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <PageWrapper hero={HeroWithChevron(HeroWithChevron.args)} {...args}>
+  <PageWrapper hero={HeroWithoutButton(HeroWithoutButton.args)} {...args}>
     {PageTemplate({
       ...args,
       title: 'Basic Page Example',

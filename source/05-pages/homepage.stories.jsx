@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import globalData from '../00-config/storybook.global-data.yml';
 import PageWrapper from './page-wrappers/default.jsx';
-import { HeroWithChevron } from '../03-components/hero-bg-image/hero-bg-image.stories.jsx';
+import { HeroWithoutButton } from '../03-components/hero-bg-image/hero-bg-image.stories.jsx';
 import { Header } from '../02-layouts/header/header.stories.jsx';
 import {
   GridWrapper,
@@ -18,8 +18,8 @@ import {
 } from '../02-layouts/section/section.stories.jsx';
 import { LargeEventCard, News } from '../03-components/card/card.stories.jsx';
 import { PromoBox } from '../03-components/promo-box/promo-box.stories.jsx';
-import { SmallCard } from '../03-components/card/card--small/card--small.stories';
-import { EventList } from '../03-components/event-list/event-list.stories';
+import { SmallCard } from '../03-components/card/card--small/card--small.stories.jsx';
+import { EventList } from '../03-components/event-list/event-list.stories.jsx';
 
 export default {
   title: 'Pages/Homepage',
@@ -38,7 +38,7 @@ export default {
 
 const Homepage = args => (
   <PageWrapper {...args}>
-    {HeroWithChevron(HeroWithChevron.args)}
+    {HeroWithoutButton(HeroWithoutButton.args)}
     <SectionWithPaddingWrapper>
       <WysiwygWrapper>
         <h2>
