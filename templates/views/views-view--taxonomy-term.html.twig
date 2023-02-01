@@ -1,0 +1,60 @@
+{% set classes = [
+  'c-view',
+  modifier_classes ? modifier_classes : '',
+]|join(' ')|trim %}
+
+<div class="c-main__meta">
+  {{ drupal_block('system_breadcrumb_block') }}
+  {{ drupal_block('share_this_page_block') }}
+</div>
+
+<{{ element ?: 'div' }} {{ add_attributes({ 'class': classes })}}>
+{{ title_prefix }}{{ title_suffix }}
+
+  {% if header %}
+    {% set page_title %}
+      {% include '@components/page-title/page-title.twig' with {
+        'page_title': header
+      } %}
+    {% endset %}
+    {% include '@components/two-column-hero/two-column-hero.twig' with {
+      'two_column_hero_content': page_title
+    } %}
+  {% endif %}
+
+  {% if exposed %}
+    <div class="c-view__exposed">
+      {{- exposed -}}
+    </div>
+  {% endif %}
+
+  {{ attachment_before }}
+
+{% if rows or empty %}
+  {% set main_content %}
+  {% if rows %}
+    {{- rows -}}
+  {% elseif empty %}
+    <div class="c-view__empty">
+      {{- empty -}}
+    </div>
+  {% endif %}
+  {% endset %}
+  {% include '@layouts/section/section.twig' with {
+    'section_content': main_content,
+    'modifier_classes': 'l-section--white-gray'
+  } %}
+{% endif %}
+
+  {{ pager }}
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <div class="c-view__footer">
+      {{- footer -}}
+    </div>
+  {% endif %}
+
+  {{ feed_icons }}
+</{{ element ?: 'div' }}>

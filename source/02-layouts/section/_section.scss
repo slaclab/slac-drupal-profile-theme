@@ -135,7 +135,18 @@
   }
 }
 
-:is(.l-section--white, .l-section:not(.l-section--purple-black, .l-section--blue-green, .l-section--yellow, .l-section--purple, .l-section--blue)) {
+// Use of :is() seems to be confusing stylelint's prettier rule.
+// stylelint-disable prettier/prettier
+:is(
+    .l-section--white,
+    .l-section:not(
+        .l-section--purple-black,
+        .l-section--blue-green,
+        .l-section--yellow,
+        .l-section--purple,
+        .l-section--blue
+      )
+  ) {
   & + & {
     padding-top: 0;
   }
@@ -146,6 +157,7 @@
     }
   }
 }
+// stylelint-enable prettier/prettier
 
 .l-section--dark {
   @include on-dark-variables;
