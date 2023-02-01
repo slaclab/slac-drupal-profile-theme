@@ -154,6 +154,7 @@
 
 .c-search__input {
   @include focus();
+  appearance: none;
   border: 1px solid gesso-grayscale(black);
   border-radius: 4px;
   box-shadow: none;
@@ -183,8 +184,10 @@
 .c-search__submit {
   @include text-button;
 
-  &:hover {
-    color: var(--gesso-link-hover-color);
+  @include breakpoint(gesso-breakpoint(mobile-menu) + 1px) {
+    &:hover {
+      color: var(--gesso-link-hover-color);
+    }
   }
 }
 
@@ -194,6 +197,7 @@
 }
 
 .c-search__submit {
+  color: gesso-color(text, primary);
   font-size: calc(var(--gesso-search-font-size));
   margin-bottom: 0;
   position: absolute;
