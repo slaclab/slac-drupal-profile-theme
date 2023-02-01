@@ -1,7 +1,7 @@
 // Layout: Sidebar
 
 @use '00-config' as *;
-$l-sidebar-bp: gesso-breakpoint(mobile-menu) - 1px;
+$l-sidebar-bp: gesso-breakpoint(mobile-menu);
 $l-sidebar-width: 280px;
 $l-sidebar-gutter: 107px;
 
@@ -52,13 +52,15 @@ $l-sidebar-gutter: 107px;
     padding-bottom: gesso-spacing(4);
   }
 
-  @include breakpoint-max($l-sidebar-bp) {
+  @include breakpoint-max($l-sidebar-bp, true) {
     > .l-constrain {
       row-gap: gesso-get-map(gutter-width);
     }
+  }
 
+  @include breakpoint-min($l-sidebar-bp) {
     .l-sidebar__sidebar {
-      order: 2;
+      order: -1;
     }
   }
 }

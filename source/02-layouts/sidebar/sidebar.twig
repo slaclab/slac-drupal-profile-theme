@@ -15,6 +15,11 @@
   'l-sidebar__main',
 ]|join(' ')|trim %}
 
+{% set sidebar_second_classes = [
+  sidebar_first_classes,
+  'l-sidebar__sidebar--flipped'
+]|join(' ')|trim %}
+
 {% if is_demo and not sidebar_header_content %}
   {% import '@global/gesso.macro.twig' as macros %}
   {% set sidebar_header_content = macros.sample_content('Header Content') %}
@@ -48,6 +53,12 @@
       <div {{ add_attributes({ 'class': sidebar_main_classes }, 'region_attributes.main') }}>
         {{ sidebar_main_content }}
       </div>
+    {% endif %}
+
+    {% if sidebar_second_content %}
+      <aside {{ add_attributes({ 'class': sidebar_first_classes }, 'region_attributes.sidebar_first') }}>
+        {{ sidebar_second_content }}
+      </aside>
     {% endif %}
   </div>
 </div>
