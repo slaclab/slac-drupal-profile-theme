@@ -106,7 +106,7 @@
 {% set kicker %}
 {{- content.field_date|render|striptags|trim -}}
 {% if content.field_category %}
-  {{- ' · ' ~ content.field_category|field_value -}}
+  {{- ' · ' ~ content.field_category|render|striptags|trim -}}
 {% endif %}
 {% endset %}
 
