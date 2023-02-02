@@ -36,7 +36,7 @@
 {% endif %}
 
 <div {{ add_attributes({ 'class': classes }) }}>
-  <div class="l-constrain">
+  <div class="l-constrain l-constrain--no-padding">
     {% if sidebar_header_content %}
       <div {{ add_attributes({ 'class': sidebar_header_classes }, 'region_attributes.header') }}>
         {{ sidebar_header_content }}
