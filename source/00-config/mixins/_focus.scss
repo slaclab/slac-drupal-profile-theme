@@ -11,7 +11,7 @@
   outline-offset: $offset;
 
   &:focus {
-    outline-color: $color;
+    outline-color: var(--gesso-link-focus-color, $color);
   }
 
   &:focus:not(:focus-visible) {
