@@ -237,22 +237,45 @@ class SearchFlyout {
    * @return {void}
    */
   handleKeydownAnywhere(event) {
-    if (event.key === 'Escape' && this.openIndex !== null) {
+    const { key, shiftKey } = event;
+    if (key === 'Escape' && this.openIndex !== null) {
       this.menuSections[this.openIndex].focus();
       this.toggleExpand(this.openIndex, false);
       this.closeMenu();
-    } else if (event.key === 'Tab') {
-      setTimeout(() => {
-        if (document.activeElement.classList.contains('js-top-level')) {
-          const openButton = this.menu.querySelector(
-            'button[aria-expanded="true"]'
-          );
-          if (openButton) {
-            const buttonIndex = this.topLevelItems.indexOf(openButton);
-            this.toggleExpand(buttonIndex, false);
-          }
+    } else if (key === 'Tab') {
+      if (this.openIndex !== null) {
+        // Keep the user from tabbing out of the modal.
+        const focusable = Array.from(
+          this.menuSections[this.openIndex].querySelectorAll(
+            'button, [href], input, select, textarea, iframe'
+          )
+        ).filter(item => item.tabIndex !== -1);
+        const numberFocusElements = focusable.length;
+        const firstFocusableElement = focusable[0];
+        const lastFocusableElement = focusable[numberFocusElements - 1];
+        if (shiftKey && document.activeElement === firstFocusableElement) {
+          event.preventDefault();
+          lastFocusableElement.focus();
+        } else if (
+          document.activeElement === lastFocusableElement &&
+          !shiftKey
+        ) {
+          event.preventDefault();
+          firstFocusableElement.focus();
         }
-      }, 0);
+      } else {
+        setTimeout(() => {
+          if (document.activeElement.classList.contains('js-top-level')) {
+            const openButton = this.menu.querySelector(
+              'button[aria-expanded="true"]'
+            );
+            if (openButton) {
+              const buttonIndex = this.topLevelItems.indexOf(openButton);
+              this.toggleExpand(buttonIndex, false);
+            }
+          }
+        }, 0);
+      }
     }
   }
 
