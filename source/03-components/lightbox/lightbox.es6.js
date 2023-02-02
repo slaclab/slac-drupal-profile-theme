@@ -14,31 +14,24 @@ Drupal.behaviors.lightbox = {
       const closeButton = lightbox.querySelector('.js-lightbox__close');
 
       function handleKeydown(event) {
-        const { key, shiftKey } = event;
+        const { key } = event;
         if (key === 'Escape') {
           // eslint-disable-next-line no-use-before-define
           closeLightbox(event);
         }
+      }
+
+      function handleFocusIn(event) {
         // Keep the user from tabbing out of the modal.
         const focusable = Array.from(
           lightbox.querySelectorAll(
             'button, [href], input, select, textarea, iframe'
           )
         ).filter(item => item.tabIndex !== -1);
-        const numberFocusElements = focusable.length;
-        const firstFocusableElement = focusable[0];
-        const lastFocusableElement = focusable[numberFocusElements - 1];
-        if (key === 'Tab') {
-          if (shiftKey && document.activeElement === firstFocusableElement) {
-            event.preventDefault();
-            lastFocusableElement.focus();
-          } else if (
-            document.activeElement === lastFocusableElement &&
-            !shiftKey
-          ) {
-            event.preventDefault();
-            firstFocusableElement.focus();
-          }
+        if (!lightbox.contains(event.target)) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          focusable[0].focus();
         }
       }
 
@@ -57,6 +50,7 @@ Drupal.behaviors.lightbox = {
         document.documentElement.classList.add('has-open-lightbox');
         lightbox.dispatchEvent(new Event('lightbox-close', { bubbles: true }));
         window.removeEventListener('keydown', handleKeydown);
+        window.removeEventListener('focusin', handleFocusIn);
       }
 
       function openLightbox(event) {
@@ -65,11 +59,12 @@ Drupal.behaviors.lightbox = {
           videoIFrame.setAttribute('src', videoIFrame.getAttribute('data-src'));
         }
         lightbox.classList.remove('u-hidden');
-        closeButton.focus();
         triggerUsed = event.target;
         window.addEventListener('keydown', handleKeydown);
+        window.addEventListener('focusin', handleFocusIn);
         document.documentElement.classList.add('has-open-lightbox');
         lightbox.dispatchEvent(new Event('lightbox-open', { bubbles: true }));
+        closeButton.focus();
       }
 
       closeButton.addEventListener('click', closeLightbox);
