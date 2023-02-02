@@ -90,6 +90,13 @@
 }
 
 // Color variations.
+.c-alert-bar--emergency,
+.c-alert-bar--announcement,
+.c-alert-bar--information,
+.c-alert-bar--success {
+  @include on-dark-variables;
+}
+
 .c-alert-bar--emergency {
   background: gesso-brand(digital-red, base);
   color: gesso-grayscale(white);
