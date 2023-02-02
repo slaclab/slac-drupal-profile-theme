@@ -12,6 +12,12 @@
   h1 + p {
     margin-top: 1rem;
   }
+
+  @include breakpoint-max(gesso-breakpoint(mobile-menu), true) {
+    .l-sidebar & {
+      padding-inline: gesso-site-margins(mobile);
+    }
+  }
 }
 
 .c-page-title__icon {
