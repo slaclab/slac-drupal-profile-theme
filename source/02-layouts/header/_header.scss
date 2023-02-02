@@ -5,7 +5,7 @@
   --gesso-scroll-progress: 0%;
   left: 0;
   position: sticky;
-  top: calc(var(--ginToolbarHeight, 0px));
+  top: calc(var(--gin-toolbar-height, 0px));
   width: 100%;
   z-index: gesso-z-index(nav);
 
@@ -74,4 +74,8 @@
   @include breakpoint(gesso-breakpoint(mobile-menu) + 1px) {
     width: 100%;
   }
+}
+
+.l-nav--main {
+  flex-basis: 100%;
 }
