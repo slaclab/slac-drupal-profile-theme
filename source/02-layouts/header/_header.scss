@@ -77,5 +77,7 @@
 }
 
 .l-nav--main {
-  flex-basis: 100%;
+  @include breakpoint(gesso-breakpoint(mobile-menu) + 1px) {
+    flex-basis: 100%;
+  }
 }
