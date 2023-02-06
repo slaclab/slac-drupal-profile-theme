@@ -5,6 +5,7 @@
 .c-card.c-card--small {
   aspect-ratio: 1;
   background: gesso-grayscale(white);
+  height: 100%;
 
   .c-card__body {
     padding: 15px 20px;
@@ -27,11 +28,10 @@
 
   .c-card__icon {
     border-radius: 0;
-    font-size: 70px;
+    font-size: 68px;
     height: 70px;
     margin-top: 0;
     transform: none;
-    width: 70px;
   }
 
   .c-kicker {
