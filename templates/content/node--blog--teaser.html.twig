@@ -85,8 +85,8 @@
 
 {% set kicker %}
 {{ 'Blog Post'|t }}
-{% if content.field_series|field_value is not empty %}
-  {{ '· ' ~ content.field_series|field_value|render|raw }}
+{% if content.field_category|field_value is not empty %}
+  {{ '· ' ~ content.field_category|field_value|render|raw }}
 {% endif %}
 {% endset %}
 
