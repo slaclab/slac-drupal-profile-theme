@@ -74,6 +74,9 @@
   </h2>
 {% endif %}
 {{ content.field_plain_long_text ? content.field_plain_long_text|field_value : '' }}
+{% if content.field_button_links %}
+  {{ content.field_button_links }}
+{% endif %}
 {% endset %}
 
 {% set overlap_image %}

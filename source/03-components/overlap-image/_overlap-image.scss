@@ -24,6 +24,11 @@
       margin-bottom: gesso-spacing(9);
     }
   }
+
+  .c-button {
+    display: table;
+    margin-top: gesso-spacing(3);
+  }
 }
 
 .c-overlap-image__image {
@@ -88,7 +93,7 @@
   @include display-text-style(body);
   background: gesso-grayscale(white);
   color: var(--gesso-text-color);
-  padding: rem(gesso-spacing(5));
+  padding: rem(gesso-spacing(4));
   position: relative;
   z-index: 1;
 
@@ -97,8 +102,6 @@
       rgba(gesso-grayscale(white), 0.51) 0%,
       gesso-grayscale(white) 33%
     );
-    padding-bottom: rem(gesso-spacing(9));
-    padding-top: rem(gesso-spacing(9));
     width: 50%;
   }
 
