@@ -66,14 +66,14 @@
 }
 
 .c-hero-bg-image__content {
+  margin-top: -120px;
   position: relative;
-  top: -120px;
 
   @include breakpoint-min(gesso-breakpoint(tablet)) {
     bottom: 0;
     left: 50%;
+    margin-top: 0;
     position: absolute;
-    top: auto;
     transform: translateX(-50%);
     width: 100%;
     z-index: 2;

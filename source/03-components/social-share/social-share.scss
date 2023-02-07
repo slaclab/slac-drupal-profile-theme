@@ -4,8 +4,10 @@
 
 .c-social-share {
   font-size: rem(gesso-font-size(1));
+  margin-right: gesso-site-margins(mobile);
 
   @include breakpoint-min(gesso-breakpoint(desktop)) {
+    margin-right: 0;
     position: absolute;
     right: 8px;
     top: rem(gesso-spacing(7));
@@ -52,6 +54,11 @@
   height: rem(18px);
   margin-right: rem(12px);
   width: rem(18px);
+
+  .c-social-share__email & {
+    position: relative;
+    top: 1px;
+  }
 
   .c-social-share__facebook:hover & {
     color: #3b5998;
