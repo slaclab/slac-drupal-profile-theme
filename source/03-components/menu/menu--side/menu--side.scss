@@ -14,7 +14,7 @@
     border-bottom: 1px solid gesso-grayscale(gray-2);
     display: block;
     outline-offset: -2px;
-    padding: 18px 20px 18px 16px;
+    padding: 18px 20px 18px 18px;
     position: relative;
     text-decoration-line: none;
 
@@ -26,7 +26,8 @@
       position: absolute;
       top: 0;
       transform: scaleY(0);
-      transition: transform 0.3s ease-in, background-color 0.3s ease-in;
+      transition: transform 0.3s ease-in, background-color 0.3s ease-in,
+        left 0.1s ease-in;
       width: 4px;
     }
 
@@ -44,6 +45,12 @@
       &::before {
         background-color: var(--gesso-link-hover-color);
         transform: scaleY(1);
+      }
+
+      &.is-active {
+        &::before {
+          left: 4px;
+        }
       }
     }
   }
