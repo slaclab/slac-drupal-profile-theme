@@ -8,8 +8,6 @@
 use Drupal\Component\Utility\Html;
 use Drupal\filter\Render\FilteredMarkup;
 
-require_once 'shared.inc';
-
 /**
  * Implements hook_preprocess_HOOK().
  */

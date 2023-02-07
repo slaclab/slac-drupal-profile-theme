@@ -5,9 +5,6 @@
  * Paragraph-related hook implementations.
  */
 
-use Drupal\Component\Utility\Html;
-use Drupal\slac_core\Services\MicrositeUtilities;
-
 function slac_preprocess_paragraph(&$vars) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $vars['paragraph'];
@@ -96,43 +93,6 @@ function slac_preprocess_paragraph__image_embed(&$vars) {
 }
 
 /**
- * Implements hook_preprocess_paragraph__HOOK().
- */
-function slac_preprocess_paragraph__image_carousel(&$vars) {
-  $vars['pager_items'] = \Drupal\Core\Render\Element::children($vars['content']['field_paragraphs']);
-}
-
-/**
- * Implements hook_preprocess_paragraph__HOOK().
- */
-function slac_preprocess_paragraph__table_of_contents(&$vars) {
-  $paragraph = $vars['paragraph'];
-
-  // Create a slug as a cleanCSSIdentifier based on the field_short_text value.
-  $vars['slug'] = Html::cleanCssIdentifier($paragraph->field_short_text->value);
-}
-
-/**
- * Implements hook_preprocess_paragraph__HOOK().
- */
-function slac_preprocess_paragraph__video_hero(&$vars) {
-  $media_ids = \Drupal\Core\Render\Element::children($vars['content']['field_video_hero_videos']);
-  $hero_videos = [];
-  foreach($media_ids as $id) {
-    /** @var \Drupal\media\Entity\Media $media */
-    $media = $vars['content']['field_video_hero_videos'][$id]['#media'];
-    $hero_videos[] = [
-      'embed' => $media->field_media_oembed_video->view('video_hero'),
-      'caption' => $media->field_caption->view('video_hero'),
-      'credit' => $media->field_credit->view('video_hero'),
-      'url' => $media->field_boolean->value ? $media->toUrl()->toString() : NULL,
-      'fallback_image' => $media->field_thumbnail->view('video_hero')
-    ];
-  }
-  $vars['hero_videos'] = $hero_videos;
-}
-
-/**
  * Set the hero caption and/or credit.
  */
 function _slac_set_hero_caption(&$vars) {
@@ -212,41 +172,6 @@ function slac_preprocess_paragraph__image_hero(&$vars) {
       $vars['#attached']['library'][] = 'slac/inverse_nav';
     }
   }
-}
-
-/**
- * Implements hook_preprocess_paragraph__HOOK().
- */
-function slac_preprocess_paragraph__microsite_navigation_marker(&$vars) {
-  $paragraph = $vars['paragraph'];
-
-  // Create a slug as a cleanCSSIdentifier based on the field_short_text value.
-  $vars['slug'] = Html::cleanCssIdentifier($paragraph->field_short_text->value);
-}
-
-/**
- * Implements hook_preprocess_paragraph__HOOK().
- */
-function slac_preprocess_paragraph__microsite_hero(&$vars) {
-  // Retrieve that paragraph and its parent entity, check that the parent is a node,
-  // and set the node title.
-  $paragraph = $vars['paragraph'];
-  $parent = $paragraph->getParentEntity();
-
-  if ($parent && $parent->getEntityType()->id() == 'node') {
-    $vars['node_title'] = $parent->title->value;
-  }
-
-  /** @var MicrositeUtilities $microsite_utilities */
-  $microsite_utilities = \Drupal::service('slac_core.microsite_utilities');
-  $vars['microsite_markerlist'] = $microsite_utilities->FindMicrositeMarkers(
-    'field_paragraphs',
-    'microsite_navigation_marker',
-    'field_short_text'
-  );
-
-  // Set the caption and credit fields from field_image.
-  _slac_set_hero_caption($vars);
 }
 
 /**
