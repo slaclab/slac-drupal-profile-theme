@@ -430,5 +430,5 @@ gesso:
     15: 120px
   gutter-width: 40px
   site-margins:
-    'mobile': 16px
+    'mobile': 32px
     'desktop': 32px
