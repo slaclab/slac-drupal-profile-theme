@@ -140,8 +140,6 @@ function _slac_set_hero_caption(&$vars) {
       $vars['hero_credit'] = !empty($image->field_credit[0]) ? $image->get('field_credit')->view($credit_view_mode) : NULL;
     }
 
-    // Assign the link to the image detail page, if present.
-    $vars['hero_url'] = $image->field_boolean->value ? $image->toUrl()->toString() : NULL;
   }
 }
 

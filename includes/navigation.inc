@@ -21,7 +21,9 @@ function slac_preprocess_breadcrumb(array &$variables) {
       $request = \Drupal::request();
       $route_match = \Drupal::routeMatch();
       $variables['#cache']['contexts'][] = 'route';
-      $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+      if ($route_match->getRouteObject()) {
+        $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+      }
 
       if (!empty($page_title)) {
         $variables['page_title'] = $page_title;
