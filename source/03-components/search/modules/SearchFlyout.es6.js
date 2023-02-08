@@ -37,8 +37,14 @@ class SearchFlyout {
   toggleSection(section, hide) {
     if (hide) {
       section.hidden = true;
+      section.setAttribute('aria-hidden', 'true');
     } else {
       section.hidden = !section.hidden;
+      if (section.hidden) {
+        section.setAttribute('aria-hidden', 'true');
+      } else {
+        section.removeAttribute('aria-hidden');
+      }
     }
     section.setAttribute('tabindex', section.hidden ? '-1' : '0');
     const focusable = section.querySelectorAll(
@@ -207,6 +213,7 @@ class SearchFlyout {
     button.addEventListener('click', this.handleButtonClick.bind(this));
     button.addEventListener('keydown', this.handleButtonKeydown.bind(this));
     closeButton.addEventListener('click', this.handleCloseClick.bind(this));
+    section.setAttribute('aria-hidden', 'true');
   }
 
   /**
