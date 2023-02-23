@@ -1,3 +1,7 @@
+{% if content.field_links|field_value and content.field_links|field_value|length < 5 %}
+  {% set attributes = attributes.addClass('c-promo-box--small') %}
+{% endif %}
+
 {% set promo_box %}
 {% include '@components/promo-box/promo-box.twig' with {
   promo_box_kicker: content.field_text|field_value,
