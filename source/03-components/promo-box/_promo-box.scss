@@ -4,6 +4,8 @@
 
 .c-promo-box {
   @include layout-full-bleed;
+
+  --gesso-accent-color: #{gesso-color(text, link)};
   background-color: rgba(gesso-brand(stormy, dark), 0.1);
   container-type: inline-size;
   display: flex;
@@ -44,6 +46,7 @@
 
 .c-promo-box__content {
   a {
+    break-inside: avoid-column;
     display: table;
     margin-bottom: 14px;
   }
@@ -58,6 +61,32 @@
       columns: 2;
 
       .l-sidebar__main & {
+        columns: 1;
+      }
+    }
+  }
+}
+
+.c-promo-box--small {
+  @include breakpoint-min(gesso-breakpoint(mobile-lg)) {
+    width: min(100vw, 707px);
+  }
+
+  @include breakpoint-min(gesso-breakpoint(mobile-menu) - 1px) {
+    .l-sidebar__main & {
+      max-width: 707px;
+    }
+  }
+
+  .c-promo-box__content {
+    @supports (container-type: inline-size) {
+      @container (min-width: 742px) {
+        columns: 1;
+      }
+    }
+
+    @supports not (container-type: inline-size) {
+      @include breakpoint-min(gesso-breakpoint(tablet)) {
         columns: 1;
       }
     }

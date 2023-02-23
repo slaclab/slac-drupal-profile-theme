@@ -23,5 +23,14 @@ const PromoBox = args =>
   );
 PromoBox.args = { ...data };
 
+const Small = args => parse(twigTemplate({ ...args }));
+Small.args = {
+  ...data,
+  modifier_classes: 'c-promo-box--small',
+  promo_box_content: `<a href="https://example.com">Upcoming Events</a>
+<a href="#0">Machine Status</a>
+<a href="#0">Fact Sheets</a>`,
+};
+
 export default settings;
-export { PromoBox };
+export { PromoBox, Small };

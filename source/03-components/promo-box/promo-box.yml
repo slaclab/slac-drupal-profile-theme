@@ -3,13 +3,13 @@ promo_box_kicker: 'Ways to be Connected'
 promo_box_title: 'Explore Resources'
 promo_box_url: '#0'
 promo_box_content: |-
-  <a href="#0">Upcoming Events</a>
+  <a href="https://example.com">Upcoming Events</a>
   <a href="#0">Machine Status</a>
   <a href="#0">Fact Sheets</a>
   <a href="#0">SLAC Signals Newsletter</a>
   <a href="#0">Purus sit amet luctus venenatis</a>
-  <a href="#0">SLAC's RSS Feeds</a>
-  <a href="#0">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor purus </a>
+  <a href="#0">Purus sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non enim 7</a>
+  <a href="https://www-internal.slac.stanford.edu">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor purus </a>
   <a href="#0">Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor purus </a>
   <a href="#0">For Research Partnerships</a>
   <a href="#0">For Jobs & Internships</a>

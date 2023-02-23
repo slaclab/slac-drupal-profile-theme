@@ -8,7 +8,8 @@
   <div class="c-promo-box__col">
     {% if promo_box_kicker %}
       {% include '@components/kicker/kicker.twig' with {
-        kicker_content: promo_box_kicker
+        kicker_content: promo_box_kicker,
+        modifier_classes: false
       } %}
     {% endif %}
     <h2 class="c-promo-box__title">
