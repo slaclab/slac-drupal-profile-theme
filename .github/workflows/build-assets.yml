@@ -21,6 +21,13 @@ jobs:
           npm run build
       - run: |
           rm -rf node_modules
+      - name: Set version number
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'slac.info.yml'
+          propertyPath: 'version'
+          value: ${{ github.ref }}
+          commitChange: false
       - name: Archive Release
         uses: thedoctor0/zip-release@main
         with:
