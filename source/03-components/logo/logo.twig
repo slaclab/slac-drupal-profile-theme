@@ -3,6 +3,12 @@
   modifier_classes ? modifier_classes : '',
 ]|join(' ')|trim %}
 
-<span {{ add_attributes({class: classes}) }}>
-  <img class="c-logo__image" src="{{ logo }}" alt="{{ title }}" loading="{{ loading|default("lazy") }}" width="{{ width }}" height="{{ height }}" />
-</span>
+{% if url %}
+  <a {{ add_attributes({ 'class': classes } )}} href="{{ url }}" title="{{ title }}" rel="external">
+    <img class="c-logo__image" src="{{ logo }}" alt="{{ title }}" loading="{{ loading|default("lazy") }}" width="{{ width }}" height="{{ height }}"/>
+  </a>
+{% else %}
+  <span {{ add_attributes({ 'class': classes } )}}>
+    <img class="c-logo__image" src="{{ logo }}" alt="{{ title }}" loading="{{ loading|default("lazy") }}" width="{{ width }}" height="{{ height }}"/>
+  </span>
+{% endif %}
