@@ -75,7 +75,7 @@
 {% set attributes = attributes.addClass(classes) %}
 
 {% set admin_info %}
-  {{ region_status }}
+{{ region_status }}
 {% endset %}
 
 {% set show_admin_info = false %}
@@ -86,7 +86,18 @@
 
 <article {{ attributes }}>
   {{ content.field_hero_paragraph }}
-  {{ title_prefix }}{{ title_suffix }}
-  {% if show_admin_info %}{{ admin_info }}{% endif %}
+
+  <div class="l-section l-section--no-padding">
+    <div class="l-section__content l-constrain">
+      <div class="c-wysiwyg">
+        {% if show_admin_info %}
+          {{ admin_info }}
+        {% endif %}
+        <h1>
+          {{ label }}
+        </h1>
+      </div>
+    </div>
+  </div>
   {{ content|without('field_hero_paragraph') }}
 </article>
