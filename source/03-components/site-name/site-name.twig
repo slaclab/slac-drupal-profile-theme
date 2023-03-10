@@ -18,7 +18,8 @@
 }) }}>
   {% if has_logo %}
     {% include '@components/logo/logo.twig' with {
-      modifier_classes: 'c-logo--header'
+      modifier_classes: 'c-logo--header',
+      url: false,
     } %}
   {% endif %}
   {%- if site_acronym -%}<span class="c-site-name__acronym">{{ site_acronym }}</span>{%- endif -%}
