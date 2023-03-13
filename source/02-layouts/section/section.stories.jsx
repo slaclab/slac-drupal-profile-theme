@@ -71,6 +71,12 @@ SectionWithYellowBackground.args = {
   modifier_classes: 'l-section--yellow',
 };
 
+const SectionWithGrayBackground = Template.bind({});
+SectionWithGrayBackground.args = {
+  ...data,
+  modifier_classes: 'l-section--gray',
+};
+
 const SectionWithPurpleBackground = Template.bind({});
 SectionWithPurpleBackground.args = {
   ...data,
@@ -155,6 +161,7 @@ export {
   Section,
   SectionWithPurpleBlackGradient,
   SectionWithBlueGreenGradient,
+  SectionWithGrayBackground,
   SectionWithYellowBackground,
   SectionWithPurpleBackground,
   SectionWithBlueBackground,
