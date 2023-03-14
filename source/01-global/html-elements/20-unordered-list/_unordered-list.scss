@@ -3,27 +3,59 @@
 @use 'sass:math';
 @use '00-config' as *;
 
-ul {
-  list-style-type: disc;
-  margin: 0 0 rem(gesso-spacing(2));
-  padding: 0 0 0 rem(gesso-spacing(3)); // LTR
+@mixin unordered-list-style {
+  ul {
+    list-style-type: disc;
+    margin: 0 0 rem(gesso-spacing(2));
+    padding: 0 0 0 rem(gesso-spacing(3)); // LTR
 
-  @if $support-for-rtl {
-    [dir='rtl'] & {
-      padding: 0 rem(gesso-spacing(3)) 0 0;
+    @if $support-for-rtl {
+      [dir='rtl'] & {
+        padding: 0 rem(gesso-spacing(3)) 0 0;
+      }
+    }
+
+    ol,
+    ul {
+      margin-top: rem(math.div(gesso-spacing(2), 2));
+    }
+
+    ul {
+      list-style-type: circle;
+    }
+
+    ul ul {
+      list-style-type: square;
+    }
+
+    ul ul ul {
+      list-style-type: '□   ';
+
+      > li::marker {
+        font-size: 0.75em;
+        line-height: 1;
+      }
+    }
+
+    ul ul ul ul {
+      list-style-type: disc;
+
+      li::marker {
+        font-size: inherit;
+      }
+    }
+
+    li::marker {
+      color: var(--gesso-link-hover-color);
     }
   }
+}
 
-  ol,
-  ul {
-    margin-top: rem(math.div(gesso-spacing(2), 2));
+@if ($wysiwyg) {
+  // Need double selector due to specificity / css order
+  .ck.ck-content {
+    @include unordered-list-style;
   }
-
-  ul {
-    list-style-type: circle;
-  }
-
-  li::marker {
-    color: var(--gesso-link-hover-color);
-  }
+} @else {
+  @include unordered-list-style;
 }

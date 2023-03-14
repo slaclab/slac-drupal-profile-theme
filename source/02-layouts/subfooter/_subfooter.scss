@@ -35,6 +35,10 @@
   p:last-child {
     margin-bottom: 0;
   }
+
+  @include breakpoint(gesso-breakpoint(desktop)) {
+    padding-right: 65px; // aligns linebreaks similarly to W6
+  }
 }
 
 .l-subfooter__logos {

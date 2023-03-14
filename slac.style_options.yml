@@ -5,6 +5,8 @@ options:
     options:
       -
         label: White
+      - label: Gray
+        class: 'l-section--gray'
       -
         label: 'Purple-Black Gradient'
         class: 'l-section--dark l-section--purple-black'
