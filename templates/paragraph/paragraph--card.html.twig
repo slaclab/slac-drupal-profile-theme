@@ -19,5 +19,5 @@
   url: is_link_card ? false : content.field_link|field_value,
   media: content.field_image|field_value,
   card_content: content|without('field_text', 'field_short_text', 'field_link', 'field_image', 'field_list'),
-  modifier_classes: modifier_classes ?: false,
+  modifier_classes: is_link_card ? modifier_classes : modifier_classes ~ ' c-card--no-link',
 } %}
