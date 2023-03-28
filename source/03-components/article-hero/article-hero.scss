@@ -19,6 +19,36 @@ $tooltip-arrow-height: 21px;
   + .c-two-column-hero {
     padding-top: calc(2.5rem + 32px);
   }
+
+  .homepage & {
+    margin-top: calc(
+      0px - var(--gesso-header-initial-height) -
+        var(--gesso-global-header-height)
+    );
+
+    img {
+      height: calc(
+        var(--hero-bg-image-height) + var(--gesso-header-initial-height) +
+          var(--gesso-global-header-height)
+      );
+    }
+
+    @include breakpoint-min(gesso-breakpoint(mobile-menu) + 1px) {
+      margin-top: calc(
+        0px - var(--gesso-header-initial-height) -
+          var(--gesso-internal-header-height) -
+          var(--gesso-global-header-height)
+      );
+
+      img {
+        height: calc(
+          var(--hero-bg-image-height) + var(--gesso-header-initial-height) +
+            var(--gesso-internal-header-height) +
+            var(--gesso-global-header-height)
+        );
+      }
+    }
+  }
 }
 
 .c-article-hero__inner {
