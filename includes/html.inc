@@ -41,6 +41,9 @@ function slac_page_attachments_alter(array &$attachments) {
     $renderer = \Drupal::service('renderer');
     $themeConfig = \Drupal::config('slac.settings');
     $renderer->addCacheableDependency($attachments, $themeConfig);
+  }
 
+  if (isset($_SERVER['HTTP_X_MASKED_PATH'])) {
+    $attachments['#attached']['drupalSettings']['maskedPath'] = $_SERVER['HTTP_X_MASKED_PATH'];
   }
 }

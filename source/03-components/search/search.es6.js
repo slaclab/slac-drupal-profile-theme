@@ -1,5 +1,6 @@
 import Drupal from 'drupal';
 import once from 'once';
+import drupalSettings from 'drupalSettings';
 import SearchFlyout from './modules/SearchFlyout.es6';
 
 Drupal.behaviors.search = {
@@ -18,7 +19,7 @@ Drupal.behaviors.search = {
       const searchHidden = searchForm.querySelector('.c-search__hidden');
       function handleRadioChange() {
         const selectedSearch = this.value;
-        let searchUrl = '/search';
+        let searchUrl = `${drupalSettings.maskedPath || ''}/search`;
         let searchInputName = 'keywords';
         searchHidden.innerHTML = '';
         if (selectedSearch === 'people') {
