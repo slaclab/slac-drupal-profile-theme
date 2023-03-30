@@ -78,12 +78,24 @@
 
 {% set link = content.field_link|field_value is not empty ? content.field_link[0]['#url'] : url %}
 
+{% if content.field_image|field_value is not empty %}
+  {% set card_media %}
+    {{ content.field_image|field_value }}
+  {% endset %}
+{% elseif site_settings['default_(motif)_images'].person_default_motif_image %}
+  {% set card_media %}
+    {{ drupal_entity('media', site_settings['default_(motif)_images'].person_default_motif_image, 'card_image_only') }}
+  {% endset %}
+{% else %}
+  {% set card_media = false %}
+{% endif %}
+
 {% include '@components/card/card.twig' with {
   'modifier_classes': 'c-card--bio c-card--teaser',
   'title': label,
   'url': link,
   'card_metadata': content.field_text_title_short|field_value,
-  'media': content.field_image|field_value,
+  'media': card_media,
   'card_content': content.field_text_title_full|field_value,
   'use_placeholder': true,
 } %}
