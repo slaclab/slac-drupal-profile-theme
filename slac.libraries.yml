@@ -39,29 +39,12 @@ alert_bar:
   js:
     dist/js/alert-bar.es6.js: {}
 
-animated_icon:
-  css:
-    theme:
-      dist/css/animated-icon.css: {}
-  dependencies:
-    - lottiefiles_field/lottiefiles
-
 back_to_top:
   css:
     theme:
       dist/css/back-to-top.css: {}
   js:
     dist/js/back-to-top.es6.js: {}
-
-carousel:
-  css:
-    theme:
-      dist/css/carousel.css: {}
-  js:
-    dist/js/carousel.es6.js: {}
-  dependencies:
-    - slac/common
-    - core/drupal
 
 drawer:
   css:
@@ -174,18 +157,6 @@ lightbox:
     - core/drupal
     - core/once
 
-mega_menu:
-  css:
-    theme:
-      dist/css/mega-menu.css: {}
-  js:
-    dist/js/mega-menu.es6.js: {}
-  dependencies:
-    - slac/common
-    - slac/mobile_menu
-    - core/drupal
-    - core/drupalSettings
-
 media_detail:
   css:
     theme:
@@ -269,25 +240,6 @@ tagline_long:
     - slac/common
     - core/drupal
 
-toc:
-  css:
-    theme:
-      dist/css/toc.css: {}
-  js:
-    dist/js/toc.es6.js: {}
-  dependencies:
-    - slac/common
-
-topic_grid:
-  css:
-    theme:
-      dist/css/topic-grid.css: {}
-  js:
-    dist/js/topic-grid.es6.js: {}
-  dependencies:
-    - slac/common
-    - core/drupal
-
 tooltip:
   css:
     theme:
@@ -297,22 +249,6 @@ tooltip:
   dependencies:
     - slac/common
     - core/once
-
-transparent_nav:
-  css:
-    theme:
-      dist/css/transparent-nav.css: {}
-  dependencies:
-    - slac/mega_menu
-
-video_hero:
-  css:
-    theme:
-      dist/css/video-hero.css: {}
-  js:
-    dist/js/video-hero.es6.js: {}
-  dependencies:
-    - slac/common
 
 views-toggle:
   css:
