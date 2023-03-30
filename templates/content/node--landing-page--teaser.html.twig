@@ -86,16 +86,16 @@
 {% set card_media %}
   {% if content.field_teaser_image|field_value is not empty %}
     {{ content.field_teaser_image|field_value }}
-  {% elseif site_settings['default_(motif)_images'].basic_page_default_motif_image %}
-    {{ drupal_entity('media', site_settings['default_(motif)_images'].basic_page_default_motif_image, 'card_image_only') }}
+  {% elseif site_settings['default_(motif)_images'].listing_page_default_motif_image %}
+    {{ drupal_entity('media', site_settings['default_(motif)_images'].listing_page_default_motif_image, 'card_image_only') }}
   {% endif %}
 {% endset %}
 
 {% include '@components/card/card.twig' with {
   'title': label,
   'url': url,
-  'kicker': false,
-  'type': content.field_text|field_value,
+  'kicker': content.field_text|field_value,
+  'type': content.field_type|field_value is not empty ? content.field_type|field_value : node.bundle|replace({'_': ' '}),
   'footer': false,
   'media': card_media,
   'card_content': card_content,
