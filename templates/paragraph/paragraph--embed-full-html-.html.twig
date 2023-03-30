@@ -7,7 +7,6 @@
 {% if is_nested %}{{ embed }}{% else %}
   {% include '@layouts/section/section.twig' with {
     section_content: embed,
-    modifier_classes: 'l-section--no-padding',
     has_constrain: true
   } %}
 {% endif %}

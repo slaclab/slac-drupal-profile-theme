@@ -50,7 +50,6 @@
 {% if is_nested %}{{ accordion }}{% else %}
   {% include '@layouts/section/section.twig' with {
     'section_content': accordion,
-    'modifier_classes': 'l-section--no-padding',
     'has_constrain': true
   } %}
 {% endif %}

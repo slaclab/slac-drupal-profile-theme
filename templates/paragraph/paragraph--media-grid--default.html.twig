@@ -47,7 +47,6 @@
 {% if is_nested %}{{ media_grid }}{% else %}
   {% include '@layouts/section/section.twig' with {
     section_content: media_grid,
-    modifier_classes: 'l-section l-section--padding-bottom',
     has_constrain: true
   } %}
 {% endif %}
