@@ -162,10 +162,8 @@
         )
     ) {
     padding-top: 0;
-  }
 
-  @include breakpoint-min(gesso-breakpoint(desktop)) {
-    & + & {
+    @include breakpoint-min(gesso-breakpoint(desktop)) {
       padding-top: 0;
     }
   }
