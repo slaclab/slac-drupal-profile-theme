@@ -131,7 +131,7 @@
 
 {#
 /**
- * If the "Is external event?" field (field_boolean) is set then use the URL of the external link
+ * If the "Is external event?" field (field_boolean_2) is set then use the URL of the external link
  * field as the title URL. Otherwise use the node URL. External events will not have detail pages.
  * The external link field is not required, however, so the card title link may have no href.
  */
@@ -140,7 +140,7 @@
   'modifier_classes': 'c-card--large',
   'is_event': true,
   'title': label,
-  'url': content.field_boolean['#items'].value == 0 ? url : content.field_external_link.0['#url'],
+  'url': content.field_boolean_2['#items'].value == 0 ? url : content.field_link.0['#url'],
   'start_date': {
     'month': event_start_date|date('M'),
     'day': event_start_date|date('j')
