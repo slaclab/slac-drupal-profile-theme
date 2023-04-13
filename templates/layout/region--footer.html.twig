@@ -18,7 +18,7 @@
 
   {% block footer_contact %}
     {% if site_settings.organization_details.organization_details %}
-      <strong>{{ site_settings.organization_details.organization_details.field_acronym }} | {{ site_settings.organization_details.organization_details.field_organization_name }}</strong>
+      <strong>{% if site_settings.organization_details.organization_details.field_acronym %}{{ site_settings.organization_details.organization_details.field_acronym }} | {% endif %}{{ site_settings.organization_details.organization_details.field_organization_name }}</strong>
       {% if site_settings.organization_details.organization_details.field_address %}
         <address>
           {% if site_settings.organization_details.organization_details.field_address.address_line1 %}{{ site_settings.organization_details.organization_details.field_address.address_line1 }}<br>{% endif %}
