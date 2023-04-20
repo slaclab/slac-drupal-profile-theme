@@ -295,3 +295,15 @@
     }
   }
 }
+
+.l-section--margin-home-space {
+  margin-top: rem(gesso-spacing(7));
+
+  h1 {
+    margin-top: 0;
+  }
+
+  @include breakpoint-min(gesso-breakpoint(desktop)) {
+    margin-top: rem(gesso-spacing(12));
+  }
+}
