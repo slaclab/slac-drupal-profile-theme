@@ -103,7 +103,7 @@
   padding: gesso-site-margins(mobile);
 
   @include breakpoint-min(gesso-breakpoint(tablet)) {
-    max-width: 493px;
+    width: 493px;
   }
 
   @include breakpoint-min(gesso-breakpoint(desktop)) {
