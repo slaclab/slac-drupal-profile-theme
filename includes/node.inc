@@ -32,6 +32,8 @@ function slac_preprocess_node(&$variables) {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $variables['node'];
 
+    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+
     // Determine the type of the hero paragraph if the field exists.
     if ($node->hasField('field_hero_paragraph')) {
       if($node->get('field_hero_paragraph')->first()) {

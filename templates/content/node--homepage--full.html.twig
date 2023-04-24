@@ -93,9 +93,11 @@
         {% if show_admin_info %}
           {{ admin_info }}
         {% endif %}
-        <h1>
-          {{ label }}
-        </h1>
+        {% if not is_front %}
+          <h1>
+            {{ label }}
+          </h1>
+        {% endif %}
       </div>
     </div>
   </div>
