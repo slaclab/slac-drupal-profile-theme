@@ -6,6 +6,9 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -76,7 +79,7 @@ function slac_preprocess_views_view_field(array &$variables) {
   // We have to do this the messy way because we're using fields in the search
   // result view.
   if ($variables['view']->current_display == 'search_list') {
-    if ($variables['row']->_entity->bundle() == 'event' && $variables['field']->field == 'title') {
+    if (isset($variables['row']->_entity) && $variables['row']->_entity->bundle() == 'event' && $variables['field']->field == 'title') {
       $node = $variables['row']->_entity;
       if ($node->field_boolean_2->value && $node->field_link->getValue()) {
         $current_link = $variables['output']->__toString();
@@ -85,7 +88,7 @@ function slac_preprocess_views_view_field(array &$variables) {
         $link_text = strip_tags($current_link);
         $url = Url::fromUri($node->field_link->getValue()[0]['uri'], ['attributes' => ['class' => $classes]]);
         $link = Link::fromTextAndUrl($link_text, $url);
-        $variables['output'] = Drupal\Core\Render\Markup::create($link->toString());
+        $variables['output'] = Markup::create($link->toString());
       }
     }
   }
