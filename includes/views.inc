@@ -70,26 +70,3 @@ function slac_form_views_exposed_form_alter(&$form, FormStateInterface $form_sta
     $form['actions']['submit']['#is_faq'] = TRUE;
   }
 }
-
-/**
- * Implements hook_preprocess_views_view_field().
- */
-function slac_preprocess_views_view_field(array &$variables) {
-  // Alter search result output if an event has an external link.
-  // We have to do this the messy way because we're using fields in the search
-  // result view.
-  if ($variables['view']->current_display == 'search_list') {
-    if (isset($variables['row']->_entity) && $variables['row']->_entity->bundle() == 'event' && $variables['field']->field == 'title') {
-      $node = $variables['row']->_entity;
-      if ($node->field_boolean_2->value && $node->field_link->getValue()) {
-        $current_link = $variables['output']->__toString();
-        preg_match('/class="([^"]*)"/', $current_link, $match);
-        $classes = $match[1] ?? [];
-        $link_text = strip_tags($current_link);
-        $url = Url::fromUri($node->field_link->getValue()[0]['uri'], ['attributes' => ['class' => $classes]]);
-        $link = Link::fromTextAndUrl($link_text, $url);
-        $variables['output'] = Markup::create($link->toString());
-      }
-    }
-  }
-}
