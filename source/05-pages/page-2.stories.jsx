@@ -51,6 +51,7 @@ const BasicPage2 = ({ has_sidebar, sidebar, is_demo, ...args }) => (
       title: 'Basic Page Example',
       lede: 'Description teaser is informative, intriguing, and compelling to your target audiences. Keep it friendly and approachable with a brief well-written overview of your business and services. Tell just enough of your story, make it enticing that the reader begs for more.',
       author_name: false,
+      has_title_constrain: !has_sidebar,
       content: ReactDOMServer.renderToStaticMarkup(
         <>
           {SectionWithGrayWhiteGradient({
