@@ -145,38 +145,6 @@
         .l-section--yellow,
         .l-section--purple,
         .l-section--blue,
-        .l-section--white-gray,
-        .l-section--gray
-      )
-  ) {
-  + :is(
-      .l-section--white,
-      .l-section:not(
-          .l-section--purple-black,
-          .l-section--blue-green,
-          .l-section--yellow,
-          .l-section--purple,
-          .l-section--blue,
-          .l-section--gray-white,
-          .l-section--gray
-        )
-    ) {
-    padding-top: 0;
-
-    @include breakpoint-min(gesso-breakpoint(desktop)) {
-      padding-top: 0;
-    }
-  }
-}
-
-:is(
-    .l-section--white,
-    .l-section:not(
-        .l-section--purple-black,
-        .l-section--blue-green,
-        .l-section--yellow,
-        .l-section--purple,
-        .l-section--blue,
         .l-section--gray-white,
         .l-section--gray
       )
