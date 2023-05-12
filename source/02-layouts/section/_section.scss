@@ -135,32 +135,6 @@
   }
 }
 
-// Use of :is() seems to be confusing stylelint's prettier rule.
-// stylelint-disable prettier/prettier
-:is(
-    .l-section--white,
-    .l-section:not(
-        .l-section--purple-black,
-        .l-section--blue-green,
-        .l-section--yellow,
-        .l-section--purple,
-        .l-section--blue,
-        .l-section--gray-white,
-        .l-section--gray
-      )
-  ) {
-  &:first-of-type {
-    padding-top: 0;
-  }
-
-  @include breakpoint-min(gesso-breakpoint(desktop)) {
-    &:first-of-type {
-      padding-top: 0;
-    }
-  }
-}
-// stylelint-enable prettier/prettier
-
 .l-section--dark {
   @include on-dark-variables;
 
