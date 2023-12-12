@@ -9,15 +9,22 @@ Drupal.behaviors.externalLinks = {
       'userportal.slac.stanford.edu',
       'www-internal.slac.stanford.edu',
       'internal.slac.stanford.edu',
-      'sallie.stanford.edu',
       'int.slac.stanford.edu',
+      'www-bis1.slac.stanford.edu',
+      'slac.sharepoint.com',
+      'slacspace.slac.stanford.edu',
+      'slac.wta-us8.wfs.cloud,
+      'slacprod.servicenowservices.com',
+      'slac.slack.com',
+      'erp-fsprd.erp.slac.stanford.edu',
+      'login.adaptiveinsights.com',
+      'www-public.slac.stanford.edu/phonebook',
     ];
     function linkIsExternal(linkElement) {
       let isExternal = true;
       if (
         linkElement.host === 'www6.slac.stanford.edu' ||
         linkElement.host.endsWith('.slac.stanford.edu') ||
-        linkElement.host === 'sallie.stanford.edu' ||
         linkElement.host === window.location.host
       ) {
         isExternal = false;
