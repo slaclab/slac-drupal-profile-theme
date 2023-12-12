@@ -10,6 +10,7 @@ Drupal.behaviors.externalLinks = {
       'www-internal.slac.stanford.edu',
       'internal.slac.stanford.edu',
       'sallie.stanford.edu',
+      'int.slac.stanford.edu',
     ];
     function linkIsExternal(linkElement) {
       let isExternal = true;
