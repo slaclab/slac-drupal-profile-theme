@@ -18,7 +18,6 @@ Drupal.behaviors.externalLinks = {
       'slac.slack.com',
       'erp-fsprd.erp.slac.stanford.edu',
       'login.adaptiveinsights.com',
-      'www-public.slac.stanford.edu/phonebook',
     ];
     function linkIsExternal(linkElement) {
       let isExternal = true;
