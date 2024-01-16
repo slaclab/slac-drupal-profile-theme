@@ -11,6 +11,7 @@ Drupal.behaviors.externalLinks = {
       'internal.slac.stanford.edu',
       'int.slac.stanford.edu',
       'www-bis1.slac.stanford.edu',
+      'www-bis2.slac.stanford.edu',
       'slac.sharepoint.com',
       'slacspace.slac.stanford.edu',
       'slac.wta-us8.wfs.cloud',
