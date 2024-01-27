@@ -15,7 +15,7 @@ modifier_classes ? modifier_classes : ''
     } %}
   </button>
   <form {{ add_attributes({ class:['c-filter-modal__inner', 'u-hidden'], id: lightbox_id }) }}>
-    {% spaceless %}<button class="js-lightbox__close c-filter-modal__close" type="button">
+    {% apply spaceless %}<button class="js-lightbox__close c-filter-modal__close" type="button">
       Close
       {%- include '@components/icon/icon.twig' with {
         'icon_name': 'close',
@@ -23,7 +23,7 @@ modifier_classes ? modifier_classes : ''
         'is_demo': false,
         'modifier_classes': null
       } -%}
-    </button>{% endspaceless %}
+    </button>{% endapply %}
     <fieldset>
       {% if filter_title %}
         <legend class="c-filter-modal__title">{{ filter_title }}</legend>

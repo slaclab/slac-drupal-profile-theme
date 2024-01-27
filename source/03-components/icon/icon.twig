@@ -29,10 +29,10 @@
   {% endfor %}
 {%- else -%}
   {% set title_id = icon_name|unique_id %}
-  {% spaceless %}
+  {% apply spaceless %}
     <svg {{ add_attributes({ 'class': classes }) }} {% if label %}role="img" aria-labelledby="{{ title_id }}" {% else %}aria-hidden="true"{% endif %}>
       {% if label %}<title id="{{ title_id }}">{{ label }}</title>{% endif %}
       <use xlink:href="{{ gesso_image_path }}/sprite.artifact.svg#{{ icon_name}}"></use>
     </svg>
-  {% endspaceless %}
+  {% endapply %}
 {%- endif -%}

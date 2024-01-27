@@ -8,7 +8,7 @@
 
 <div {{ add_attributes({ class: classes } ) }}>
   <div class="c-card__media">
-    {% spaceless %}
+    {% apply spaceless %}
       <h3 class="c-card__title">
         {% if title_url %}
           <a href="{{- title_url -}}" class="c-card--small-bio__link">
@@ -18,7 +18,7 @@
           {{- title -}}
         {% endif %}
       </h3>
-    {% endspaceless %}
+    {% endapply %}
   </div>
   <div class="c-card__body">
     {% if name %}
