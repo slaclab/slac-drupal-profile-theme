@@ -18,13 +18,13 @@
 
 <label {{ add_attributes(attributes_to_add) }}>
   {% if is_required %}
-    {%- spaceless %}
+    {%- apply spaceless %}
       <span class="c-form-item__required-marker">
         <span class="u-visually-hidden">
           {{ 'This field is required.'|t }}
         </span>
       </span>
-    {% endspaceless -%}
+    {% endapply -%}
   {% endif -%}
 
   {{- title }}

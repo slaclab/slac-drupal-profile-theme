@@ -14,7 +14,8 @@
     </div>
   {% endif %}
 
-  {% if is_multimonth %}{% apply spaceless %}
+  {% if is_multimonth %}
+  {% apply spaceless %}
     <div>
       –
     </div>
@@ -22,5 +23,6 @@
       <span class="c-event-date__month">{{ end_date.month }}</span>
       {{- end_date.day -}}
     </div>
-  {% endapply %}{% endif %}
+  {% endapply %}
+  {% endif %}
 </div>

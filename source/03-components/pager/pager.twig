@@ -14,7 +14,7 @@
         <li class="c-pager__item c-pager__item--previous">
           {% if pager_items.previous.href %}
             <a class="c-pager__link c-pager__link--previous" href="{{ pager_items.previous.href }}" aria-label="{{ link_label }}" title="{{ link_label }}" rel="prev" {{ pager_items.previous.attributes|without('aria-label', 'href', 'rel', 'title') }}>
-              {%- spaceless %}
+              {%- apply spaceless %}
                 {% include '@components/icon/icon.twig' with {
                 'is_hidden': true,
                 'modifier_classes': 'c-icon--pager',
@@ -23,11 +23,11 @@
                 <span class="u-visually-hidden">
                   {{ link_label }}
                 </span>
-              {% endspaceless -%}
+              {% endapply -%}
             </a>
           {% else %}
             <span class="c-pager__link c-pager__link--previous" {{ pager_items.previous.attributes|without('aria-label', 'href', 'rel', 'title') }}>
-              {%- spaceless %}
+              {%- apply spaceless %}
                 {% include '@components/icon/icon.twig' with {
                 'is_hidden': true,
                 'modifier_classes': 'c-icon--pager',
@@ -36,7 +36,7 @@
                 <span class="u-visually-hidden">
                   {{ link_label }}
                 </span>
-              {% endspaceless -%}
+              {% endapply -%}
             </span>
           {% endif %}
         </li>
@@ -111,7 +111,7 @@
         <li class="c-pager__item c-pager__item--next">
           {% if pager_items.next.href %}
             <a class="c-pager__link c-pager__link--next" href="{{ pager_items.next.href }}" aria-label="{{ link_label }}" title="{{ link_label }}" rel="next" {{ pager_items.next.attributes|without('aria-label', 'href', 'rel', 'title') }}>
-              {%- spaceless %}
+              {%- apply spaceless %}
                 <span class="u-visually-hidden">
                   {{ link_label }}
                 </span>
@@ -120,11 +120,11 @@
                 'modifier_classes': 'c-icon--pager',
                 'icon_name': 'angle-right',
               } %}
-              {% endspaceless -%}
+              {% endapply -%}
             </a>
           {% else %}
             <span class="c-pager__link c-pager__link--next" {{ pager_items.next.attributes|without('aria-label', 'href', 'rel', 'title') }}>
-              {%- spaceless %}
+              {%- apply spaceless %}
                 <span class="u-visually-hidden">
                   {{ link_label }}
                 </span>
@@ -133,7 +133,7 @@
                 'modifier_classes': 'c-icon--pager',
                 'icon_name': 'angle-right',
               } %}
-              {% endspaceless -%}
+              {% endapply -%}
             </span>
           {% endif %}
         </li>
